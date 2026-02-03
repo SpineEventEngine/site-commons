@@ -24,15 +24,62 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
+:root {
+  /* The position is managed by JS. */
+  --snackbar-bottom-position: 20px;
+}
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
+$snackbar-bg-color: rgba(35, 37, 38, .87);
+$snackbar-font-size: 14px;
+$snackbar-font-weight: 700;
+$snackbar-text-color: white;
+$snackbar-border-radius: 3px;
+$snackbar-padding: 12px 24px;
+$snackbar-left-position: 50%;
+$snackbar-z-index: map-get($z-index, 'snackbar');
+$snackbar-animation: snackbarFadeIn .5s, snackbarFadeOut .5s 2.5s;
+$snackbar-transform: translateX(-50%);
+
+.snackbar {
+  visibility: hidden;
+  position: fixed;
+  z-index: $snackbar-z-index;
+  background-color: $snackbar-bg-color;
+  font-size: $snackbar-font-size;
+  color: $snackbar-text-color;
+  text-align: center;
+  border-radius: $snackbar-border-radius;
+  padding: $snackbar-padding;
+  left: $snackbar-left-position;
+  bottom: var(--snackbar-bottom-position);
+  transform: $snackbar-transform;
+
+  &.show {
+    visibility: visible;
+    animation: $snackbar-animation;
+  }
+}
+
+@keyframes snackbarFadeIn {
+  0% {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  100% {
+    bottom: var(--snackbar-bottom-position);
+    opacity: 1;
+  }
+}
+
+@keyframes snackbarFadeOut {
+  0% {
+    bottom: var(--snackbar-bottom-position);
+    opacity: 1;
+  }
+
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+}
