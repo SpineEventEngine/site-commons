@@ -24,16 +24,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+.highlight {
+  position: relative;
+}
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
+.light-code-theme {
+  .code-theme-toggle {
+    opacity: .26;
+  }
+}
+
+.code-theme-toggle {
+  $toggle-size: 24px;
+  $icon-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: calc((#{$toggle-size} + 2px) * -1);
+  right: 0;
+  width: $toggle-size;
+  height: $toggle-size;
+  opacity: .38;
+  transition: opacity .2s ease-in-out;
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    position: absolute;
+    background: url('img/icons/brightness.svg') no-repeat center/cover;
+    width: $icon-size;
+    height: $icon-size;
+  }
+
+  &:hover {
+    opacity: .54;
+  }
+}

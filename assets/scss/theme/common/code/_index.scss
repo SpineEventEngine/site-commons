@@ -24,16 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
-
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
+@import "code";
+@import "code-block";
+@import "code-tabs";
+/* TODO:2026-02-03:julia.evseeva: Uncomment when the icon placement will be approved. */
+//@import "code-copy-icon";
+@import "code-theme-toggle";
+@import "code-with-label";
