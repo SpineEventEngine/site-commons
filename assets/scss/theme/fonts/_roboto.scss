@@ -1,0 +1,78 @@
+/*!
+ * Copyright 2026, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+$roboto-font-path: "fonts/roboto/" !default;
+
+@font-face {
+  font-family: "Roboto";
+  src: local(Roboto Thin), url('#{$roboto-font-path}Roboto-Thin.eot');
+  src: url("#{$roboto-font-path}Roboto-Thin.eot?#iefix") format('embedded-opentype'),
+  url("#{$roboto-font-path}Roboto-Thin.woff2") format("woff2"),
+  url("#{$roboto-font-path}Roboto-Thin.woff") format("woff"),
+  url("#{$roboto-font-path}Roboto-Thin.ttf") format("truetype");
+
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local(Roboto Light), url('#{$roboto-font-path}Roboto-Light.eot');
+  src: url("#{$roboto-font-path}Roboto-Light.eot?#iefix") format('embedded-opentype'),
+  url("#{$roboto-font-path}Roboto-Light.woff2") format("woff2"),
+  url("#{$roboto-font-path}Roboto-Light.woff") format("woff"),
+  url("#{$roboto-font-path}Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local(Roboto Regular), url('#{$roboto-font-path}Roboto-Regular.eot');
+  src: url("#{$roboto-font-path}Roboto-Regular.eot?#iefix") format('embedded-opentype'),
+  url("#{$roboto-font-path}Roboto-Regular.woff2") format("woff2"),
+  url("#{$roboto-font-path}Roboto-Regular.woff") format("woff"),
+  url("#{$roboto-font-path}Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('#{$roboto-font-path}Roboto-Medium.eot');
+  src: url("#{$roboto-font-path}Roboto-Medium.eot?#iefix") format('embedded-opentype'),
+  url("#{$roboto-font-path}Roboto-Medium.woff2") format("woff2"),
+  url("#{$roboto-font-path}Roboto-Medium.woff") format("woff"),
+  url("#{$roboto-font-path}Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('#{$roboto-font-path}Roboto-Bold.eot');
+  src: url("#{$roboto-font-path}Roboto-Bold.eot?#iefix") format('embedded-opentype'),
+  url("#{$roboto-font-path}Roboto-Bold.woff2") format("woff2"),
+  url("#{$roboto-font-path}Roboto-Bold.woff") format("woff"),
+  url("#{$roboto-font-path}Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
