@@ -24,21 +24,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+$background-color: #f6f8fa;
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
-@import "theme/components/article-container";
-@import "theme/components/article-text";
+body:has(.with-colored-background) {
+  background-color: $background-color;
 
-@import "theme/pages/common";
+  @include breakpoint(lg-phone) {
+    background-color: white;
+  }
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  flex: 1 1 0;
+  padding: 0;
+  margin-top: 0;
+
+  .content-columns {
+    padding: 0 15px;
+
+    @include breakpoint(mobile-sidenav) {
+      padding: 0;
+    }
+
+    .doc-sidenav-col,
+    .toc-col {
+      padding: 0 0 24px;
+    }
+
+    .content-col {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 15px 48px;
+
+      @include breakpoint(mobile-sidenav) {
+        padding: 16px 0 48px;
+      }
+    }
+  }
+}
