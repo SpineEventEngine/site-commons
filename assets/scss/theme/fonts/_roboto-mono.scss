@@ -1,0 +1,79 @@
+/*!
+ * Copyright 2026, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+$roboto-mono-font-path: "fonts/robotomono/" !default;
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 300;
+  src: url('#{$roboto-mono-font-path}roboto-mono-v5-latin-300.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Mono Light'), local('RobotoMono-Light'),
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-300.woff') format('woff'), /* Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-300.svg#RobotoMono') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$roboto-mono-font-path}roboto-mono-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Mono'), local('RobotoMono-Regular'),
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-regular.svg#RobotoMono') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('#{$roboto-font-path}roboto-mono-v5-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Mono Medium'), local('RobotoMono-Medium'),
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.woff') format('woff'), /* Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.svg#RobotoMono') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url('#{$roboto-mono-font-path}roboto-mono-v5-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Mono Bold'), local('RobotoMono-Bold'),
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-700.woff') format('woff'), /* Modern Browsers */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('#{$roboto-mono-font-path}roboto-mono-v5-latin-700.svg#RobotoMono') format('svg'); /* Legacy iOS */
+}
