@@ -72,15 +72,6 @@
   }
 }
 
-@mixin close-icon {
-  display: inline-block;
-  width: $icon-size-s;
-  height: $icon-size-s;
-  background: url('img/icons/close.svg') no-repeat center/cover;
-  opacity: .26;
-  transition: opacity .3s ease-in-out;
-}
-
 /*
   Ordered and unordered list styles.
   Usage: `@include list();`
