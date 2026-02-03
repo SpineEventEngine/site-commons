@@ -1,0 +1,17 @@
+{{- /*
+Returns a data variable.
+
+Usage:
+{{% get-site-data "spine.sales_email" %}} –> will render the `sales@spine.io`
+from the `data/spine.yml` file.
+*/ -}}
+
+{{- $dataPath := .Get 0 -}}
+{{- with split $dataPath "." -}}
+    {{- $data := site.Data -}}
+    {{- range . -}}
+        {{- $data = index $data . -}}
+    {{- end -}}
+    {{- $data | safeHTML -}}
+{{- end -}}
+{{- /* Strip trailing newline. */ -}}
