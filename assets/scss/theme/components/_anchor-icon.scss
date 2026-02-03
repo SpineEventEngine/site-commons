@@ -81,9 +81,7 @@ $anchor-icon-opacity: .38;
   }
 }
 
-/* The `.big-title` class is added in the `anchor-icon.js` file. */
-h2[data-title],
-.big-title[data-title] {
+h2[data-title] {
   .anchor-icon {
     &:after {
       @include breakpoint-min(lg-phone) {

@@ -1,7 +1,6 @@
-{{/* Please do not add an empty line at the end of the file. And keep the `script` tag on the same line with the `span`. */}}
-{{/* Get address, protocol, and other parameters. */}}
+{{/* Do not add an empty line at the end of the file or any indentation, as both are rendered. And keep the `script` tag on the same line with the `span`. */}}
 
-{{/* The display text can be provided using a site variable `display_variable="company.sales_email"`. */}}
+{{/* The display text can be provided using a site variable `display_variable="spine.sales_email"`. */}}
 {{- $displayVariable := .Get "display_variable" -}}
 {{- $displayParam := .Get "display" | default (.Get 0) -}}
 {{- $displaytext := "" -}}
@@ -11,7 +10,7 @@
 {{- $displaytext = $displayParam -}}
 {{- end -}}
 
-{{/* The address can be provided using a site variable `address_variable="company.sales_email"`. */}}
+{{/* The address can be provided using a site variable `address_variable="spine.sales_email"`. */}}
 {{- $addressVariable := .Get "address_variable" -}}
 {{- $addressParam := .Get "address" | default (.Get 0) -}}
 {{- $address := "" -}}
@@ -27,9 +26,8 @@
 {{- $user := (index $parts 0) -}}
 {{- $domain := (index $parts 1) | default "" -}}
 {{- $query := .Get "query" | default "" -}}
-{{/* Compute md5 fingerprint. */}}
+{{/* Computes md5 fingerprint. */}}
 {{- $fingerprint := md5 (print $address $protocol (index (seq 999 | shuffle) 0)) | truncate 8 "" -}}
-{{/* Set via CSS what is displayed when JavaScript is disabled. Query is never displayed. */}}
 <style>
 #span-{{ $fingerprint }}.cloaked-e-mail:before {
   content:{{ with $domain }}attr(data-domain) "\0040" {{ end }}attr(data-user);
