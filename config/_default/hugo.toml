@@ -1,0 +1,11 @@
+[module]
+  [[module.imports]]
+    path = 'github.com/twbs/bootstrap'
+    disable = false
+  [[module.imports.mounts]]
+    source = 'scss'
+    target = 'assets/vendor/bootstrap/scss'
+  [[module.imports.mounts]]
+    source = 'js/dist'
+    target = 'assets/vendor/bootstrap/dist/js'
+    includeFiles = ['collapse.js', 'dropdown.js', 'tooltip.js']
