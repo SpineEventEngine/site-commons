@@ -24,15 +24,7 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<!-- The code theme is managed in `assets/js/theme/code-theme.js`. -->
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-{{ if eq site.Params.defaultCodeTheme "light" }}
-    {{ $defaultCodeTheme = $lightTheme }}
-{{ end }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+<!-- JavaScript API for handling cookies https://github.com/js-cookie/js-cookie. -->
+<script defer src="{{ `libs/js.cookie.min.js` | relURL }}"
+        type="text/javascript"
+        charset="utf-8"></script>
