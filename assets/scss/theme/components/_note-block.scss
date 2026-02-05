@@ -24,29 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+.note-block {
+  padding: 12px 24px 13px;
+  color: $black;
+  border-radius: $border-radius-s;
+  margin-bottom: 24px;
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
-@import "theme/components/article-container";
-@import "theme/components/article-text";
-@import "theme/components/sidenav";
-@import "theme/components/next-prev-nav";
-@import "theme/components/interactive-toc";
-@import "theme/components/note-block";
-@import "theme/components/docs-category-card";
-@import "theme/components/person-card";
-@import "theme/components/book-card";
+  &.note {
+    background-color: $note-bg-color;
+    border-left: 4px solid $main-brand-color;
+  }
 
-@import "theme/pages/common";
-@import "theme/pages/docs/resources";
+  &.warning {
+    background-color: #fffde6;
+    border-left: 4px solid $warning-color;
+  }
+
+  &.lead {
+    padding: 8px 0 0 0;
+    margin-bottom: 32px;
+
+    p {
+      font-family: $main-font;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: .2px;
+    }
+  }
+
+  code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

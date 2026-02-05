@@ -24,29 +24,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+.home {
+  background-color: $body-light-gray-color;
+  font-family: $main-font;
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
-@import "theme/components/article-container";
-@import "theme/components/article-text";
-@import "theme/components/sidenav";
-@import "theme/components/next-prev-nav";
-@import "theme/components/interactive-toc";
-@import "theme/components/note-block";
-@import "theme/components/docs-category-card";
-@import "theme/components/person-card";
-@import "theme/components/book-card";
+  .container {
+    background-color: white;
+    border: 1px solid #e6ecf1;
+    max-width: 760px;
+    padding: 48px 56px;
 
-@import "theme/pages/common";
-@import "theme/pages/docs/resources";
+    @include breakpoint(md-phone) {
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: $font-size--xxxl;
+      font-weight: 300;
+      color: rgba(0, 0, 0, .4);
+      line-height: 1.2;
+      margin-bottom: 32px;
+      padding-top: 16px;
+
+      @include breakpoint(md-phone) {
+        font-size: $font-size--xl;
+      }
+    }
+
+    a {
+      color: $main-brand-color;
+    }
+
+    .subtle {
+      color: rgba(0, 0, 0, .46);
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  }
+}
