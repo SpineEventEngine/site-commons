@@ -4,8 +4,7 @@
     disable = false
   [[module.imports.mounts]]
     source = 'scss'
-    target = 'assets/vendor/bootstrap/scss'
+    target = 'assets/bootstrap/scss'
   [[module.imports.mounts]]
     source = 'js/dist'
-    target = 'assets/vendor/bootstrap/dist/js'
-    includeFiles = ['collapse.js', 'dropdown.js', 'tooltip.js']
+    target = 'assets/bootstrap/dist/js'
