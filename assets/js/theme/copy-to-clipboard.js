@@ -24,11 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import 'js/theme/code-tabs';
-import {setupAnchorClick} from 'js/theme/anchor-icon';
+'use strict';
 
-$(function() {
-    if ($('body').hasClass('docs')) {
-        setupAnchorClick();
+import {hideSnackbar, showSnackbar} from "js/theme/snackbar.js";
+import {getTranslation} from "js/theme/utils/get-translation.js";
+
+/**
+ * Copies text to clipboard and shows the snackbar.
+ *
+ * @param {String} textToCopy text to be copied to the clipboard
+ * @param {boolean} isSnackbar indicates whether to show snackbar
+ */
+export function copyToClipboard(textToCopy, isSnackbar = true) {
+    const dummy = document.createElement('textarea');
+    const snackbarMessage = getTranslatedMessage();
+
+    hideSnackbar();
+    document.body.appendChild(dummy);
+    dummy.value = textToCopy;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    if (isSnackbar) {
+        showSnackbar(snackbarMessage);
     }
-});
+}
+
+/**
+ * Gets the translated message of “Copy to clipboard”.
+ *
+ * @returns {string} the translated message
+ */
+function getTranslatedMessage() {
+    const translations = {
+        en: "Copied to clipboard"
+    }
+    return getTranslation(translations);
+}
