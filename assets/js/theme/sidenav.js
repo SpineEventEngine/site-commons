@@ -24,19 +24,42 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import 'js/theme/code-tabs';
+/**
+ * Toggles the sidenav on mobile devices.
+ */
+export function initSidenav() {
+    const $body = $('body');
+    const $mobileSidenavToggle = $('#mobile-sidenav-toggle');
+    const $mobileSidenavCloseBtn = $('#close-mobile-sidenav');
+    const mobileSidenavOpenedClass = 'mobile-sidenav-opened';
 
-import {interactiveToc} from 'js/theme/interactive-toc';
-import {setupAnchorClick} from 'js/theme/anchor-icon';
-import {initCodeTheme} from 'js/theme/code-theme';
-import {setElementMaxHeight} from 'js/theme/element-max-height';
+    $(window).on('resize', function() {
+        hideMobileSidenavOnResize();
+    });
 
-$(function() {
-    initCodeTheme();
-    setElementMaxHeight();
+    /**
+     * Shows the mobile sidenav panel on the toggle click.
+     */
+    $mobileSidenavToggle.click(function () {
+        $body.addClass(mobileSidenavOpenedClass);
+    });
 
-    if ($('body').hasClass('docs')) {
-        setupAnchorClick();
-        interactiveToc();
+    /**
+     * Closes the mobile sidenav panel on the close button click.
+     */
+    $mobileSidenavCloseBtn.click(function () {
+        $body.removeClass(mobileSidenavOpenedClass);
+    });
+
+    /**
+     * Hides the mobile sidenav on window resizing.
+     */
+    function hideMobileSidenavOnResize() {
+        const tabletWidth = 880;
+        const mobileWindow = $(window).width() <= tabletWidth;
+
+        if (!mobileWindow) {
+            $body.removeClass(mobileSidenavOpenedClass);
+        }
     }
-});
+}
