@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,17 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+import {setupAnchorClick} from 'js/theme/anchor-icon';
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
+$(function() {
+    if ($('body').hasClass('docs')) {
+        setupAnchorClick();
+    }
+});

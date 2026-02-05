@@ -1,0 +1,17 @@
+{{- /*
+Returns a site Param variable.
+
+Usage:
+{{% get-site-params "description" %}} –> will render the description
+from the `hugo.toml` config file.
+*/ -}}
+
+{{- $dataPath := .Get 0 -}}
+{{- with split $dataPath "." -}}
+    {{- $data := site.Params -}}
+    {{- range . -}}
+        {{- $data = index $data . -}}
+    {{- end -}}
+    {{- $data | safeHTML -}}
+{{- end -}}
+{{- /* Strip trailing newline. */ -}}

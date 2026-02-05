@@ -24,17 +24,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+$breakpoints: (
+        sm-phone:       320px,
+        md-phone:       480px,
+        xmd-phone:      576px,
+        lg-phone:       640px,
+        tablet:         768px,
+        md-tablet:      860px,
+        lg-tablet:      960px,
+        sm-desktop:     991px,
+        desktop:       1024px,
+        md-desktop:    1200px,
+        lg-desktop:    1440px,
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
+        mobile-navbar:  800px,
+        mobile-sidenav: 880px
+);

@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,17 +24,25 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+'use strict';
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
+/**
+ * Returns the translation based on the page `lang` attribute.
+ *
+ * <p>If the translation for the page language is not available,
+ * falls back to the default language.
+ *
+ * @param {Object} translations an object containing translations
+ *                              for different languages
+ * @returns {string} the translation for the current page language
+ */
+export function getTranslation(translations) {
+    const defaultLanguage = 'en';
+    const pageLanguage = $('html').attr('lang');
+
+    if (translations[pageLanguage] !== undefined) {
+        return translations[pageLanguage];
+    } else {
+        return translations[defaultLanguage];
+    }
+}

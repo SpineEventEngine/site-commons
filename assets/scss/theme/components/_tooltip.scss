@@ -24,17 +24,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+/* Overrides styles of the Bootstrap tooltip. */
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
+.tooltip {
+  --bs-tooltip-padding-y: .5rem;
+  --bs-tooltip-padding-x: .7rem;
+  --bs-tooltip-bg: #232526;
+  --bs-tooltip-opacity: .87;
+  --bs-tooltip-font-size: 12px;
+  --bs-tooltip-border-radius: 5px;
+
+  line-height: 1.4;
+}

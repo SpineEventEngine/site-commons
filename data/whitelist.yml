@@ -1,0 +1,5 @@
+# Whitelist of domains that should not receive rel="nofollow" on external links.
+# Used to exempt our own domains from SEO penalties.
+
+domains:
+  - "spine.io"

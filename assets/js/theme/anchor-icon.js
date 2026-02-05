@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,17 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+'use strict';
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
+import {copyToClipboard} from "js/theme/copy-to-clipboard";
+
+/**
+ * Manages the anchor icon click.
+ *
+ * <p>Also, copies the `href` to clipboard.
+ */
+export function setupAnchorClick() {
+    const anchorIconClass = 'anchor-icon';
+    const $anchorLinks = $('a[href^="#"]');
+
+    $anchorLinks.on('click', function() {
+        const $this = $(this);
+        const anchor = $this.attr('href');
+
+        if ($this.hasClass(anchorIconClass)) {
+            window.location.hash = anchor;
+            copyToClipboard(window.location.href);
+        }
+    });
+}

@@ -24,17 +24,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
+.close-icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+  z-index: 1;
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
+  .close-icon {
+    font-family: $fontawesome;
+    font-style: normal;
+    font-size: $icon-size-s;
+    color: rgba(0, 0, 0, .26);
+
+    &:after {
+      content: '\f00d';
+      font-weight: 300;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .03);
+
+    i {
+      color: rgba(0, 0, 0, .48);
+    }
+  }
+}
