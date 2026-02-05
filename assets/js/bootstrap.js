@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,32 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "bootstrap/bootstrap";
-
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/code";
-
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
-@import "theme/components/article-container";
-@import "theme/components/article-text";
-@import "theme/components/sidenav";
-@import "theme/components/next-prev-nav";
-@import "theme/components/interactive-toc";
-@import "theme/components/note-block";
-@import "theme/components/docs-category-card";
-@import "theme/components/person-card";
-@import "theme/components/book-card";
-@import "theme/components/diagram";
-
-@import "theme/pages/common";
-@import "theme/pages/docs/resources";
+import 'js/bootstrap/src/collapse';
+import 'js/bootstrap/src/dropdown';
+import 'js/bootstrap/src/tooltip';
