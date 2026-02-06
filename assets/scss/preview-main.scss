@@ -26,7 +26,8 @@
 
 /*
   These styles are intended only for the documentation preview.
-  They should be imported after `theme-main.scss`.
  */
+
+@import "theme-main";
 @import "preview/home";
 @import "preview/layout";

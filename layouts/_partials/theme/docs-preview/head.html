@@ -31,6 +31,6 @@
     {{ partial "theme/head/title.html" . }}
     {{ partial "theme/head/favicon.html" . }}
     {{ partial "theme/head/code-theme.html" . }}
-    {{ partial "theme/head/stylesheet.html" . }}
+    {{ partial "theme/head/stylesheet.html" (dict "scss_path" "scss/preview-main.scss") }}
     {{ partial "theme/scripts/head/jquery.html" . }}
 </head>

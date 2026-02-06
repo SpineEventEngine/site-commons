@@ -24,6 +24,8 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
+{{ $scssPath := .scss_path | default "scss/main.scss" }}
+
 {{ $options := (dict
     "targetPath" "main.css"
     "outputStyle" "compressed"
