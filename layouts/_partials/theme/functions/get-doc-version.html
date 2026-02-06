@@ -33,8 +33,9 @@ This is useful for displaying the latest documentation navigation
 for pages like Release Notes, Roadmap, etc.
 -->
 
-{{ $versions := site.Data.versions }}
-{{ $mainVersion := index (where $versions "is_main" true) 0 }}
+{{ $versions := site.Data.versions | default (slice) }}
+{{ $mainMatches := where $versions "is_main" true }}
+{{ $mainVersion := cond (gt (len $mainMatches) 0) (index $mainMatches 0) dict }}
 {{ $currentPath := "" }}
 {{ with $.Page.File }}
     {{ $currentPath = .Path }}

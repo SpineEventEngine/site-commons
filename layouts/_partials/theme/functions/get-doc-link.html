@@ -39,9 +39,12 @@ Adds the current version path only for links starting from `docs/...`.
 {{ $pageContext := .page }}
 
 {{ $currentVersion := partial "theme/functions/get-doc-version.html" $pageContext }}
-{{ if and (findRE `^/?docs/[^0-9][^ ]*` $link) (not (findRE `^/?docs/[0-9]+(/|$)` $link)) }}
-    {{ $link = replaceRE "docs" $currentVersion.path $link }}
-{{ end -}}
+
+{{ if $currentVersion }}
+    {{ if and (findRE `^/?docs/[^0-9][^ ]*` $link) (not (findRE `^/?docs/[0-9]+(/|$)` $link)) }}
+        {{ $link = replaceRE "docs" $currentVersion.path $link }}
+    {{ end }}
+{{ end }}
 
 {{ $link = $link | relURL }}
 {{ return $link }}
