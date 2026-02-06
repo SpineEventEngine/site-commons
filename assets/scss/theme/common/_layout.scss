@@ -53,12 +53,23 @@ body {
   flex-shrink: 0;
 }
 
+body {
+  &:has(.three-column) {
+    background-color: var(--body-bg-color);
+
+    @include breakpoint(lg-phone) {
+      background-color: white;
+    }
+  }
+}
+
 $layout-padding-medium: 40px;
 $layout-padding-tablet: 32px;
 $layout-padding-phone: 20px;
 
 .content-holder {
   max-width: $layout-max-width;
+  width: 100%;
 
   @include breakpoint(md-desktop) {
     padding-right: $layout-padding-medium;
@@ -74,4 +85,33 @@ $layout-padding-phone: 20px;
     padding-right: $layout-padding-phone;
     padding-left: $layout-padding-phone;
   }
+}
+
+.three-column {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) 220px;
+  height: 100%;
+
+  @include breakpoint(desktop) {
+    grid-template-columns: 200px minmax(0, 1fr);
+
+    .toc-col {
+      display: none;
+    }
+  }
+
+  @include breakpoint(mobile-sidenav) {
+    display: block;
+
+    .doc-sidenav-col {
+      display: none;
+    }
+  }
+}
+
+.sticky-col {
+  position: sticky;
+  align-self: start;
+  top: $header-height;
 }

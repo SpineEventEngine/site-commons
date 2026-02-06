@@ -24,76 +24,60 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Prevents the anchor icon from wrapping after the text. */
-.nowrap-icon {
-  position: absolute; // Avoids offsetting a title that is centered.
-  display: inline;
-  white-space: nowrap;
-}
+.next-prev-nav {
+  $space-between: 16px;
+  $label-offset: 24px;
+  $font-family: $main-font;
+  $icon-offset: 8px;
 
-$anchor-icon-color: $main-brand-color;
-$anchor-icon-font-weight: 400;
-$anchor-icon-size-inherit: 65%;
-$anchor-icon-size-constant: 16px;
-$anchor-icon-opacity: .38;
+  display: flex;
+  padding: 32px 0 16px;
+  margin-top: auto;
 
-.anchor-icon {
-  color: inherit;
-  border-bottom: none !important;
-  margin: 0 !important;
-
-  &:hover {
-    text-decoration: none;
+  .item {
+    flex: 1 1 auto;
+    width: 50%;
+    margin: 0;
+    padding: 0;
   }
 
-  &:after {
-    display: inline-block;
-    font-family: $fontawesome !important;
-    content: '\f0c1';
-    font-size: $anchor-icon-size-constant;
-    font-weight: $anchor-icon-font-weight;
-    color: $anchor-icon-color;
-    text-transform: none;
-    line-height: 1;
-    vertical-align: middle;
-    opacity: 0;
+  .previous {
+    padding-right: $space-between/2;
   }
-}
 
-[data-title] {
-  position: relative;
-  cursor: default;
+  .next {
+    padding-left: $space-between/2;
+    text-align: right;
+  }
 
-  &:hover {
-    .anchor-icon {
-      color: inherit;
+  .arrow-link {
+    display: flex;
+    align-items: center;
 
-      &:after {
-        opacity: $anchor-icon-opacity;
-      }
-
-      &:hover {
-        &:after {
-          opacity: 1;
-        }
-      }
+    &:after,
+    &:before {
+      content: '';
+      display: none;
+      border: solid $main-brand-color;
+      border-width: 0 2px 2px 0;
+      padding: 3px;
     }
-  }
-}
 
-h2[data-title] {
-  .anchor-icon {
-    &:after {
-      @include breakpoint-min(lg-phone) {
-        font-size: $anchor-icon-size-inherit;
+    &.prev {
+      &:before {
+        display: block;
+        transform: rotate(135deg);
+        margin-right: $icon-offset;
       }
     }
 
-    &:lang(zh) {
+    &.next {
+      justify-content: flex-end;
+
       &:after {
-        @include breakpoint-min(tablet) {
-          margin-top: -6px;
-        }
+        display: block;
+        transform: rotate(-45deg);
+        margin-left: $icon-offset;
       }
     }
   }

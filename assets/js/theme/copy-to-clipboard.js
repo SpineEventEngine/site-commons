@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,38 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Brand Colors
-$main-brand-color: #1a96de;
-$second-brand-color: #116db4;
-$body-light-gray-color: #f6f8fa;
-$note-bg-color: #e0f2ff;
-$warning-color: #deba32;
-$text-color: #3a3a3a;
-$white: #ffffff;
-$black: #2e2e2e;
-$error-color: #c40003;
+'use strict';
 
-// Grays
-$gray-100: rgba(black, .12);
-$gray-200: rgba(black, .26);
-$gray-300: rgba(black, .38);
-$gray-500: rgba(black, .54);
-$gray-600: rgba(black, .6);
-$gray-700: rgba(black, .7);
+import {hideSnackbar, showSnackbar} from "js/theme/snackbar.js";
+import {getTranslation} from "js/theme/utils/get-translation.js";
 
-// Links
-$link-color: $main-brand-color;
-$link-hover-color: darken($link-color, 10%);
-$link-blue-color: #5dc4ff;
+/**
+ * Copies text to clipboard and shows the snackbar.
+ *
+ * @param {String} textToCopy text to be copied to the clipboard
+ * @param {boolean} isSnackbar indicates whether to show snackbar
+ */
+export function copyToClipboard(textToCopy, isSnackbar = true) {
+    const dummy = document.createElement('textarea');
+    const snackbarMessage = getTranslatedMessage();
 
-// Dividers
-$divider-color: rgba(0, 0, 0, .08);
-$article-border-color: #e6ecf1;
+    hideSnackbar();
+    document.body.appendChild(dummy);
+    dummy.value = textToCopy;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    if (isSnackbar) {
+        showSnackbar(snackbarMessage);
+    }
+}
 
-:root {
-  --text-color: #{$text-color};
-  --divider-color: #{$divider-color};
-  --link-color: #{$link-color};
-  --link-hover-color: #{$link-hover-color};
-  --body-bg-color: #{$body-light-gray-color};
+/**
+ * Gets the translated message of “Copy to clipboard”.
+ *
+ * @returns {string} the translated message
+ */
+function getTranslatedMessage() {
+    const translations = {
+        en: "Copied to clipboard"
+    }
+    return getTranslation(translations);
 }

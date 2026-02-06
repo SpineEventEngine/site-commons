@@ -25,21 +25,13 @@
   -->
 
 <!--
-  Imports the dark/light theme styles for the code highlighting.
+Parses the shortcode value that is used in HTML or in Data files.
 
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
- -->
-
-{{ partial "theme/scripts/head/theme-preload.html" . }}
-
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+In the final result, removes the extra spaces.
+-->
+{{ $value := . }}
+{{ if hasPrefix $value "{{<" }}
+    {{ $value = $value | markdownify }}
+    {{ $value = strings.TrimSpace $value }}
+{{ end }}
+{{ return $value }}

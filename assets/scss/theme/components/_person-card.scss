@@ -24,77 +24,69 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Prevents the anchor icon from wrapping after the text. */
-.nowrap-icon {
-  position: absolute; // Avoids offsetting a title that is centered.
-  display: inline;
-  white-space: nowrap;
-}
+.person-card {
+  $avatar-size: 100px;
+  $avatar-size-mobile: 60px;
 
-$anchor-icon-color: $main-brand-color;
-$anchor-icon-font-weight: 400;
-$anchor-icon-size-inherit: 65%;
-$anchor-icon-size-constant: 16px;
-$anchor-icon-opacity: .38;
-
-.anchor-icon {
-  color: inherit;
-  border-bottom: none !important;
-  margin: 0 !important;
-
-  &:hover {
-    text-decoration: none;
-  }
-
-  &:after {
-    display: inline-block;
-    font-family: $fontawesome !important;
-    content: '\f0c1';
-    font-size: $anchor-icon-size-constant;
-    font-weight: $anchor-icon-font-weight;
-    color: $anchor-icon-color;
-    text-transform: none;
-    line-height: 1;
-    vertical-align: middle;
-    opacity: 0;
-  }
-}
-
-[data-title] {
   position: relative;
-  cursor: default;
+  padding-bottom: 40px;
 
-  &:hover {
-    .anchor-icon {
-      color: inherit;
+  .avatar {
+    position: absolute;
+    padding: 0;
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 50%;
 
-      &:after {
-        opacity: $anchor-icon-opacity;
-      }
-
-      &:hover {
-        &:after {
-          opacity: 1;
-        }
-      }
+    @include breakpoint(xmd-phone) {
+      width: $avatar-size-mobile;
+      height: $avatar-size-mobile;
     }
   }
-}
 
-h2[data-title] {
-  .anchor-icon {
-    &:after {
-      @include breakpoint-min(lg-phone) {
-        font-size: $anchor-icon-size-inherit;
+  .person-info {
+    padding-left: $avatar-size + 20px;
+
+    @include breakpoint(xmd-phone) {
+      padding-left: $avatar-size-mobile + 20px;
+    }
+
+    .social-networks {
+      padding-bottom: 14px;
+
+      a {
+        padding-right: 12px;
+
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          text-decoration: none;
+
+          i {
+            color: $gray-500;
+          }
+        }
+      }
+
+      i {
+        font-size: 18px;
+        color: $gray-200;
+
+        &.fa-twitter {
+          font-size: 20px;
+          color: #8a8a8a;
+
+          &:before {
+            content: '\1d54f';
+          }
+        }
       }
     }
 
-    &:lang(zh) {
-      &:after {
-        @include breakpoint-min(tablet) {
-          margin-top: -6px;
-        }
-      }
+    h3 {
+      padding-top: 4px;
     }
   }
 }

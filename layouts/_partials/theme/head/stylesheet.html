@@ -24,22 +24,19 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<!--
-  Imports the dark/light theme styles for the code highlighting.
+{{ $scssPath := .scss_path | default "scss/main.scss" }}
 
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
- -->
+{{ $options := (dict
+    "targetPath" "main.css"
+    "outputStyle" "compressed"
+    "includePaths" (slice "node_modules")
+) }}
 
-{{ partial "theme/scripts/head/theme-preload.html" . }}
+{{ $postCSSConfig := dict "config" "postcss.config.js" }}
+{{ $style := resources.Get $scssPath | toCSS $options | postCSS $postCSSConfig }}
 
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+{{ if ne hugo.Environment "development" }}
+    {{ $style = $style | resources.Minify | fingerprint }}
+{{ end }}
+
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" crossorigin="anonymous">

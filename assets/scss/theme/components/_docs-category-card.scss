@@ -24,77 +24,75 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Prevents the anchor icon from wrapping after the text. */
-.nowrap-icon {
-  position: absolute; // Avoids offsetting a title that is centered.
-  display: inline;
-  white-space: nowrap;
-}
+.docs-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
 
-$anchor-icon-color: $main-brand-color;
-$anchor-icon-font-weight: 400;
-$anchor-icon-size-inherit: 65%;
-$anchor-icon-size-constant: 16px;
-$anchor-icon-opacity: .38;
+  @include breakpoint(lg-phone) {
+    grid-template-columns: 1fr;
+  }
 
-.anchor-icon {
-  color: inherit;
-  border-bottom: none !important;
-  margin: 0 !important;
-
-  &:hover {
+  a:hover {
     text-decoration: none;
   }
-
-  &:after {
-    display: inline-block;
-    font-family: $fontawesome !important;
-    content: '\f0c1';
-    font-size: $anchor-icon-size-constant;
-    font-weight: $anchor-icon-font-weight;
-    color: $anchor-icon-color;
-    text-transform: none;
-    line-height: 1;
-    vertical-align: middle;
-    opacity: 0;
-  }
 }
 
-[data-title] {
-  position: relative;
-  cursor: default;
+.docs-category-card {
+  $card-padding: 20px;
+  $card-border-radius: 6px;
+  $card-shadow:
+          0 -1px 1px 0 rgba(0, 0, 0, .07),
+          0 2px 4px 0 rgba(35, 37, 38, .12);
+  $card-hover-shadow: 0 6px 12px rgba(0, 0, 0, .12);
+
+  display: flex;
+  padding: $card-padding;
+  box-shadow: $card-shadow;
+  border-radius: $card-border-radius;
+
+  i {
+    font-size: 24px;
+    margin-right: 20px;
+    color: $main-brand-color;
+  }
 
   &:hover {
-    .anchor-icon {
-      color: inherit;
+    text-decoration: none !important;
+    color: inherit;
+    box-shadow: $card-hover-shadow;
 
-      &:after {
-        opacity: $anchor-icon-opacity;
-      }
+    i {
+      color: $main-brand-color;
+    }
 
-      &:hover {
-        &:after {
-          opacity: 1;
-        }
+    .card-content {
+      .title {
+        color: $link-color;
       }
     }
   }
-}
 
-h2[data-title] {
-  .anchor-icon {
-    &:after {
-      @include breakpoint-min(lg-phone) {
-        font-size: $anchor-icon-size-inherit;
-      }
+  .card-content {
+    .title,
+    .description {
+      font-family: $main-font;
+      color: $text-color;
+      text-align: left;
+      line-height: 1.5;
     }
 
-    &:lang(zh) {
-      &:after {
-        @include breakpoint-min(tablet) {
-          margin-top: -6px;
-        }
-      }
+    .title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .description {
+      font-weight: 400;
+      font-size: 14px;
+      margin: 0;
     }
   }
 }

@@ -24,22 +24,8 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<!--
-  Imports the dark/light theme styles for the code highlighting.
-
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
- -->
-
-{{ partial "theme/scripts/head/theme-preload.html" . }}
-
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="article-text container">
+        {{ .Content }}
+    </div>
+</div>

@@ -25,21 +25,28 @@
   -->
 
 <!--
-  Imports the dark/light theme styles for the code highlighting.
+  Renders the JS provided in the page front matter.
 
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
- -->
+  For example:
+  ```
+  customjs: js/docs/architecture-diagram.js
+  ```
+-->
 
-{{ partial "theme/scripts/head/theme-preload.html" . }}
+{{ $context := .context }}
+{{ $params := .params }}
 
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+{{ with $context.Page.Params.customjs }}
+    {{ $jsCustom := . }}
+    {{ if reflect.IsSlice $jsCustom }}
+        {{ range $jsCustom }}
+            {{ $path := strings.TrimPrefix "/" . }}
+            {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
+            {{ partial "scripts/script.html" (dict "js" $js) }}
+        {{ end }}
+    {{ else }}
+        {{ $path := strings.TrimPrefix "/" $jsCustom }}
+        {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
+        {{ partial "theme/scripts/script.html" (dict "js" $js) }}
+    {{ end }}
+{{ end }}

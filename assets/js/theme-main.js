@@ -24,10 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import 'js/theme/code-theme-toggle';
+import 'js/theme/code-tabs';
+
+import {interactiveToc} from 'js/theme/interactive-toc';
 import {setupAnchorClick} from 'js/theme/anchor-icon';
+import {setElementMaxHeight} from 'js/theme/element-max-height';
+import {initSidenav} from "js/theme/sidenav";
 
 $(function() {
+    setElementMaxHeight();
+
     if ($('body').hasClass('docs')) {
+        interactiveToc();
         setupAnchorClick();
+        initSidenav();
     }
 });

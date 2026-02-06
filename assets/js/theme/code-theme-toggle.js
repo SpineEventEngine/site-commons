@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,38 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// Brand Colors
-$main-brand-color: #1a96de;
-$second-brand-color: #116db4;
-$body-light-gray-color: #f6f8fa;
-$note-bg-color: #e0f2ff;
-$warning-color: #deba32;
-$text-color: #3a3a3a;
-$white: #ffffff;
-$black: #2e2e2e;
-$error-color: #c40003;
+'use strict';
 
-// Grays
-$gray-100: rgba(black, .12);
-$gray-200: rgba(black, .26);
-$gray-300: rgba(black, .38);
-$gray-500: rgba(black, .54);
-$gray-600: rgba(black, .6);
-$gray-700: rgba(black, .7);
+import {initTheme, toggleTheme} from "js/theme/theme-toggle";
 
-// Links
-$link-color: $main-brand-color;
-$link-hover-color: darken($link-color, 10%);
-$link-blue-color: #5dc4ff;
+$(function() {
+    const $codeBlock = $('div.highlight');
+    const toggleClass = 'code-theme-toggle';
 
-// Dividers
-$divider-color: rgba(0, 0, 0, .08);
-$article-border-color: #e6ecf1;
+    initTheme();
+    createToggleIcon();
 
-:root {
-  --text-color: #{$text-color};
-  --divider-color: #{$divider-color};
-  --link-color: #{$link-color};
-  --link-hover-color: #{$link-hover-color};
-  --body-bg-color: #{$body-light-gray-color};
-}
+    /**
+     * Creates the theme toggle icon above each code block.
+     */
+    function createToggleIcon() {
+        if (!$codeBlock) return;
+
+        $codeBlock.each(function () {
+            const icon = $(`<i class="${toggleClass}"
+                               aria-label="Change code theme"
+                               title="Change code theme"></i>`);
+            icon.tooltip('enable');
+            $(this).append(icon);
+        });
+    }
+
+    /**
+     * Updates the theme on the toggle icon click.
+     */
+    $(`.${toggleClass}`).each(function () {
+        $(this).on('click', function () {
+            toggleTheme();
+        });
+    });
+});

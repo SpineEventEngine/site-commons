@@ -24,22 +24,25 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<!--
-  Imports the dark/light theme styles for the code highlighting.
+{{ $environment := hugo.Environment }}
 
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
- -->
+{{ $params := (dict
+    "environment" $environment
+)}}
 
-{{ partial "theme/scripts/head/theme-preload.html" . }}
+{{ partial "theme/scripts/body/baseurl.html" . }}
+{{ partial "theme/scripts/body/libs.html" . }}
 
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+{{ $jsBootstrap := resources.Get "js/bootstrap.js" }}
+{{ $jsThemeMain := resources.Get "js/theme-main.js" }}
+{{ $js := (slice
+    $jsBootstrap $jsThemeMain
+) }}
+
+{{ $js = $js | resources.Concat "js/main.js" | js.Build (dict "params" $params) }}
+{{ partial "theme/scripts/script.html" (dict "js" $js) }}
+
+{{ partial "theme/scripts/page-custom-js.html" (dict
+    "context" .
+    "params" $params
+) }}
