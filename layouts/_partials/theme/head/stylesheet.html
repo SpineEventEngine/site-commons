@@ -33,7 +33,6 @@
 ) }}
 
 {{ $postCSSConfig := dict "config" "postcss.config.js" }}
-{{ $scssPath := "scss/main.scss" }}
 {{ $style := resources.Get $scssPath | toCSS $options | postCSS $postCSSConfig }}
 
 {{ if ne hugo.Environment "development" }}
