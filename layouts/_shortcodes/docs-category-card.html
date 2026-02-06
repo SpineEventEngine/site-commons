@@ -14,7 +14,7 @@ Parameters:
 {{ $url := .Get "url" }}
 {{ $class := .Get "class" }}
 
-{{ $url = partial "functions/get-doc-link.html" (dict
+{{ $url = partial "theme/functions/get-doc-link.html" (dict
     "link" $url
     "page" .Page
 ) }}
