@@ -40,7 +40,7 @@
 ) }}
 
 {{ $js = $js | resources.Concat "js/main.js" | js.Build (dict "params" $params) }}
-{{ partial "theme/scripts/body/script.html" (dict "js" $js) }}
+{{ partial "theme/scripts/script.html" (dict "js" $js) }}
 
 {{ partial "theme/scripts/page-custom-js.html" (dict
     "context" .

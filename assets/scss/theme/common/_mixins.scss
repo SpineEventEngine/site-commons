@@ -114,3 +114,20 @@
     list-style: decimal;
   }
 }
+
+/*
+  Adds an arrow icon.
+
+  By default, the arrow points to left: `@include arrow-icon();`
+  To place the arrow on the right, set the rotation angle:
+  `@include arrow-icon($rotate-angle: -45deg);`
+ */
+@mixin arrow-icon($line-width: 2px, $icon-size: 3px, $rotate-angle: 135deg, $color: $main-brand-color) {
+  border: solid $color;
+  border-width: 0 $line-width $line-width 0;
+  display: inline-block;
+  padding: $icon-size;
+  vertical-align: middle;
+  margin-top: -2px;
+  transform: rotate($rotate-angle);
+}

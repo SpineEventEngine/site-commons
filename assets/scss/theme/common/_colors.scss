@@ -27,7 +27,7 @@
 // Brand Colors
 $main-brand-color: #1a96de;
 $second-brand-color: #116db4;
-$body-light-gray-color: #f6f8fA;
+$body-light-gray-color: #f6f8fa;
 $note-bg-color: #e0f2ff;
 $warning-color: #deba32;
 $text-color: #3a3a3a;
@@ -46,13 +46,16 @@ $gray-700: rgba(black, .7);
 // Links
 $link-color: $main-brand-color;
 $link-hover-color: darken($link-color, 10%);
+$link-blue-color: #5dc4ff;
 
 // Dividers
 $divider-color: rgba(0, 0, 0, .08);
+$article-border-color: #e6ecf1;
 
 :root {
   --text-color: #{$text-color};
   --divider-color: #{$divider-color};
   --link-color: #{$link-color};
   --link-hover-color: #{$link-hover-color};
+  --body-bg-color: #{$body-light-gray-color};
 }

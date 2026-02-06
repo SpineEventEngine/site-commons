@@ -25,28 +25,13 @@
   -->
 
 <!--
-  Renders the JS provided in the page front matter.
+Parses the shortcode value that is used in HTML or in Data files.
 
-  For example:
-  ```
-  customjs: js/docs/architecture-diagram.js
-  ```
+In the final result, removes the extra spaces.
 -->
-
-{{ $context := .context }}
-{{ $params := .params }}
-
-{{ with $context.Page.Params.customjs }}
-    {{ $jsCustom := . }}
-    {{ if reflect.IsSlice $jsCustom }}
-        {{ range $jsCustom }}
-            {{ $path := strings.TrimPrefix "/" . }}
-            {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
-            {{ partial "scripts/script.html" (dict "js" $js) }}
-        {{ end }}
-    {{ else }}
-        {{ $path := strings.TrimPrefix "/" $jsCustom }}
-        {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
-        {{ partial "theme/scripts/script.html" (dict "js" $js) }}
-    {{ end }}
+{{ $value := . }}
+{{ if hasPrefix $value "{{<" }}
+    {{ $value = $value | markdownify }}
+    {{ $value = strings.TrimSpace $value }}
 {{ end }}
+{{ return $value }}

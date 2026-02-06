@@ -30,12 +30,14 @@ import 'js/theme/code-tabs';
 import {interactiveToc} from 'js/theme/interactive-toc';
 import {setupAnchorClick} from 'js/theme/anchor-icon';
 import {setElementMaxHeight} from 'js/theme/element-max-height';
+import {initSidenav} from "js/theme/sidenav";
 
 $(function() {
     setElementMaxHeight();
 
     if ($('body').hasClass('docs')) {
-        setupAnchorClick();
         interactiveToc();
+        setupAnchorClick();
+        initSidenav();
     }
 });

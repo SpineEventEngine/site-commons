@@ -24,16 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-$background-color: #f6f8fa;
-
-body:has(.with-colored-background) {
-  background-color: $background-color;
-
-  @include breakpoint(lg-phone) {
-    background-color: white;
-  }
-}
-
 .page-content {
   display: flex;
   justify-content: center;

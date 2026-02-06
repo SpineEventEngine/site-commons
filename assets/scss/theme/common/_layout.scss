@@ -53,6 +53,16 @@ body {
   flex-shrink: 0;
 }
 
+body {
+  &:has(.three-column) {
+    background-color: var(--body-bg-color);
+
+    @include breakpoint(lg-phone) {
+      background-color: white;
+    }
+  }
+}
+
 $layout-padding-medium: 40px;
 $layout-padding-tablet: 32px;
 $layout-padding-phone: 20px;
