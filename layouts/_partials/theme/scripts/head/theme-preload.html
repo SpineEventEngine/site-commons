@@ -25,21 +25,15 @@
   -->
 
 <!--
-  Imports the dark/light theme styles for the code highlighting.
-
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
- -->
-
-{{ partial "theme/scripts/head/theme-preload.html" . }}
-
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">
+Applies the saved theme to the document before first paint.
+Needed to prevent a flash of the default theme during page load or navigation.
+-->
+<script>
+    (function () {
+        var themeCookieMatch = document.cookie.match(/(?:^|;\s*)themeColor=(light|dark)(?:;|$)/);
+        var theme = themeCookieMatch ? themeCookieMatch[1] : null;
+        if (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    })();
+</script>

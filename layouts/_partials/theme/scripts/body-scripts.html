@@ -25,11 +25,9 @@
   -->
 
 {{ $environment := hugo.Environment }}
-{{ $defaultCodeTheme := site.Params.defaultCodeTheme }}
 
 {{ $params := (dict
     "environment" $environment
-    "defaultCodeTheme" $defaultCodeTheme
 )}}
 
 {{ partial "theme/scripts/body/baseurl.html" . }}
