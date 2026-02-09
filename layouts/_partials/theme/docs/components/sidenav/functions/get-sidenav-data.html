@@ -24,38 +24,42 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := . }}
-{{ $currentURL := $page.RelPermalink }}
-{{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
+<!--
+  Returns the common documentation sidenav based on the configuration files,
+  which could be added as:
+  ```
+  data/docs/sidenav.yml            # The sidenav without version.
+  data/docs/1/sidenav.yml          # Corresponding for major version 1.
+  data/docs/2/sidenav.yml          # Corresponding for major version 2.
+  data/docs/validation/sidenav.yml # The sidenav of the validation module without version.
+  ```
+-->
 
-{{ if $sidenavData }}
-    {{ partial "theme/docs/components/bottom-nav/functions/get-pages" (dict
-        "context" .
-        "sidenav" $sidenavData
-        "current_url" $currentURL
-    ) }}
-    {{ $pages := .Scratch.Get "bottomNavPages" }}
-    {{ $index := .Scratch.Get "bottomNavCurrentIndex" }}
-    <nav class="next-prev-nav" aria-label="Bottom navigation">
-        {{ if ge $index 1 }}
-            {{ $prev := index $pages (sub $index 1) }}
-            <div class="item previous">
-                <a class="arrow-link prev"
-                   href="{{ $prev.url | relURL }}">
-                    <span>{{ $prev.title }}</span>
-                </a>
-            </div>
-        {{ end }}
-        {{ if lt (add $index 1) (len $pages) }}
-            {{ $next := index $pages (add $index 1) }}
-            <div class="item next">
-                <a class="arrow-link next"
-                   href="{{ $next.url | relURL }}">
-                    <span>{{ $next.title }}</span>
-                </a>
-            </div>
-        {{ end }}
-    </nav>
+{{ $page := . }}
+
+{{ $sidenavData := slice }}
+{{ $docsData := site.Data.docs }}
+{{ $currentVersion := partial "theme/functions/get-doc-version.html" $page }}
+{{ $numericHandled := false }}
+
+<!-- The `data/docs/sidenav.yml`. -->
+{{ with (index $docsData "sidenav") }}
+    {{ $sidenavData = $sidenavData | append . }}
 {{ end }}
-{{ .Scratch.Delete "bottomNavPages" }}
-{{ .Scratch.Delete "bottomNavCurrentIndex" }}
+
+{{ range $section, $data := $docsData }}
+    {{ if findRE `^\d+$` $section }}
+        {{ if not $numericHandled }}
+            {{ with index $docsData $currentVersion.short "sidenav" }}
+                {{ $sidenavData = $sidenavData | append . }}
+            {{ end }}
+            {{ $numericHandled = true }}
+        {{ end }}
+    {{ else if ne $section "sidenav" }}
+        {{ with $data.sidenav }}
+            {{ $sidenavData = $sidenavData | append . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ return $sidenavData }}
