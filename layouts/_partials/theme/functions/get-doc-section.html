@@ -25,15 +25,24 @@
   -->
 
 <!--
-Returns the main section of the documentation file, located after the version.
-Needed to get the corresponding sidenav items.
+  Returns the main section of the documentation file, located after the version.
+  Needed to get the corresponding sidenav items.
 
-In `docs/1/guides/installation/zip/` -> the section will be `guides`.
+  In `docs/1/guides/installation/zip/` -> the section will be `guides`.
+  If no version `docs/guides/installation/zip/` -> the section will be `guides`.
 -->
 
 {{ $segments := slice }}
+{{ $section := "" }}
+
 {{ if $.File }}
     {{ $segments = split .File.Path "/" }}
 {{ end }}
-{{ $section := index $segments 2 }}
+
+{{ if and (ge (len $segments) 3) (findRE `^\d+$` (index $segments 1)) }}
+    {{ $section = index $segments 2 }}
+{{ else }}
+    {{ $section = index $segments 1 }}
+{{ end }}
+
 {{ return $section }}
