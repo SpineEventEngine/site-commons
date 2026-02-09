@@ -28,10 +28,10 @@
 {{ $item := .item_context }}
 
 {{ $currentURL := $page.RelPermalink }}
-{{ $currentVersion := partial "theme/functions/get-doc-version.html" $page }}
+{{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict "module" "docs") }}
 
 {{ if or $item.file_path (eq $item.file_path "") }}
-    {{ $filePath := printf "docs/%s/%s" $currentVersion.short $item.file_path }}
+    {{ $filePath := printf "%s/%s" $currentVersion.path $item.file_path }}
     {{ with site.GetPage $filePath }}
         <li>
             {{ $pageURL := .RelPermalink }}

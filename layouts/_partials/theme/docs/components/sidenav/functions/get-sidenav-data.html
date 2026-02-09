@@ -41,7 +41,6 @@
 
 {{ $sidenavData := slice }}
 {{ $docsData := site.Data.docs }}
-{{ $currentVersion := partial "theme/functions/get-doc-version.html" $page }}
 {{ $versionedHandled := false }}
 
 <!-- The `data/docs/sidenav.yml` not versioned. -->
@@ -52,6 +51,9 @@
 {{ range $section, $data := $docsData }}
     {{ if findRE `^\d+$` $section }}
         {{ if not $versionedHandled }}
+            {{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
+                "module" "docs"
+            ) }}
             {{ with index $docsData $currentVersion.short "sidenav" }}
                 {{ $sidenavData = $sidenavData | append . }}
             {{ end }}
@@ -59,8 +61,10 @@
         {{ end }}
     {{ else if ne $section "sidenav" }}
         {{ $versionedHandled = false }}
-        <!-- Temporary hardcoded version. -->
-        {{ with index $data "1" "sidenav" }}
+        {{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
+            "module" $section
+        ) }}
+        {{ with index $data $currentVersion.short "sidenav" }}
             {{ $sidenavData = $sidenavData | append . }}
             {{ $versionedHandled = true }}
         {{ end }}

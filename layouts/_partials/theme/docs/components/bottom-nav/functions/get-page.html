@@ -27,7 +27,7 @@
 {{ $page := .page_context }}
 {{ $item := .item_context }}
 
-{{ $currentVersion := partial "theme/functions/get-doc-version.html" $page }}
+{{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict "module" "docs") }}
 {{ $filePath := printf "docs/%s/%s" $currentVersion.short $item.file_path }}
 {{ $pageURL := "" }}
 {{ $pageTitle := $item.page }}
