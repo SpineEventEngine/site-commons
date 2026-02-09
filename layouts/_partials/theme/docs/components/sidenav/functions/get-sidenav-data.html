@@ -28,10 +28,12 @@
   Returns the common documentation sidenav based on the configuration files,
   which could be added as:
   ```
-  data/docs/sidenav.yml            # The sidenav without version.
-  data/docs/1/sidenav.yml          # Corresponding for major version 1.
-  data/docs/2/sidenav.yml          # Corresponding for major version 2.
-  data/docs/validation/sidenav.yml # The sidenav of the validation module without version.
+  data/docs/sidenav.yml              # The sidenav without version.
+  data/docs/1/sidenav.yml            # Corresponding for major version 1.
+  data/docs/2/sidenav.yml            # Corresponding for major version 2.
+  data/docs/validation/sidenav.yml   # The module sidenav without version.
+  data/docs/validation/1/sidenav.yml # Corresponding for major version 1.
+  data/docs/validation/2/sidenav.yml # Corresponding for major version 2.
   ```
 -->
 
@@ -40,24 +42,32 @@
 {{ $sidenavData := slice }}
 {{ $docsData := site.Data.docs }}
 {{ $currentVersion := partial "theme/functions/get-doc-version.html" $page }}
-{{ $numericHandled := false }}
+{{ $versionedHandled := false }}
 
-<!-- The `data/docs/sidenav.yml`. -->
-{{ with (index $docsData "sidenav") }}
+<!-- The `data/docs/sidenav.yml` not versioned. -->
+{{ with index $docsData "sidenav" }}
     {{ $sidenavData = $sidenavData | append . }}
 {{ end }}
 
 {{ range $section, $data := $docsData }}
     {{ if findRE `^\d+$` $section }}
-        {{ if not $numericHandled }}
+        {{ if not $versionedHandled }}
             {{ with index $docsData $currentVersion.short "sidenav" }}
                 {{ $sidenavData = $sidenavData | append . }}
             {{ end }}
-            {{ $numericHandled = true }}
+            {{ $versionedHandled = true }}
         {{ end }}
     {{ else if ne $section "sidenav" }}
-        {{ with $data.sidenav }}
+        {{ $versionedHandled = false }}
+        <!-- Temporary hardcoded version. -->
+        {{ with index $data "1" "sidenav" }}
             {{ $sidenavData = $sidenavData | append . }}
+            {{ $versionedHandled = true }}
+        {{ end }}
+        {{ if not $versionedHandled }}
+            {{ with $data.sidenav }}
+                {{ $sidenavData = $sidenavData | append . }}
+            {{ end }}
         {{ end }}
     {{ end }}
 {{ end }}
