@@ -35,10 +35,11 @@
   for pages like Release Notes, Roadmap, etc.
 -->
 
+{{ $pageContext := .page }}
 {{ $module := .module | default "docs" }}
 
 {{ $currentPath := "" }}
-{{ with $.Page.File }}
+{{ with $pageContext.Page.File }}
     {{ $currentPath = .Path }}
 {{ end }}
 

@@ -24,6 +24,25 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $pageSection := "docs" }}
-{{ $versions := index site.Data.versions $pageSection | default (slice) }}
-{{ return $versions }}
+{{ $items := .items }}
+{{ $version := .version }}
+
+{{ $newItems := slice }}
+
+{{ range $items }}
+    {{ $item := . }}
+    {{ if $item.file_path }}
+        {{ $itemFilePath := printf "%s/%s" $version.path $item.file_path }}
+        {{ $item = merge $item (dict "file_path" $itemFilePath) }}
+    {{ end }}
+    {{ if $item.children }}
+        {{ $children := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+            "items" $item.children
+            "version" $version
+        ) }}
+        {{ $item = merge $item (dict "children" $children) }}
+    {{ end }}
+    {{ $newItems = $newItems | append $item }}
+{{ end }}
+
+{{ return $newItems }}

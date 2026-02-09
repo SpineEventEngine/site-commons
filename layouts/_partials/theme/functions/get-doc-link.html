@@ -38,7 +38,10 @@ Adds the current version path only for links starting from `docs/...`.
 {{ $link := .link }}
 {{ $pageContext := .page }}
 
-{{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict "module" "docs") }}
+{{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
+    "page" $pageContext
+    "module" "docs"
+) }}
 
 {{ if $currentVersion }}
     {{ if and (findRE `^/?docs/[^0-9][^ ]*` $link) (not (findRE `^/?docs/[0-9]+(/|$)` $link)) }}
