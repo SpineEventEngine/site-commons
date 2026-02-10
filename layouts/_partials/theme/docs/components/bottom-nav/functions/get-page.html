@@ -27,13 +27,9 @@
 {{ $page := .page_context }}
 {{ $item := .item_context }}
 
-{{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
-    "page" $page
-    "module" "docs"
-) }}
-{{ $filePath := printf "docs/%s/%s" $currentVersion.short $item.file_path }}
 {{ $pageURL := "" }}
 {{ $pageTitle := $item.page }}
+{{ $filePath := $item.file_path }}
 
 {{ with site.GetPage $filePath }}
     {{ $pageURL = .RelPermalink }}

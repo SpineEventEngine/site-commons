@@ -29,7 +29,7 @@
 {{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
 
 {{ if $sidenavData }}
-    {{ partial "theme/docs/components/bottom-nav/functions/get-pages" (dict
+    {{ partial "theme/docs/components/bottom-nav/functions/get-pages.html" (dict
         "context" .
         "sidenav" $sidenavData
         "current_url" $currentURL
