@@ -25,27 +25,67 @@
   -->
 
 <!--
-Returns the versioned documentation link according to the current page version.
+  Returns a documentation link adjusted to the current documentation version.
 
-For example, the link `docs/guides/requirements/` will be returned as:
-- `docs/guides/requirements/` for the main documentation;
-- `docs/1/guides/requirements/` for the documentation version 1;
-- and so on.
+  If the user is viewing the main (unversioned) documentation, the link is returned as-is.
+  If the user is viewing a specific version, the version prefix is automatically added.
 
-Adds the current version path only for links starting from `docs/...`.
+  For example, the link `docs/guides/requirements/` will be returned as:
+  - `docs/guides/requirements/` for the main documentation;
+  - `docs/1/guides/requirements/` for the documentation version 1.
+  - `docs/2/guides/requirements/` for the documentation version 2.
+
+  The versioning logic is handled independently for each module from the `data/versions.yml`.
+  Each module maintains its own versioned paths, such as:
+  - `docs/1`, `docs/2`
+  - `docs/validation/1`, `docs/validation/2`
+  - `docs/framework/1`, `docs/framework/2`
+
+  The link in the markdown file should be provided in the following format:
+  ```
+  [Start new project](docs/guides/start-new-project/)
+  [Validation overview](docs/validation/00-intro/)
+  ```
+
+  If the link already contains a version in the path, it will not be processed.
 -->
 
 {{ $link := .link }}
 {{ $pageContext := .page }}
 
-{{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
-    "page" $pageContext
-    "module" "docs"
-) }}
+{{ $modules := slice }}
+{{ $versions := site.Data.versions | default (slice) }}
+{{ range $module, $items := $versions }}
+    {{ $modules = $modules | append $module }}
+{{ end }}
 
-{{ if $currentVersion }}
-    {{ if and (findRE `^/?docs/[^0-9][^ ]*` $link) (not (findRE `^/?docs/[0-9]+(/|$)` $link)) }}
-        {{ $link = replaceRE "docs" $currentVersion.path $link }}
+{{ $currentVersionData := partial "theme/functions/get-doc-version-data.html" $pageContext }}
+{{ $currentVersion := $currentVersionData.version }}
+{{ $currentModule := $currentVersionData.module }}
+
+{{ if eq $currentModule "docs" }}
+    {{ $moduleBase := "docs" }}
+    {{ $modulePattern := printf `^/?%s/` $moduleBase }}
+    {{ $versionedPattern := printf `^/?%s/[0-9]+([.-][0-9]+)*(/|$)` $moduleBase }}
+    {{ $otherModulesPattern := printf `^/?%s/(%s)(/|$)` $moduleBase (delimit $modules "|") }}
+
+    {{ $isDocs := findRE $modulePattern $link }}
+    {{ $isVersioned := findRE $versionedPattern $link }}
+    {{ $isOtherModule := findRE $otherModulesPattern $link }}
+
+    {{ if and $isDocs (not $isVersioned) (not $isOtherModule) }}
+        {{ $link = replaceRE $moduleBase $currentVersion.url $link }}
+    {{ end }}
+{{ else }}
+    {{ $moduleBase := printf "docs/%s" $currentModule }}
+    {{ $modulePattern := printf `^/?%s/` $moduleBase }}
+    {{ $versionedPattern := printf `^/?%s/[0-9]+([.-][0-9]+)*(/|$)` $moduleBase }}
+
+    {{ $isModule := findRE $modulePattern $link }}
+    {{ $isVersioned := findRE $versionedPattern $link }}
+
+    {{ if and $isModule (not $isVersioned) }}
+        {{ $link = replaceRE $moduleBase $currentVersion.url $link }}
     {{ end }}
 {{ end }}
 
