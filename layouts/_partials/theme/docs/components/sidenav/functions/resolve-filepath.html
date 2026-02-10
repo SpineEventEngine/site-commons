@@ -31,7 +31,7 @@
 
 {{ range $items }}
     {{ $item := . }}
-    {{ if $item.file_path }}
+    {{ if or $item.file_path (eq $item.file_path "") }}
         {{ $itemFilePath := printf "%s/%s" $version.path $item.file_path }}
         {{ $item = merge $item (dict "file_path" $itemFilePath) }}
     {{ end }}
