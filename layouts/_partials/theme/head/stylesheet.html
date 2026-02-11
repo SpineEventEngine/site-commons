@@ -32,7 +32,7 @@
     "includePaths" (slice "node_modules")
 ) }}
 
-{{ $postCSSConfig := dict "config" "postcss.config.js" }}
+{{ $postCSSConfig := dict "config" "assets/postcss.config.js" }}
 {{ $style := resources.Get $scssPath | toCSS $options | postCSS $postCSSConfig }}
 
 {{ if ne hugo.Environment "development" }}
