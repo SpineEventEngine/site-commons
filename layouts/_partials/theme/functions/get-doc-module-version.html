@@ -24,40 +24,37 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := .page_context }}
-{{ $item := .item_context }}
+<!--
+  Returns the version of the current page that is corresponding
+  to the provided module.
 
-{{ $currentURL := $page.RelPermalink }}
+  For available item fields see `data/versions.yml`.
 
-{{ if or $item.file_path (eq $item.file_path "") }}
-    {{ $filePath := $item.file_path }}
-    {{ with site.GetPage $filePath }}
-        <li>
-            {{ $pageURL := .RelPermalink }}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL }}">
-                {{ $item.page }}
-            </a>
-        </li>
-    {{ end }}
-{{ else if $item.url }}
-    <li>
-        {{ $pageURL := $item.url }}
-        {{ $isExternalLink := partial "theme/functions/is-external-link.html" $pageURL }}
-        {{ if $isExternalLink }}
-            <a class="sidenav-link external-link"
-               href="{{ $pageURL }}"
-               target="_blank"
-               rel="nofollow noopener">
-                {{ $item.page }}
-            </a>
-        {{ else}}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL | relURL }}">
-                {{ $item.page }}
-            </a>
-        {{ end }}
-    </li>
+  If the version is undefined, returns the main version.
+  This is useful for displaying the latest documentation navigation
+  for pages like Release Notes, Roadmap, etc.
+-->
+
+{{ $pageContext := .page }}
+{{ $module := .module | default "docs" }}
+
+{{ $currentPath := "" }}
+{{ with $pageContext.Page.File }}
+    {{ $currentPath = .Path }}
 {{ end }}
+
+{{ $version := "" }}
+{{ $versions := index site.Data.versions $module | default (slice) }}
+{{ $mainVersion := index (where $versions "is_main" true) 0 }}
+
+{{ range $versions }}
+    {{ if strings.Contains $currentPath .path }}
+        {{ $version = . }}
+    {{ end }}
+{{ end }}
+
+{{ if not $version }}
+    {{ $version = $mainVersion }}
+{{ end }}
+
+{{ return $version }}

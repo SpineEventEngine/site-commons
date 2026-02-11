@@ -24,40 +24,40 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := .page_context }}
-{{ $item := .item_context }}
+<!--
+  Returns the sidenav data for root documentation data files:
+  ```
+  data/docs/sidenav.yml
+  data/docs/<version>/sidenav.yml
+  ```
+-->
 
-{{ $currentURL := $page.RelPermalink }}
+{{ $page := . }}
+{{ $docsData := site.Data.docs }}
+{{ $sidenavData := slice }}
 
-{{ if or $item.file_path (eq $item.file_path "") }}
-    {{ $filePath := $item.file_path }}
-    {{ with site.GetPage $filePath }}
-        <li>
-            {{ $pageURL := .RelPermalink }}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL }}">
-                {{ $item.page }}
-            </a>
-        </li>
-    {{ end }}
-{{ else if $item.url }}
-    <li>
-        {{ $pageURL := $item.url }}
-        {{ $isExternalLink := partial "theme/functions/is-external-link.html" $pageURL }}
-        {{ if $isExternalLink }}
-            <a class="sidenav-link external-link"
-               href="{{ $pageURL }}"
-               target="_blank"
-               rel="nofollow noopener">
-                {{ $item.page }}
-            </a>
-        {{ else}}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL | relURL }}">
-                {{ $item.page }}
-            </a>
-        {{ end }}
-    </li>
+{{ $docsVersion := partial "theme/functions/get-doc-module-version.html" (dict
+    "page" $page
+    "module" "docs"
+) }}
+
+<!-- The not versioned `data/docs/sidenav.yml`. -->
+{{ with index $docsData "sidenav" }}
+    {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+        "items" .
+        "path" "docs"
+    ) }}
+    {{ $sidenavData = $sidenavData | append $items }}
 {{ end }}
+
+{{ if $docsVersion }}
+    {{ with index $docsData $docsVersion.short "sidenav" }}
+        {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+            "items" .
+            "version" $docsVersion
+        ) }}
+        {{ $sidenavData = $sidenavData | append $items }}
+    {{ end }}
+{{ end }}
+
+{{ return $sidenavData }}

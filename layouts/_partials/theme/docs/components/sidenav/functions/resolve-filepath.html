@@ -24,40 +24,40 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := .page_context }}
-{{ $item := .item_context }}
+<!--
+  Prepares and returns a processed list of sidenav items
+  with the correct base path applied.
 
-{{ $currentURL := $page.RelPermalink }}
+  Uses `version.path` if a version is provided. Otherwise, falls back to `path`.
+-->
 
-{{ if or $item.file_path (eq $item.file_path "") }}
-    {{ $filePath := $item.file_path }}
-    {{ with site.GetPage $filePath }}
-        <li>
-            {{ $pageURL := .RelPermalink }}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL }}">
-                {{ $item.page }}
-            </a>
-        </li>
-    {{ end }}
-{{ else if $item.url }}
-    <li>
-        {{ $pageURL := $item.url }}
-        {{ $isExternalLink := partial "theme/functions/is-external-link.html" $pageURL }}
-        {{ if $isExternalLink }}
-            <a class="sidenav-link external-link"
-               href="{{ $pageURL }}"
-               target="_blank"
-               rel="nofollow noopener">
-                {{ $item.page }}
-            </a>
-        {{ else}}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL | relURL }}">
-                {{ $item.page }}
-            </a>
-        {{ end }}
-    </li>
+{{ $items := .items }}
+{{ $version := .version | default "" }}
+{{ $path := .path | default "" }}
+{{ $newItems := slice }}
+
+{{ if $version }}
+    {{ $path = $version.path }}
 {{ end }}
+
+{{ if $path }}
+    {{ $path = print $path "/" }}
+{{ end }}
+
+{{ range $items }}
+    {{ $item := . }}
+    {{ if or $item.file_path (eq $item.file_path "") }}
+        {{ $itemFilePath := printf "%s%s" $path $item.file_path }}
+        {{ $item = merge $item (dict "file_path" $itemFilePath) }}
+    {{ end }}
+    {{ if $item.children }}
+        {{ $children := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+            "items" $item.children
+            "version" $version
+        ) }}
+        {{ $item = merge $item (dict "children" $children) }}
+    {{ end }}
+    {{ $newItems = $newItems | append $item }}
+{{ end }}
+
+{{ return $newItems }}

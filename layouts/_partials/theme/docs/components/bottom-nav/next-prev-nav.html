@@ -24,41 +24,38 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $currentURL := .RelPermalink }}
-{{ $currentVersion := partial "theme/functions/get-doc-version.html" . }}
-{{ $versionData := index site.Data.docs $currentVersion.short }}
+{{ $page := . }}
+{{ $currentURL := $page.RelPermalink }}
+{{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
 
-{{ if $versionData }}
-    {{ $sidenav := $versionData.sidenav }}
-    {{ if $sidenav }}
-        {{ partial "theme/docs/components/bottom-nav/functions/get-pages" (dict
-            "context" .
-            "sidenav" $sidenav
-            "current_url" $currentURL
-        ) }}
-        {{ $pages := .Scratch.Get "bottomNavPages" }}
-        {{ $index := .Scratch.Get "bottomNavCurrentIndex" }}
-        <nav class="next-prev-nav" aria-label="Bottom navigation">
-            {{ if ge $index 1 }}
-                {{ $prev := index $pages (sub $index 1) }}
-                <div class="item previous">
-                    <a class="arrow-link prev"
-                       href="{{ $prev.url | relURL }}">
-                        <span>{{ $prev.title }}</span>
-                    </a>
-                </div>
-            {{ end }}
-            {{ if lt (add $index 1) (len $pages) }}
-                {{ $next := index $pages (add $index 1) }}
-                <div class="item next">
-                    <a class="arrow-link next"
-                       href="{{ $next.url | relURL }}">
-                        <span>{{ $next.title }}</span>
-                    </a>
-                </div>
-            {{ end }}
-        </nav>
-    {{ end }}
-    {{ .Scratch.Delete "bottomNavPages" }}
-    {{ .Scratch.Delete "bottomNavCurrentIndex" }}
+{{ if $sidenavData }}
+    {{ partial "theme/docs/components/bottom-nav/functions/get-pages.html" (dict
+        "context" .
+        "sidenav" $sidenavData
+        "current_url" $currentURL
+    ) }}
+    {{ $pages := .Scratch.Get "bottomNavPages" }}
+    {{ $index := .Scratch.Get "bottomNavCurrentIndex" }}
+    <nav class="next-prev-nav" aria-label="Bottom navigation">
+        {{ if ge $index 1 }}
+            {{ $prev := index $pages (sub $index 1) }}
+            <div class="item previous">
+                <a class="arrow-link prev"
+                   href="{{ $prev.url | relURL }}">
+                    <span>{{ $prev.title }}</span>
+                </a>
+            </div>
+        {{ end }}
+        {{ if lt (add $index 1) (len $pages) }}
+            {{ $next := index $pages (add $index 1) }}
+            <div class="item next">
+                <a class="arrow-link next"
+                   href="{{ $next.url | relURL }}">
+                    <span>{{ $next.title }}</span>
+                </a>
+            </div>
+        {{ end }}
+    </nav>
 {{ end }}
+{{ .Scratch.Delete "bottomNavPages" }}
+{{ .Scratch.Delete "bottomNavCurrentIndex" }}

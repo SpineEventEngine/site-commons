@@ -24,40 +24,30 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := .page_context }}
-{{ $item := .item_context }}
+<!--
+  Returns version details for the current page.
 
-{{ $currentURL := $page.RelPermalink }}
+  {Object} `version` – the version data from the `data/versions.yml`.
+  {String} `module` – the name of the module. For example "docs", "validation", etc.
+-->
 
-{{ if or $item.file_path (eq $item.file_path "") }}
-    {{ $filePath := $item.file_path }}
-    {{ with site.GetPage $filePath }}
-        <li>
-            {{ $pageURL := .RelPermalink }}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL }}">
-                {{ $item.page }}
-            </a>
-        </li>
-    {{ end }}
-{{ else if $item.url }}
-    <li>
-        {{ $pageURL := $item.url }}
-        {{ $isExternalLink := partial "theme/functions/is-external-link.html" $pageURL }}
-        {{ if $isExternalLink }}
-            <a class="sidenav-link external-link"
-               href="{{ $pageURL }}"
-               target="_blank"
-               rel="nofollow noopener">
-                {{ $item.page }}
-            </a>
-        {{ else}}
-            {{ $isActive := eq $currentURL $pageURL }}
-            <a class="sidenav-link {{ if $isActive }}active{{ end }}"
-               href="{{ $pageURL | relURL }}">
-                {{ $item.page }}
-            </a>
-        {{ end }}
-    </li>
+{{ $currentPath := "" }}
+{{ with $.Page.File }}
+    {{ $currentPath = .Path }}
 {{ end }}
+
+{{ $result := dict "version" dict "module" "" }}
+
+{{ $versions := site.Data.versions | default (slice) }}
+{{ range $module, $items := $versions }}
+    {{ range $items }}
+        {{ if strings.Contains $currentPath .path }}
+            {{ $result = dict
+                "version" .
+                "module" $module
+            }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ return $result }}

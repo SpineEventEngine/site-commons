@@ -8,11 +8,12 @@ Usage:
 */ -}}
 
 {{- $wantedVersion := .Get 0 -}}
-{{- $versions := site.Data.versions -}}
-{{- $currentVersion := partial "functions/get-doc-version.html" . -}}
-{{- $versionFullName := $currentVersion.full -}}
+{{- $versionData := partial "theme/functions/get-doc-version-data.html" . -}}
+{{- $versionFullName := $versionData.version.full -}}
 {{- if $wantedVersion -}}
-    {{- $version := index (where $versions "short" $wantedVersion) 0 -}}
+    {{- $versions := index site.Data.versions $versionData.module | default (slice) -}}
+    {{- $version := where $versions "short" $wantedVersion -}}
+    {{- $version = cond (gt (len $version) 0) (index $version 0) dict -}}
     {{- $versionFullName = $version.full -}}
 {{- end -}}
 {{- $versionFullName -}}
