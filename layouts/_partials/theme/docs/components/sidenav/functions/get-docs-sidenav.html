@@ -24,26 +24,38 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := . }}
-{{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
+<!--
+  Returns the sidenav data for root documentation data files:
+  ```
+  data/docs/sidenav.yml
+  data/docs/<version>/sidenav.yml
+  ```
+-->
 
-{{ if $sidenavData }}
-    {{ partial "theme/docs/components/sidenav/mobile-header.html" . }}
-    <ul class="doc-sidenav set-max-height">
-        {{ range $sidenavData }}
-            {{ if .children }}
-                {{ partial "theme/docs/components/sidenav/section.html" (dict
-                    "page_context" $page
-                    "item_context" .
-                ) }}
-            {{ else }}
-                {{ partial "theme/docs/components/sidenav/page.html" (dict
-                    "page_context" $page
-                    "item_context" .
-                ) }}
-            {{ end }}
-        {{ end }}
-    </ul>
+{{ $page := . }}
+{{ $docsData := site.Data.docs }}
+{{ $sidenavData := slice }}
+
+{{ $docsVersion := partial "theme/functions/get-doc-module-version.html" (dict
+    "page" $page
+    "module" "docs"
+) }}
+
+<!-- The not versioned `data/docs/sidenav.yml`. -->
+{{ with index $docsData "sidenav" }}
+    {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+        "items" .
+        "path" "docs"
+    ) }}
+    {{ $sidenavData = $sidenavData | append $items }}
 {{ end }}
 
+{{ with index $docsData $docsVersion.short "sidenav" }}
+    {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+        "items" .
+        "version" $docsVersion
+    ) }}
+    {{ $sidenavData = $sidenavData | append $items }}
+{{ end }}
 
+{{ return $sidenavData }}

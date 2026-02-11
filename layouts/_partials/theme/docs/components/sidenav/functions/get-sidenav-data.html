@@ -39,55 +39,9 @@
 
 {{ $page := . }}
 
-{{ $sidenavData := slice }}
-{{ $docsData := site.Data.docs }}
-{{ $versionedHandled := false }}
+{{ $docs := partial "theme/docs/components/sidenav/functions/get-docs-sidenav.html" $page }}
+{{ $modules := partial "theme/docs/components/sidenav/functions/get-module-sidenav.html" $page }}
 
-<!-- The not versioned `data/docs/sidenav.yml`. -->
-{{ with index $docsData "sidenav" }}
-    {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-        "items" .
-        "path" "docs"
-     ) }}
-    {{ $sidenavData = $sidenavData | append $items }}
-{{ end }}
-
-{{ range $section, $data := $docsData }}
-    {{ if findRE `^\d+$` $section }}
-        {{ if not $versionedHandled }}
-            {{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
-                "page" $page
-                "module" "docs"
-            ) }}
-            {{ with index $docsData $currentVersion.short "sidenav" }}
-                {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-                    "items" .
-                    "version" $currentVersion
-                ) }}
-                {{ $sidenavData = $sidenavData | append $items }}
-            {{ end }}
-            {{ $versionedHandled = true }}
-        {{ end }}
-    {{ else if ne $section "sidenav" }}
-        {{ $versionedHandled = false }}
-        {{ $currentVersion := partial "theme/functions/get-doc-module-version.html" (dict
-            "page" $page
-            "module" $section
-        ) }}
-        {{ with index $data $currentVersion.short "sidenav" }}
-            {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-                "items" .
-                "version" $currentVersion
-            ) }}
-            {{ $sidenavData = $sidenavData | append $items }}
-            {{ $versionedHandled = true }}
-        {{ end }}
-        {{ if not $versionedHandled }}
-            {{ with index $data "sidenav" }}
-                {{ $sidenavData = $sidenavData | append . }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
-{{ end }}
+{{ $sidenavData := $docs | append $modules }}
 
 {{ return $sidenavData }}
