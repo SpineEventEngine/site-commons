@@ -25,40 +25,33 @@
   -->
 
 <!--
-  Returns the sidenav data for module data files:
+  Returns the list of module names in the desired order, based on the
+  `moduleOrder` site parameter defined in the main documentation repository.
+  Any remaining modules are appended afterward in the alphabetical order.
+
+  Usage:
+  in SpineEventEngine/documentation -> `docs/config/_default/hugo.toml`
   ```
-  data/docs/validation/sidenav.yml
-  data/docs/validation/<version>/sidenav.yml
-  data/docs/framework/sidenav.yml
-  data/docs/framework/<version>/sidenav.yml
+  [params]
+    moduleOrder = ["framework", "validation", "compiler"]
   ```
 -->
 
-{{ $page := . }}
-{{ $docsData := site.Data.docs }}
-{{ $sidenavData := slice }}
-{{ $orderedModules := partial "theme/docs/components/sidenav/functions/get-ordered-modules.html" $docsData }}
+{{ $docsData := . }}
 
-{{ range $module := $orderedModules }}
-    {{ $data := index $docsData $module }}
-    {{ $moduleVersion := partial "theme/functions/get-doc-module-version.html" (dict
-        "page" $page
-        "module" $module
-    ) }}
-    {{ with index $data "sidenav" }}
-        {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-            "items" .
-            "version" $moduleVersion
-        ) }}
-        {{ $sidenavData = $sidenavData | append $items }}
-    {{ end }}
-    {{ with index $data $moduleVersion.short "sidenav" }}
-        {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-            "items" .
-            "version" $moduleVersion
-        ) }}
-        {{ $sidenavData = $sidenavData | append $items }}
+{{ $allModules := slice }}
+{{ $order := site.Params.moduleOrder | default (slice) }}
+
+{{ range $module, $_ := $docsData }}
+    {{ if and (not (findRE `^\d+$` $module)) (ne $module "sidenav") }}
+        {{ $allModules = $allModules | append $module }}
     {{ end }}
 {{ end }}
 
-{{ return $sidenavData }}
+{{ $orderedModules := intersect $order $allModules }}
+
+{{ range $module := complement $order $allModules }}
+  {{ $orderedModules = $orderedModules | append $module }}
+{{ end }}
+
+{{ return $orderedModules }}
