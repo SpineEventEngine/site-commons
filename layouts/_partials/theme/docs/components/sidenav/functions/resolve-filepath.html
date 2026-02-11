@@ -24,15 +24,30 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $items := .items }}
-{{ $version := .version }}
+<!--
+  Prepares and returns a processed list of sidenav items
+  with the correct base path applied.
 
+  Uses `version.path` if a version is provided. Otherwise, falls back to `path`.
+-->
+
+{{ $items := .items }}
+{{ $version := .version | default "" }}
+{{ $path := .path | default "" }}
 {{ $newItems := slice }}
+
+{{ if $version }}
+    {{ $path = $version.path }}
+{{ end }}
+
+{{ if $path }}
+    {{ $path = print $path "/" }}
+{{ end }}
 
 {{ range $items }}
     {{ $item := . }}
     {{ if or $item.file_path (eq $item.file_path "") }}
-        {{ $itemFilePath := printf "%s/%s" $version.path $item.file_path }}
+        {{ $itemFilePath := printf "%s%s" $path $item.file_path }}
         {{ $item = merge $item (dict "file_path" $itemFilePath) }}
     {{ end }}
     {{ if $item.children }}

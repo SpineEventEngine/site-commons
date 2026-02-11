@@ -43,9 +43,13 @@
 {{ $docsData := site.Data.docs }}
 {{ $versionedHandled := false }}
 
-<!-- The `data/docs/sidenav.yml` not versioned. -->
+<!-- The not versioned `data/docs/sidenav.yml`. -->
 {{ with index $docsData "sidenav" }}
-    {{ $sidenavData = $sidenavData | append . }}
+    {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+        "items" .
+        "path" "docs"
+     ) }}
+    {{ $sidenavData = $sidenavData | append $items }}
 {{ end }}
 
 {{ range $section, $data := $docsData }}
@@ -79,7 +83,7 @@
             {{ $versionedHandled = true }}
         {{ end }}
         {{ if not $versionedHandled }}
-            {{ with $data.sidenav }}
+            {{ with index $data "sidenav" }}
                 {{ $sidenavData = $sidenavData | append . }}
             {{ end }}
         {{ end }}
