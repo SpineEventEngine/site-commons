@@ -63,30 +63,21 @@
 {{ $currentVersion := $currentVersionData.version }}
 {{ $currentModule := $currentVersionData.module }}
 
+{{ $moduleBase := cond (eq $currentModule "docs") "docs" (printf "docs/%s" $currentModule) }}
+{{ $modulePattern := printf `^/?%s/` $moduleBase }}
+{{ $versionedPattern := printf `^/?%s/[0-9]+([.-][0-9]+)*(/|$)` $moduleBase }}
+
+{{ $isModule := findRE $modulePattern $link }}
+{{ $isVersioned := findRE $versionedPattern $link }}
+
+{{ $isOtherModule := false }}
 {{ if eq $currentModule "docs" }}
-    {{ $moduleBase := "docs" }}
-    {{ $modulePattern := printf `^/?%s/` $moduleBase }}
-    {{ $versionedPattern := printf `^/?%s/[0-9]+([.-][0-9]+)*(/|$)` $moduleBase }}
-    {{ $otherModulesPattern := printf `^/?%s/(%s)(/|$)` $moduleBase (delimit $modules "|") }}
+  {{ $otherModulesPattern := printf `^/?%s/(%s)(/|$)` $moduleBase (delimit $modules "|") }}
+  {{ $isOtherModule = findRE $otherModulesPattern $link }}
+{{ end }}
 
-    {{ $isDocs := findRE $modulePattern $link }}
-    {{ $isVersioned := findRE $versionedPattern $link }}
-    {{ $isOtherModule := findRE $otherModulesPattern $link }}
-
-    {{ if and $isDocs (not $isVersioned) (not $isOtherModule) }}
-        {{ $link = replaceRE $moduleBase $currentVersion.url $link }}
-    {{ end }}
-{{ else }}
-    {{ $moduleBase := printf "docs/%s" $currentModule }}
-    {{ $modulePattern := printf `^/?%s/` $moduleBase }}
-    {{ $versionedPattern := printf `^/?%s/[0-9]+([.-][0-9]+)*(/|$)` $moduleBase }}
-
-    {{ $isModule := findRE $modulePattern $link }}
-    {{ $isVersioned := findRE $versionedPattern $link }}
-
-    {{ if and $isModule (not $isVersioned) }}
-        {{ $link = replaceRE $moduleBase $currentVersion.url $link }}
-    {{ end }}
+{{ if and $isModule (not $isVersioned) (not $isOtherModule) }}
+  {{ $link = replaceRE $moduleBase $currentVersion.url $link }}
 {{ end }}
 
 {{ $link = $link | relURL }}
