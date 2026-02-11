@@ -40,20 +40,19 @@
     {{ $path = $version.path }}
 {{ end }}
 
-{{ if $path }}
-    {{ $path = print $path "/" }}
-{{ end }}
-
 {{ range $items }}
     {{ $item := . }}
     {{ if or $item.file_path (eq $item.file_path "") }}
-        {{ $itemFilePath := printf "%s%s" $path $item.file_path }}
+        {{ $itemFilePath := $item.file_path }}
+        {{ if $path }}
+            {{ $itemFilePath = printf "%s/%s" $path $itemFilePath }}
+        {{ end }}
         {{ $item = merge $item (dict "file_path" $itemFilePath) }}
     {{ end }}
     {{ if $item.children }}
         {{ $children := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
             "items" $item.children
-            "version" $version
+            "path" $path
         ) }}
         {{ $item = merge $item (dict "children" $children) }}
     {{ end }}

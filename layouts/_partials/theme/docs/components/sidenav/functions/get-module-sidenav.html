@@ -48,7 +48,7 @@
     {{ with index $data "sidenav" }}
         {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
             "items" .
-            "version" $moduleVersion
+            "path" (print "docs/" $module)
         ) }}
         {{ $sidenavData = $sidenavData | append $items }}
     {{ end }}
