@@ -25,38 +25,33 @@
   -->
 
 <!--
-  Prepares and returns a processed list of sidenav items
-  with the correct base path applied.
+  Returns the list of module names in the desired order, based on the
+  `moduleOrder` site parameter defined in the main documentation repository.
+  Any remaining modules are appended afterward in the alphabetical order.
 
-  Uses `version.path` if a version is provided. Otherwise, falls back to `path`.
+  Usage:
+  in SpineEventEngine/documentation -> `docs/config/_default/hugo.toml`
+  ```
+  [params]
+    moduleOrder = ["framework", "validation", "compiler"]
+  ```
 -->
 
-{{ $items := .items }}
-{{ $version := .version | default "" }}
-{{ $path := .path | default "" }}
-{{ $newItems := slice }}
+{{ $docsData := . }}
 
-{{ if $version }}
-    {{ $path = $version.path }}
+{{ $allModules := slice }}
+{{ $order := site.Params.moduleOrder | default (slice) }}
+
+{{ range $module, $_ := $docsData }}
+    {{ if and (not (findRE `^\d+$` $module)) (ne $module "sidenav") }}
+        {{ $allModules = $allModules | append $module }}
+    {{ end }}
 {{ end }}
 
-{{ range $items }}
-    {{ $item := . }}
-    {{ if or $item.file_path (eq $item.file_path "") }}
-        {{ $itemFilePath := $item.file_path }}
-        {{ if $path }}
-            {{ $itemFilePath = printf "%s/%s" $path $itemFilePath }}
-        {{ end }}
-        {{ $item = merge $item (dict "file_path" $itemFilePath) }}
-    {{ end }}
-    {{ if $item.children }}
-        {{ $children := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-            "items" $item.children
-            "path" $path
-        ) }}
-        {{ $item = merge $item (dict "children" $children) }}
-    {{ end }}
-    {{ $newItems = $newItems | append $item }}
+{{ $orderedModules := intersect $order $allModules }}
+
+{{ range $module := complement $order $allModules }}
+  {{ $orderedModules = $orderedModules | append $module }}
 {{ end }}
 
-{{ return $newItems }}
+{{ return $orderedModules }}

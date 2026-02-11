@@ -37,20 +37,22 @@
 {{ $page := . }}
 {{ $docsData := site.Data.docs }}
 {{ $sidenavData := slice }}
+{{ $orderedModules := partial "theme/docs/components/sidenav/functions/get-ordered-modules.html" $docsData }}
 
-{{ range $section, $data := $docsData }}
-    {{ if and (not (findRE `^\d+$` $section)) (ne $section "sidenav") }}
-        {{ $moduleVersion := partial "theme/functions/get-doc-module-version.html" (dict
-            "page" $page
-            "module" $section
+{{ range $module := $orderedModules }}
+    {{ $data := index $docsData $module }}
+    {{ $moduleVersion := partial "theme/functions/get-doc-module-version.html" (dict
+        "page" $page
+        "module" $module
+    ) }}
+    {{ with index $data "sidenav" }}
+        {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+            "items" .
+            "path" (print "docs/" $module)
         ) }}
-        {{ with index $data "sidenav" }}
-            {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-                "items" .
-                "version" $moduleVersion
-            ) }}
-            {{ $sidenavData = $sidenavData | append $items }}
-        {{ end }}
+        {{ $sidenavData = $sidenavData | append $items }}
+    {{ end }}
+    {{ if $moduleVersion }}
         {{ with index $data $moduleVersion.short "sidenav" }}
             {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
                 "items" .
