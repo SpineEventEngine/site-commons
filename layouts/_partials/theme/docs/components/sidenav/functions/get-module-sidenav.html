@@ -52,12 +52,14 @@
         ) }}
         {{ $sidenavData = $sidenavData | append $items }}
     {{ end }}
-    {{ with index $data $moduleVersion.short "sidenav" }}
-        {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
-            "items" .
-            "version" $moduleVersion
-        ) }}
-        {{ $sidenavData = $sidenavData | append $items }}
+    {{ if $moduleVersion }}
+        {{ with index $data $moduleVersion.short "sidenav" }}
+            {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+                "items" .
+                "version" $moduleVersion
+            ) }}
+            {{ $sidenavData = $sidenavData | append $items }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
