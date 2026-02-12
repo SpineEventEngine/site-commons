@@ -35,6 +35,6 @@ otherwise returns the `full` property as it was set.
 {{ if $currentVersion.full_i18n_key }}
     {{ $fullName = i18n $currentVersion.full_i18n_key }}
 {{ else }}
-    {{ $fullName = $currentVersion.full }}
+    {{ $fullName = $currentVersion.label }}
 {{ end }}
 {{ return $fullName }}

@@ -28,7 +28,7 @@
   Prepares and returns a processed list of sidenav items
   with the correct base path applied.
 
-  Uses `version.path` if a version is provided. Otherwise, falls back to `path`.
+  Uses `version.content_path` if a version is provided. Otherwise, falls back to `path`.
 -->
 
 {{ $items := .items }}
@@ -37,7 +37,7 @@
 {{ $newItems := slice }}
 
 {{ if $version }}
-    {{ $path = $version.path }}
+    {{ $path = $version.content_path }}
 {{ end }}
 
 {{ range $items }}

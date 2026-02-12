@@ -41,7 +41,7 @@
 {{ $versions := site.Data.versions | default (slice) }}
 {{ range $module, $items := $versions }}
     {{ range $items }}
-        {{ if strings.Contains $currentPath .path }}
+        {{ if strings.Contains $currentPath .content_path }}
             {{ $result = dict
                 "version" .
                 "module" $module

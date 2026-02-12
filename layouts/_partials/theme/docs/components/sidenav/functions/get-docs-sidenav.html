@@ -51,7 +51,7 @@
 {{ end }}
 
 {{ if $docsVersion }}
-    {{ with index $docsData $docsVersion.short "sidenav" }}
+    {{ with index $docsData $docsVersion.version_id "sidenav" }}
         {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
             "items" .
             "version" $docsVersion

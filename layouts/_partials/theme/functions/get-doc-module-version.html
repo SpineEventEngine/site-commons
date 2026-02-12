@@ -48,7 +48,7 @@
 {{ $mainVersion := index (where $versions "is_main" true) 0 }}
 
 {{ range $versions }}
-    {{ if strings.Contains $currentPath .path }}
+    {{ if strings.Contains $currentPath .content_path }}
         {{ $version = . }}
     {{ end }}
 {{ end }}
