@@ -53,7 +53,7 @@
         {{ $sidenavData = $sidenavData | append $items }}
     {{ end }}
     {{ if $moduleVersion }}
-        {{ with index $data $moduleVersion.short "sidenav" }}
+        {{ with index $data $moduleVersion.version_id "sidenav" }}
             {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
                 "items" .
                 "version" $moduleVersion

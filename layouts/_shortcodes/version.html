@@ -9,12 +9,12 @@ Usage:
 
 {{- $wantedVersion := .Get 0 -}}
 {{- $versionData := partial "theme/functions/get-doc-version-data.html" . -}}
-{{- $versionFullName := $versionData.version.full -}}
+{{- $versionFullName := $versionData.version.label -}}
 {{- if $wantedVersion -}}
     {{- $versions := index site.Data.versions $versionData.module | default (slice) -}}
     {{- $version := where $versions "short" $wantedVersion -}}
     {{- $version = cond (gt (len $version) 0) (index $version 0) dict -}}
-    {{- $versionFullName = $version.full -}}
+    {{- $versionFullName = $version.label -}}
 {{- end -}}
 {{- $versionFullName -}}
 {{- /* Strip trailing newline. */ -}}
