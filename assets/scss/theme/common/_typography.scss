@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// Global typography styles.
+// If a change is only for documentation, release notes, or blog posts,
+// update it in `assets/scss/theme/components/_article-text.scss`.
+
 h1 {
   font-size: $font-size--xl;
   font-weight: 400;
