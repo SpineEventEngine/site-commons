@@ -24,21 +24,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import 'js/theme/code-highlight';
-import 'js/theme/code-theme-toggle';
-import 'js/theme/code-tabs';
+'use strict';
 
-import {interactiveToc} from 'js/theme/interactive-toc';
-import {setupAnchorClick} from 'js/theme/anchor-icon';
-import {setElementMaxHeight} from 'js/theme/element-max-height';
-import {initSidenav} from "js/theme/sidenav";
+/**
+ * Ensures consistent code block styling across the site.
+ *
+ * Scans all `<pre>` elements and if they are not already wrapped
+ * in a highlight container, it wraps them and adds the "chroma" class.
+ *
+ * This is needed because Hugo renders fenced code blocks differently depending
+ * on whether a language is provided after the triple backticks.
+ *
+ * When a language is specified, Hugo produces:
+ * ```
+ * <div class="highlight">
+ *     <pre class="chroma">...</pre>
+ * </div>
+ * ```
+ *
+ * But when no language is specified, Hugo may output only:
+ * ```
+ * <pre>...</pre>
+ * ```
+ *
+ * This script ensures both cases use the same layout and styling.
+ */
+$(function () {
+    const $codeBlock = $('pre');
+    const highlightClass = 'highlight';
 
-$(function() {
-    setElementMaxHeight();
+    $codeBlock.each(function () {
+        const $pre = $(this);
 
-    if ($('body').hasClass('docs')) {
-        interactiveToc();
-        setupAnchorClick();
-        initSidenav();
-    }
+        if (!$pre.closest("." + highlightClass).length) {
+            $pre.addClass('chroma')
+                .wrap(`<div class="${highlightClass}"></div>`);
+        }
+    });
 });
