@@ -1,0 +1,26 @@
+{{- /*
+Wraps a content into the code tab wrapper.
+
+The content may be either:
+- a fenced code block;
+- a fenced code block with the plain text;
+- plain text only.
+
+Since Hugo's `markdownify` may render single-line plain text
+as inline HTML (without `p` tags), this shortcode renders the
+content as a *block* so that plain text is wrapped in `p`,
+while code blocks are preserved.
+*/ -}}
+
+{{ $lang := .Get "lang" }}
+{{ $content := .Inner }}
+
+<div class="code-wrapper code-tab-content" lang="{{- $lang | urlize -}}">
+    {{ $html := $content | markdownify }}
+    {{ if not (findRE "<(p|pre|ul|ol|blockquote)" $html) }}
+        <p>{{ $html }}</p>
+    {{ else }}
+        {{ $html }}
+    {{ end }}
+</div>
+{{- /* Strip trailing newline. */ -}}
