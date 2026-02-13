@@ -32,12 +32,6 @@
   margin-top: 0;
 
   .content-columns {
-    padding: 0 15px;
-
-    @include breakpoint(mobile-sidenav) {
-      padding: 0;
-    }
-
     .doc-sidenav-col,
     .toc-col {
       padding: 0 0 24px;

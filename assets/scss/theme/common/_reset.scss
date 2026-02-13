@@ -99,6 +99,10 @@ a:hover {
   float: none;
 }
 
+.nobr, nobr {
+  white-space: nowrap;
+}
+
 // Bootstrap v5 sets `display: flex` by default, which breaks TOC navigation.
 .nav {
   display: block;
