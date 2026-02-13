@@ -1,0 +1,177 @@
+/*!
+ * Copyright 2026, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+:root {
+  --sidenav-link-color: rgba(0, 0, 0, .54);
+  --sidenav-link-active-color: var(--text-color);
+  --sidenav-link-hover-bg-color: rgba(0, 0, 0, .03);
+  --sidenav-link-border-radius: #{$border-radius-m};
+
+  --sidenav-chevron-color: rgba(0, 0, 0, .4);
+  --sidenav-chevron-active-color: rgba(0, 0, 0, .7);
+  --sidenav-indicator-line-color: rgba(0, 0, 0, .08);
+  --sidenav-indicator-line-active-color: rgba(0, 0, 0, .6);
+  --sidenav-indicator-line-offset: 8px;
+  --sidenav-indicator-line-width: 2px;
+
+  --sidenav-right-padding: 20px;
+
+  --sidenav-level-1-link-font-size: 14px;
+  --sidenav-level-2-link-font-size: 13px;
+
+  --sidenav-level-1-item-left-padding: 24px;
+  --sidenav-level-2-item-left-padding: 24px;
+  --sidenav-level-3-item-left-padding: 12px;
+
+  --sidenav-level-2-indent: 12px;
+  --sidenav-level-3-indent: 24px;
+}
+
+$sidenav-top-offset: 24px;
+$sidenav-chevron-border-size: 1px;
+$sidenav-chevron-size: 6px;
+$sidenav-chevron-border: $sidenav-chevron-border-size solid var(--sidenav-chevron-color);
+$sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav-chevron-active-color);
+
+.doc-sidenav {
+  list-style: none;
+  padding-top: $sidenav-top-offset;
+  margin-left: calc(var(--sidenav-level-1-item-left-padding) * -1);;
+
+  @include breakpoint(mobile-sidenav) {
+    margin: 0;
+    width: 100%;
+    max-height: none !important; // Unsets calculated max-height for the sticky element on mobile.
+  }
+
+  li {
+    list-style: none;
+    line-height: 1.6;
+  }
+
+  .sidenav-link {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    font-size: var(--sidenav-level-1-link-font-size);;
+    color: var(--sidenav-link-color);;
+    font-weight: 400;
+    padding: 8px 16px 8px var(--sidenav-level-1-item-left-padding);
+    border-radius: var(--sidenav-link-border-radius);
+    cursor: pointer;
+
+    @include breakpoint(mobile-sidenav) {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    // Tree title with chevron.
+    &.tree-title {
+      color: var(--sidenav-link-active-color);
+
+      &:before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        border-right: $sidenav-chevron-active-border;
+        border-bottom: $sidenav-chevron-active-border;
+        width: $sidenav-chevron-size;
+        height: $sidenav-chevron-size;
+        top: calc(50% - 3px);
+        left: 9px;
+        transform-origin: 50% 0;
+        transform: rotate(45deg) translateY(-50%);
+        transition: all .3s ease-in-out;
+      }
+
+      &.collapsed {
+        color: var(--sidenav-link-color);
+
+        &:before {
+          border-right: $sidenav-chevron-border;
+          border-bottom: $sidenav-chevron-border;
+          top: calc(50% - 1px);
+          left: 8px;
+          transform: rotate(-45deg) translateY(-50%);
+        }
+      }
+    }
+
+    &:hover {
+      background-color: var(--sidenav-link-hover-bg-color);
+      text-decoration: none;
+    }
+
+    &.active {
+      color: var(--sidenav-link-active-color);
+      font-weight: 600;
+    }
+  }
+
+  // Second level.
+  .subnav {
+    padding-left: var(--sidenav-level-2-indent);
+
+    .sidenav-link {
+      font-size: var(--sidenav-level-2-link-font-size);
+      padding-left: var(--sidenav-level-2-item-left-padding);
+    }
+
+    // Third level.
+    .subnav {
+      position: relative;
+      padding-left: var(--sidenav-level-3-indent);
+
+      // Sidenav vertical progress bar.
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        background-color: var(--sidenav-indicator-line-color);
+        top: var(--sidenav-indicator-line-offset);
+        bottom: var(--sidenav-indicator-line-offset);
+        width: var(--sidenav-indicator-line-width);
+      }
+
+      .sidenav-link {
+        padding-left: var(--sidenav-level-3-item-left-padding);
+        padding-right: var(--sidenav-level-3-item-left-padding);
+
+        &.active {
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            background: var(--sidenav-indicator-line-active-color);
+            width: var(--sidenav-indicator-line-width);
+            height: calc(100% - 2 * (var(--sidenav-indicator-line-offset)));
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
