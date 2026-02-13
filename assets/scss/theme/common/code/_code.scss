@@ -140,6 +140,15 @@ code {
 
     tr {
       td {
+        pre {
+          background-color: var(--code-block-background);
+          box-shadow: none;
+        }
+
+        code {
+          display: block;
+        }
+
         &:first-child {
           user-select: none;
 
@@ -173,6 +182,10 @@ code {
         }
       }
     }
+  }
+
+  .chroma:has(table) {
+    box-shadow: var(--code-block-box-shadow);
   }
 }
 

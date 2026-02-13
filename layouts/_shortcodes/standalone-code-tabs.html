@@ -1,0 +1,17 @@
+{{- /*
+This template organizes code blocks into tabbed widgets.
+
+Unlike `code-tabs.html`, the changes in this widget don't affect other widgets,
+and vice versa.
+*/ -}}
+
+{{ $codeLangs := split (.Get "langs") ", " }}
+{{ $tabsDetached := eq (.Get "style") "tabs-detached" }}
+{{ $content := .Inner}}
+
+{{ partial "theme/components/code-tabs.html" (dict
+   "langs" $codeLangs
+   "content" $content
+   "standalone" true
+   "tabs_detached" $tabsDetached
+) }}

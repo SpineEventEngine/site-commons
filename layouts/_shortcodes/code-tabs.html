@@ -1,0 +1,22 @@
+{{- /*
+This template organizes code blocks into tabbed widgets, synchronized with
+other tabbed widgets on the page.
+
+Every tabbed widget acts like a global code language switch. When a user
+switches a language in one widget, the language changes in all widgets with
+the same set of languages.
+
+The last selected language is persisted in cookies and restored when
+the page is re-opened.
+*/ -}}
+
+{{ $codeLangs := split (.Get "langs") ", " }}
+{{ $tabsDetached := eq (.Get "style") "tabs-detached" }}
+{{ $content := .Inner}}
+
+{{ partial "theme/components/code-tabs.html" (dict
+   "langs" $codeLangs
+   "content" $content
+   "standalone" false
+   "tabs_detached" $tabsDetached
+) }}
