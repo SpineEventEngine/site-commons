@@ -47,7 +47,7 @@ $sidenav-title-left-padding: 22px;
   width: $sticky-docs-sidenav-width;
   list-style: none;
 
-  @include breakpoint(sm-desktop) {
+  @include breakpoint(mobile-sidenav) {
     margin: 0;
     width: 100%;
     max-height: none !important; // Unsets calculated max-height for the sticky element on mobile.
@@ -68,7 +68,7 @@ $sidenav-title-left-padding: 22px;
     font-weight: 400;
     cursor: pointer;
 
-    @include breakpoint(sm-desktop) {
+    @include breakpoint(mobile-sidenav) {
       padding: 12px $sidenav-first-level-left-padding;
     }
 
@@ -89,7 +89,7 @@ $sidenav-title-left-padding: 22px;
         transform: rotate(45deg);
         transition: all .3s ease-in-out;
 
-        @include breakpoint(sm-desktop) {
+        @include breakpoint(mobile-sidenav) {
           top: 18px;
         }
       }
@@ -103,7 +103,7 @@ $sidenav-title-left-padding: 22px;
           top: 15px;
           transform: rotate(-45deg);
 
-          @include breakpoint(sm-desktop) {
+          @include breakpoint(mobile-sidenav) {
             top: 19px;
           }
         }
