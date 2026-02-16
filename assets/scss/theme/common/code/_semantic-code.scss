@@ -24,9 +24,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@import "code";
-@import "semantic-code";
-@import "code-block";
-@import "code-tabs";
-@import "code-theme-toggle";
-@import "code-with-label";
+code {
+  &.command {
+    --code-background: #b5e4fb;
+    --code-text-color: #037095;
+  }
+
+  &.event {
+    --code-background: #ffe9d5;
+    --code-text-color: #b45300;
+  }
+
+  &.projection {
+    --code-background: #e4eac6;
+    --code-text-color: #1c5000;
+  }
+
+  &.rejection {
+    --code-background: #facad1;
+    --code-text-color: #b41028;
+  }
+
+  &.process-manager {
+    --code-background: #eacfef;
+    --code-text-color: #692d73;
+  }
+
+  &.aggregate {
+    --code-background: #fffbc8;
+    --code-text-color: #413c00;
+  }
+}

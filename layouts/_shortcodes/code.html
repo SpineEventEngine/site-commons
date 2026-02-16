@@ -1,0 +1,30 @@
+{{- /*
+Renders a `code` element with a CSS class based on the type parameter.
+
+Usage:
+{{< code "command" "CreateUser" >}}
+{{< code "process-manager" "ProcessManager" >}}
+
+The type should be provided first.
+Colors are in the `assets/scss/theme/common/code/_semantic-code.scss`.
+*/ -}}
+
+{{- $type := .Get 0 | default "" -}}
+{{- $name := .Get 1 | default "" -}}
+
+{{- $allowed := slice
+    "command"
+    "event"
+    "projection"
+    "rejection"
+    "process-manager"
+    "aggregate"
+-}}
+
+{{- if not (in $allowed $type) -}}
+    {{- errorf "Invalid type %q. Must be one of: %s." $type (delimit $allowed ", ") -}}
+{{- end -}}
+
+<code class="{{ $type }}">{{ $name }}</code>
+
+{{- /* Strip trailing newline. */ -}}
