@@ -25,9 +25,10 @@
  */
 
 :root {
-  --code-background: #ffffff;
+  --code-background: #f4f4f4;
   --code-text-color: inherit;
-  --code-padding: 0;
+  --code-font-size: 86%;
+  --code-padding: 1px 6px 3px;
 
   --code-block-header-divider-color: transparent;
   --code-block-header-background: transparent;
@@ -55,6 +56,7 @@ html[data-theme="light"] {
   --copy-code-icon-hover-color: #{$gray-700};
 }
 
+$code-border-radius: 4px;
 $mono-font-family: $main-mono-font;
 $code-block-font-size: 13px;
 $code-block-line-height: 1.6;
@@ -73,11 +75,13 @@ pre {
 }
 
 code {
-  font-size: 95%;
+  font-size: var(--code-font-size);
+  font-variant-ligatures: none;
+  line-height: inherit;
   background-color: var(--code-background);
   padding: var(--code-padding);
+  border-radius: $code-border-radius;
   margin: 0;
-  font-variant-ligatures: none;
 }
 
 /*
