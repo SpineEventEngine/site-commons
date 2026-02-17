@@ -25,9 +25,10 @@
  */
 
 :root {
-  --code-background: #ffffff;
+  --code-background: #f4f4f4;
   --code-text-color: inherit;
-  --code-padding: 0;
+  --code-font-size: 86%;
+  --code-padding: 1px 6px 3px;
 
   --code-block-header-divider-color: transparent;
   --code-block-header-background: transparent;
@@ -38,10 +39,10 @@
 }
 
 html[data-theme="dark"] {
-  --code-block-background: #2b2b2b;
-  --code-block-text-color: #a9b7c6;
+  --code-block-background: #1f1f22;
+  --code-block-text-color: #bcbec4;
   --code-block-box-shadow: unset;
-  --code-block-highlighted-line-bg: #383636;
+  --code-block-highlighted-line-bg: #26282e;
   --copy-code-icon-color: #{$gray-600};
   --copy-code-icon-hover-color: rgba(255, 255, 255, .8);
 }
@@ -50,11 +51,12 @@ html[data-theme="light"] {
   --code-block-background: #ffffff;
   --code-block-text-color: var(--text-color);
   --code-block-box-shadow: 0 3px 12px 0 rgba(35, 37, 38, .1);
-  --code-block-highlighted-line-bg: #e9f0e9;
+  --code-block-highlighted-line-bg: #f5f8fe;
   --copy-code-icon-color: #{$gray-600};
   --copy-code-icon-hover-color: #{$gray-700};
 }
 
+$code-border-radius: 4px;
 $mono-font-family: $main-mono-font;
 $code-block-font-size: 13px;
 $code-block-line-height: 1.6;
@@ -73,11 +75,13 @@ pre {
 }
 
 code {
-  font-size: 95%;
+  font-size: var(--code-font-size);
+  font-variant-ligatures: none;
+  line-height: inherit;
   background-color: var(--code-background);
   padding: var(--code-padding);
+  border-radius: $code-border-radius;
   margin: 0;
-  font-variant-ligatures: none;
 }
 
 /*
