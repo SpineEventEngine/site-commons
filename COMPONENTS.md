@@ -264,7 +264,13 @@ will return the `params.description` value from the `hugo.toml` config file.
 
 ## Next/Prev bottom navigation
 
-TBD.
+Renders `Previous`/`Next` links at the bottom of docs pages.
+
+This component is automatic in the documentation `three-column` layout 
+and does not require a shortcode in page content. 
+
+The component is based on the documentation [sidenav](#sidenav) items. 
+If there is no next or previous page, the button will not be rendered.
 
 ## Note block
 
