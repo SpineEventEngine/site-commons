@@ -21,7 +21,7 @@ _Please add new components in alphabetical order._
 
 ## Clickable category card
 
-The `docs-card-container` shortcode renders a clickable category card with
+The `docs-category-card` shortcode renders a clickable category card with
 optional icon and badges.
 
 To show cards in a grid, wrap them in the `docs-card-container` shortcode:
@@ -102,7 +102,7 @@ git clone git@github.com:spine-examples/hello.git
 ```
 ````
 
-You can configure the appearance of Hugo code blocks using parameters,
+The appearance of Hugo code blocks can be configured using parameters,
 as described in the official [documentation][code-fences-doc]:
 
 * `linenos=table` – configures line numbers and renders them in a table view.
@@ -148,7 +148,7 @@ Allows switching between code languages of the source code examples.
 
 There are two types of code tabs widgets:
 
-* Synchronized. This widget synchronizes its state with other widgets with
+* **Synchronized**. This widget synchronizes its state with other widgets with
   the same set of languages. For example, when a user switches to "Java" in
   a single "Java, Kotlin" widget, the rest of such widgets will switch
   to the "Java" tab automatically.
@@ -157,7 +157,7 @@ There are two types of code tabs widgets:
 
   Shortcode: `{{< code-tabs >}}`
 
-* Standalone. This widget will not change the state of other widgets, neither
+* **Standalone**. This widget will not change the state of other widgets, neither
   other widgets will change the state of a standalone widget.
 
   The selected language is not persisted.
@@ -178,15 +178,33 @@ page is supported.
 {{< /code-tab >}}
 
 {{< code-tab lang="Kotlin" >}}
-```java
+```kotlin
 // Code example in Kotlin.
 ```
 {{< /code-tab >}}
 {{< /code-tabs >}}
 ````
 
+or standalone tabs usage:
+
+````markdown
+{{< standalone-code-tabs langs="Java, Kotlin" >}}
+{{< code-tab lang="Java" >}}
+```java
+// Code example in Java.
+```
+{{< /code-tab >}}
+
+{{< code-tab lang="Kotlin" >}}
+```kotlin
+// Code example in Kotlin.
+```
+{{< /code-tab >}}
+{{< /standalone-code-tabs >}}
+````
+
 Note: when adding snippets to Markdown pages, remember to format them
-with lines of three backticks (```).
+with lines of three backticks (```) and a code language.
 
 The code will be rendered as:
 ```html
@@ -210,8 +228,7 @@ The code will be rendered as:
 
 ### Semantic code coloring
 
-The `code` shortcode that applies semantic coloring to code names according to
-their type.
+The `code` shortcode applies semantic coloring to code names according to their type.
 
 ```markdown
 {{< code "command" "CreateUser" >}}
@@ -282,9 +299,9 @@ nested sections, categories, page links, and external links.
 Sidenav data files can be defined in these locations:
 
 - `data/docs/sidenav.yml` for unversioned root docs.
-- `data/docs/<major-version>/sidenav.yml` for versioned root docs.
+- `data/docs/<version>/sidenav.yml` for versioned root docs.
 - `data/docs/<module>/sidenav.yml` for unversioned module docs.
-- `data/docs/<module>/<major-version>/sidenav.yml` for versioned module docs.
+- `data/docs/<module>/<version>/sidenav.yml` for versioned module docs.
 
 The item fields are:
 
@@ -321,7 +338,12 @@ Notes:
 
 ## Version
 
-TBD.
+Returns the current documentation version label or the label of the provided version.
+
+```markdown
+{{< version >}} -> 1.9.0
+{{< version "2" >}} -> 2.0.0
+```
 
 [code-fences-doc]: https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences
 [syntax-highlighting-languages]: https://gohugo.io/content-management/syntax-highlighting/#languages
