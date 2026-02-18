@@ -53,7 +53,7 @@ The `cloakemail` shortcode is used to cloak emails or phone numbers from
 spamming bots. We are using the improved version of the [`hugo-cloak-email`](https://github.com/martignoni/hugo-cloak-email),
 which now also supports the site variables as provided parameters.
 
-In markdown files use:
+In Markdown files use:
 
 ```markdown
 {{< cloakemail "jane.doe@example.com" >}}
@@ -185,7 +185,7 @@ page is supported.
 {{< /code-tabs >}}
 ````
 
-Note: when adding snippets to markdown pages, remember to format them
+Note: when adding snippets to Markdown pages, remember to format them
 with lines of three backticks (```).
 
 The code will be rendered as:
@@ -222,8 +222,8 @@ Will be rendered as:
 <code class="command">CreateUser</code>
 ```
 
-The supported types are: "command", "event", "projection", "rejection", 
-"process-manager", and "aggregate".
+The supported types are: `command`, `event`, `projection`, `rejection`, 
+`process-manager`, and `aggregate`.
 
 Template: `layouts/_shortcodes/code.html`.
 Styles: `assets/scss/theme/common/code/_semantic-code.scss`.
