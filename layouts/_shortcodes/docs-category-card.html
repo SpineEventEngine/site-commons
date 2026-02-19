@@ -2,11 +2,11 @@
 A component that displays a clickable category card.
 
 Parameters:
-  * `icon`. The icon class.
-  * `title`. The title of the card.
-  * `url`. The card destination URL.
-  * `badges`. The list of badges to be shown near the title.
-  * `class`. An optional class for extending the styles of a specific card.
+* `icon` – the optional icon class shown near the title.
+* `title` – the title of the card.
+* `url` – the card destination URL.
+* `badges` – the optional list of badges to be shown near the title.
+* `class` – the optional class for extending the styles of a specific card.
 */ -}}
 
 {{ $icon := .Get "icon" }}
@@ -21,7 +21,9 @@ Parameters:
 
 <a class="docs-category-card {{ with $class }}{{ . }}{{ end }}"
    href="{{ $url }}">
-    <i class="card-icon {{ $icon }}"></i>
+    {{ with $icon }}
+        <i class="card-icon {{ . }}"></i>
+    {{ end }}
     <div class="card-content">
         <p class="title">
             <span class="title-holder">{{ $title | markdownify }}</span>
