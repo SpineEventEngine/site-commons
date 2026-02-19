@@ -41,11 +41,11 @@ The concepts and practical guidance.
 
 Where:
 
-* `icon` – the icon class (optional). Will be shown near the title.
+* `icon` – the icon class shown near the title.
 * `title` – the title of the card.
 * `url` – the card destination URL.
-* `badges` – the list of badges to be shown near the title (optional).
-* `class`– classes for extending the styles of a specific card (optional).
+* `badges` – the optional list of badges to be shown near the title.
+* `class`– the optional classes for extending the styles of a specific card.
 
 ## Cloak email
 
@@ -53,37 +53,37 @@ The `cloakemail` shortcode is used to cloak emails or phone numbers from
 spamming bots. We are using the improved version of the [`hugo-cloak-email`](https://github.com/martignoni/hugo-cloak-email),
 which now also supports the site variables as provided parameters.
 
-In Markdown files use:
+Pass the email address directly:
 
 ```markdown
 {{< cloakemail "jane.doe@example.com" >}}
 ```
 
-or via named parameter:
+Or use a named parameter:
 
 ```markdown
 {{< cloakemail address="jane.doe@example.com" >}}
 ```
 
-With the provided site variables:
+Reference an email address defined in data variables:
 
 ```markdown
 {{< cloakemail address_variable="emails.sales_email" >}}
 ```
 
-or with the display text:
+Set custom link text instead of displaying the raw email address:
 
 ```markdown
 {{< cloakemail address_variable="emails.sales_email" display="Contact us" >}}
 ```
 
-To add an email subject use `query`:
+Use the `query` parameter to define a subject line:
 
 ```markdown
 {{< cloakemail address="jane.doe@example.com" query="subject=Reseller%20/%20Distributor%20inquiry" >}}
 ```
 
-Instead of spaces use `%20`.
+Replace spaces with `%20`, which is the encoded form of a space in URLs.
 
 ## Code
 
@@ -242,25 +242,29 @@ Will be rendered as:
 The supported types are: `command`, `event`, `projection`, `rejection`, 
 `process-manager`, and `aggregate`.
 
-Template: `layouts/_shortcodes/code.html`.
-Styles: `assets/scss/theme/common/code/_semantic-code.scss`.
+* Template: `layouts/_shortcodes/code.html`.
+* Styles: `assets/scss/theme/common/code/_semantic-code.scss`.
 
 ## Get site variables
 
 The `get-site-data` and `get-site-params` shortcodes return values from the
 `data` and `site.Params` variables, respectively.
 
+1. Get value from data files:
+
 ```markdown
 {{% get-site-data "emails.sales_email" %}}
 ```
 
-will return the `sales@spine.io` email from the `data/emails.yml` file.
+Returns the `sales@spine.io` email from the `data/emails.yml` file.
+
+2. Get value from site configuration:
 
 ```markdown
 {{% get-site-params "description" %}}
 ```
 
-will return the `params.description` value from the `hugo.toml` config file.
+Returns the value of `params.description` from the `hugo.toml` configuration file.
 
 ## Next/Prev bottom navigation
 
@@ -311,11 +315,11 @@ Sidenav data files can be defined in these locations:
 
 The item fields are:
 
-- `page` – label shown in the UI.
-- `key` – unique id for collapsible section/category items.
-- `children` – nested list of items.
-- `file_path` – path to a Hugo page (resolved against a version/module content path).
-- `url` – explicit URL. External links are opened in a new tab.
+* `page` – the label shown in the UI.
+* `key` – the unique id for collapsible section/category items.
+* `children` – the nested list of items.
+* `file_path` – the path to a Hugo page (resolved against a version/module content path).
+* `url` – the explicit URL. External links are opened in a new tab.
 
 Example:
 
@@ -337,10 +341,10 @@ Example:
 
 Notes:
 
-- Root-level items with `children` are rendered as sections.
-- Nested items with `children` are rendered as categories.
-- A section opens automatically when its `key` matches the current docs section.
-- A category opens automatically when its `key` matches the current page parent directory.
+* Root-level items with `children` are rendered as sections.
+* Nested items with `children` are rendered as categories.
+* A section opens automatically when its `key` matches the current docs section.
+* A category opens automatically when its `key` matches the current page parent directory.
 
 ## Version
 

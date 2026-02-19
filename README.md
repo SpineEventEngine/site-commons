@@ -15,7 +15,7 @@ It provides:
 
 ## Installation
 
-1. Initialize your Hugo website as the Hugo Module.
+1. Initialize your Hugo website as the Hugo Module:
 
     ```bash
     hugo mod init github.com/SpineEventEngine/<repo-name>
@@ -31,7 +31,7 @@ It provides:
 
 ## Theme updates
 
-1. Get theme updates
+1. Get theme updates:
 
     ```bash
     hugo mod get -u github.com/SpineEventEngine/site-commons
@@ -41,16 +41,15 @@ It provides:
 
 ## Usage
 
-Use the theme as the base for your site templates and content rendering.
+Use the theme as the base for the site templates and content rendering.
 
-For a guide with a complete list of theme components, please see 
-the [`COMPONENTS.md`](COMPONENTS.md).
+For a guide with a complete list of theme components, see the [`COMPONENTS.md`](COMPONENTS.md).
 
 ## Development
 
 When editing this theme:
 - keep components and shortcodes reusable;
-- update `COMPONENTS.md` when adding or changing components.
+- update [`COMPONENTS.md`](COMPONENTS.md) when adding or changing components.
 
 [go]: https://go.dev/doc/install
 [hugo-quick-start]: https://gohugo.io/getting-started/quick-start/#step-1-install-hugo
