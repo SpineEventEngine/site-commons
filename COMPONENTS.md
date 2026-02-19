@@ -252,19 +252,19 @@ The `get-site-data` and `get-site-params` shortcodes return values from the
 
 1. Get value from data files:
 
-```markdown
-{{% get-site-data "emails.sales_email" %}}
-```
-
-Returns the `sales@spine.io` email from the `data/emails.yml` file.
+   ```markdown
+   {{% get-site-data "emails.sales_email" %}}
+   ```
+   
+   Returns the `sales@spine.io` email from the `data/emails.yml` file.
 
 2. Get value from site configuration:
 
-```markdown
-{{% get-site-params "description" %}}
-```
-
-Returns the value of `params.description` from the `hugo.toml` configuration file.
+   ```markdown
+   {{% get-site-params "description" %}}
+   ```
+   
+   Returns the value of `params.description` from the `hugo.toml` configuration file.
 
 ## Next/Prev bottom navigation
 
@@ -286,8 +286,8 @@ This is some dummy text to show how a note block can look. Check this
 [example link to guides][test-url] to see how links appear inside the block.
 
 You can add more lines or even lists:
-- first item;
-- second item.
+* first item;
+* second item.
 {{% /note-block %}}
 
 [test-url]: docs/guides/
