@@ -41,7 +41,7 @@ The concepts and practical guidance.
 
 Where:
 
-* `icon` – the icon class shown near the title.
+* `icon` – the optional icon class shown near the title.
 * `title` – the title of the card.
 * `url` – the card destination URL.
 * `badges` – the optional list of badges to be shown near the title.
