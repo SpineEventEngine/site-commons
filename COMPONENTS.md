@@ -7,6 +7,7 @@ _Please add new components in alphabetical order._
 
 **Table of Contents**
 
+* [Blockquote](#blockquote)
 * [Clickable category card](#clickable-category-card)
 * [Cloak email](#cloak-email)
 * [Code](#code)
@@ -18,6 +19,27 @@ _Please add new components in alphabetical order._
 * [Note block](#note-block)
 * [Sidenav](#sidenav)
 * [Version](#version)
+
+## Blockquote
+
+Renders the styled blockquote element.
+
+A simple quote with different variations of the author's name placement:
+
+```markdown
+> Quote. — Author
+
+> Quote.
+>
+> — Author
+```
+
+A quote with the styled author's name aligned at the right:
+
+```markdown
+> Quote.
+> <small>— Author</small>
+```
 
 ## Clickable category card
 
