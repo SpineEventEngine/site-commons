@@ -1,0 +1,84 @@
+/*!
+ * Copyright 2026, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+:root {
+  --blockquote-bg-color: transparent;
+  --blockquote-border-color: #eeeeee;
+  --blockquote-border-width: 2px;
+
+  --blockquote-font-size: 22px;
+  --blockquote-text-color: #{$gray-500};
+  --blockquote-text-font-weight: 400;
+  --blockquote-small-text-size: #{$article-font-size};
+  --blockquote-small-text-color: #{$gray-500};
+  --blockquote-small-text-align: right;
+
+  --blockquote-icon-size: 24px;
+  --blockquote-icon-offset: 8px;
+}
+
+$blockquote-border: var(--blockquote-border-width) solid var(--blockquote-border-color);
+$blockquote-padding-left: calc(2 * (var(--blockquote-icon-offset)) + var(--blockquote-icon-size));
+$blockquote-padding-right: 24px;
+
+.article-text blockquote {
+  position: relative;
+  border-left: $blockquote-border;
+  background-color: var(--blockquote-bg-color);
+  padding-left: $blockquote-padding-left;
+  padding-right: $blockquote-padding-right;
+  margin: 24px 0 32px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: var(--blockquote-icon-size);
+    height: var(--blockquote-icon-size);
+    left: var(--blockquote-icon-offset);
+    top: -2px;
+    background: url('img/icons/quote.svg') no-repeat center/cover;
+  }
+
+  p {
+    color: var(--blockquote-text-color);
+    font-style: italic;
+    font-size: var(--blockquote-font-size);
+    font-weight: var(--blockquote-text-font-weight);
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  small {
+    display: block;
+    text-align: var(--blockquote-small-text-align);
+    font-size: var(--blockquote-small-text-size);
+    color: var(--blockquote-small-text-color);
+  }
+}

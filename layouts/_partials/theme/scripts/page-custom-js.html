@@ -42,7 +42,7 @@
         {{ range $jsCustom }}
             {{ $path := strings.TrimPrefix "/" . }}
             {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
-            {{ partial "scripts/script.html" (dict "js" $js) }}
+            {{ partial "theme/scripts/script.html" (dict "js" $js) }}
         {{ end }}
     {{ else }}
         {{ $path := strings.TrimPrefix "/" $jsCustom }}

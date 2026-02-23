@@ -101,31 +101,6 @@ em {
   font-style: italic;
 }
 
-blockquote {
-  border-left: 2px solid #eeeeee;
-  padding: 0 24px 0 10px;
-  margin: 24px 0 32px;
-
-  p {
-    position: relative;
-    padding-left: 32px;
-    font-size: 22px;
-    line-height: 32px;
-    font-style: italic;
-    font-weight: 300;
-    color: rgba($text-color, .64);
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      width: $icon-size-s;
-      height: $icon-size-s;
-      background: url('img/icons/quote.svg') no-repeat center/cover;
-    }
-  }
-}
-
 a {
   color: $main-brand-color;
   font-weight: 400;
