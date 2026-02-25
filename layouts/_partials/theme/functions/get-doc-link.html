@@ -68,7 +68,9 @@
 {{ $versionedPattern := printf `^/?%s/[0-9]+([.-][0-9]+)*(/|$)` $moduleBase }}
 
 {{ $isModule := findRE $modulePattern $link }}
+{{ $hasExplicitVersion := in $link (printf "/%s/" $currentVersion.version_id) }}
 {{ $isVersioned := findRE $versionedPattern $link }}
+{{ $isVersioned = or $isVersioned $hasExplicitVersion }}
 
 {{ $isOtherModule := false }}
 {{ if eq $currentModule "docs" }}
