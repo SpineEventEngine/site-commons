@@ -37,7 +37,7 @@
             {{ $isActive := eq $currentURL $pageURL }}
             <a class="sidenav-link {{ if $isActive }}active{{ end }}"
                href="{{ $pageURL }}">
-                {{ $item.page }}
+                {{ $item.page | markdownify }}
             </a>
         </li>
     {{ end }}
@@ -50,13 +50,13 @@
                href="{{ $pageURL }}"
                target="_blank"
                rel="nofollow noopener">
-                {{ $item.page }}
+                {{ $item.page | markdownify }}
             </a>
         {{ else}}
             {{ $isActive := eq $currentURL $pageURL }}
             <a class="sidenav-link {{ if $isActive }}active{{ end }}"
                href="{{ $pageURL | relURL }}">
-                {{ $item.page }}
+                {{ $item.page | markdownify }}
             </a>
         {{ end }}
     </li>

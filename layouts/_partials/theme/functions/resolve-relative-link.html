@@ -24,20 +24,37 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<div class="page-content">
-    <div class="content-holder">
-        <div class="content-columns three-column">
-            {{ partial "theme/docs/components/sidenav/mobile-toggle.html" }}
-            <div class="doc-sidenav-col sticky-col mobile-sidenav-holder">
-                {{ partial "theme/docs/components/sidenav/sidenav.html" . }}
-            </div>
-            <div class="content-col markdown">
-                <div class="article-container article-text">
-                    {{ .Content }}
-                    {{ partial "theme/docs/components/bottom-nav/next-prev-nav.html" . }}
-                </div>
-            </div>
-            {{ partial "theme/components/toc.html" . }}
-        </div>
-    </div>
-</div>
+<!--
+  Resolves the Markdown relative links.
+
+  A link can be provided as:
+  * `file.md` – same folder
+  * `./file.md` – same folder (explicit)
+  * `folder/file.md` – subfolder
+  * `../file.md` – one level up
+  * `../../file.md` – two levels up
+  * `folder/` – folder index file
+  * `file.md#heading` – anchor in another file
+-->
+
+{{ $link := .link }}
+{{ $page := .page }}
+
+{{ $fragment := "" }}
+{{ $resolved := $link }}
+
+{{ $currentPageDir := $page.File.Dir }}
+{{ $parsedLink := urls.Parse $link }}
+{{ $destinationPath := $parsedLink.Path }}
+
+{{ with $parsedLink.Fragment }}
+    {{ $fragment = printf "#%s" . }}
+{{ end }}
+
+{{ $destinationPath = path.Clean (path.Join $currentPageDir $destinationPath) }}
+
+{{ with site.GetPage $destinationPath }}
+    {{ $resolved = printf "%s%s" .RelPermalink $fragment }}
+{{ end }}
+
+{{ return $resolved }}

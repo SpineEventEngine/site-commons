@@ -24,20 +24,23 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-<div class="page-content">
-    <div class="content-holder">
-        <div class="content-columns three-column">
-            {{ partial "theme/docs/components/sidenav/mobile-toggle.html" }}
-            <div class="doc-sidenav-col sticky-col mobile-sidenav-holder">
-                {{ partial "theme/docs/components/sidenav/sidenav.html" . }}
+<!--
+  Displays the Table of Contents (TOC) column when there is more than one
+  TOC entry and the front-matter does not include `hide_toc: true`.
+-->
+
+{{ $context := . }}
+
+{{ $content := $context.TableOfContents }}
+{{ $items := findRE "<li" $content }}
+{{ $showToc := not .Params.hide_toc }}
+
+{{ if and $showToc (gt (len $items) 1) }}
+    <div class="toc-col sticky-col">
+        <div class="set-max-height">
+            <div class="interactive-toc">
+                {{ .TableOfContents }}
             </div>
-            <div class="content-col markdown">
-                <div class="article-container article-text">
-                    {{ .Content }}
-                    {{ partial "theme/docs/components/bottom-nav/next-prev-nav.html" . }}
-                </div>
-            </div>
-            {{ partial "theme/components/toc.html" . }}
         </div>
     </div>
-</div>
+{{ end }}
