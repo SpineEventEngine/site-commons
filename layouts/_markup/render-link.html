@@ -9,6 +9,10 @@
 {{- if or $isAbsolute $isSamePageAnchor -}}
     {{- $link = $link | safeURL -}}
 {{- else if (not $isMailto) }}
+    {{- $link = partial "theme/functions/resolve-relative-link.html" (dict
+        "link" $link
+        "page" .Page
+    ) -}}
     {{- $link = partial "theme/functions/get-doc-link.html" (dict
         "link" $link
         "page" .Page
