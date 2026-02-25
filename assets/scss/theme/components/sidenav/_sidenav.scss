@@ -129,6 +129,19 @@ $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav
       color: var(--sidenav-link-active-color);
       font-weight: 600;
     }
+
+    /* Prevents the text from shifting when it becomes bold on active. */
+    &:after {
+      position: absolute;
+      content: attr(data-text);
+      font-weight: 600;
+      visibility: hidden;
+    }
+
+    code {
+      background-color: rgba(0, 0, 0, .05);
+      padding: 1px 3px 3px;
+    }
   }
 
   // Second level.
