@@ -15,6 +15,9 @@ The path can be provided in different ways:
 By default, each image will be rendered with `lazy` loading.
 To change this, add `"loading=eager"` as follows:
 ![Image alt](ddd-design.png "loading=eager")
+
+Also renders relative images for standard pages, not just for branch
+bundle `_index.md` files.
 */ -}}
 
 {{ $link := .Destination }}
@@ -22,8 +25,16 @@ To change this, add `"loading=eager"` as follows:
 
 {{ if not (strings.HasPrefix $link "/") }}
     {{ $cleanedLink := replaceRE "#.*$" "" $link }}
-    {{ with .Page.Resources.GetMatch $cleanedLink }}
-        {{ $link = .RelPermalink }}
+    {{ $resource := .Page.Resources.GetMatch $cleanedLink }}
+
+    {{ if not $resource }}
+        {{ with .Page.CurrentSection }}
+            {{ $resource = .Resources.GetMatch $cleanedLink }}
+        {{ end }}
+    {{ end }}
+
+    {{ if $resource }}
+        {{ $link = $resource.RelPermalink }}
     {{ else }}
         {{ $link = $link | relURL }}
     {{ end }}
