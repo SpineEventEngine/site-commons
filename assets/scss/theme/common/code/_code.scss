@@ -209,7 +209,8 @@ code {
 }
 
 .markdown {
-  .highlight {
+  .highlight,
+  pre.mermaid {
     margin-bottom: 40px;
   }
 }

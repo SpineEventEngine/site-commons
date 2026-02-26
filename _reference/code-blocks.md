@@ -88,5 +88,30 @@ highlighting the entire line with a background.
 
 <img src="images/code-block-highlight.png" alt="Code block with text highlighting" width="662">
 
+## Mermaid diagrams
+
+Use a fenced code block with the specified `mermaid` language.
+
+````markdown
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+```
+````
+
+<img src="images/code-block-mermaid.png" alt="Mermaid diagram example" width="544">
+
+More [ASCII diagram examples][ascii-diagram-examples].
+
 [code-fences-doc]: https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences
 [syntax-highlighting-languages]: https://gohugo.io/content-management/syntax-highlighting/#languages
+[ascii-diagram-examples]: https://gohugo.io/content-management/diagrams/#goat-ascii-diagram-examples
