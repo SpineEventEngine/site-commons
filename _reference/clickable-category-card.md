@@ -25,3 +25,24 @@ Where:
 * `url` – the card destination URL.
 * `badges` – the optional list of badges to be shown near the title.
 * `class`– the optional classes for extending the styles of a specific card.
+
+### Example
+
+```markdown
+{{< docs-card-container >}}
+{{< docs-category-card
+    icon="fas fa-book"
+    title="Books"
+    url="docs/resources/books/" >}}
+The concepts and practical guidance.
+{{< /docs-category-card >}}
+{{< docs-category-card
+    icon="far fa-user-friends"
+    title="People"
+    url="docs/resources/people/" >}}
+The creators and drivers of the DDD ideas.
+{{< /docs-category-card >}}
+{{< /docs-card-container >}}
+```
+
+<img src="images/clickable-category-card.png" alt="Clickable category card" width="564">

@@ -81,3 +81,5 @@ The code will be rendered as:
    </div>
 </div>
 ```
+
+<img src="images/code-tabs.png" alt="Code tabs" width="662">

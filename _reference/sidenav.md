@@ -32,13 +32,13 @@ Example:
       file_path: guides/start-new-project
     - page: Gradle configuration
       file_path: guides/gradle
-    - page:
-      key:
+    - page: Related Guides
+      key: related-guides
       children:
-        - page:
-          file_path:
-- page: Protocol Buffers
-  url: https://developers.google.com/protocol-buffers/docs/overview
+        - page: Overview
+          file_path: guides/related-guides
+        - page: Protocol Buffers
+          url: https://developers.google.com/protocol-buffers/docs/overview
 ```
 
 Notes:
@@ -47,3 +47,5 @@ Notes:
 * Nested items with `children` are rendered as categories.
 * A section opens automatically when its `key` matches the current docs section.
 * A category opens automatically when its `key` matches the current page parent directory.
+
+<img src="images/sidenav.png" alt="Sidenav" width="180">

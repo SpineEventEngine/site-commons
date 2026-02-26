@@ -16,3 +16,13 @@ The supported types are: `command`, `event`, `projection`, `rejection`,
 
 * Template: `layouts/_shortcodes/code.html`.
 * Styles: `assets/scss/theme/common/code/_semantic-code.scss`.
+
+### Example
+
+```markdown
+* {{< code "command" "CreateProject" >}}
+* {{< code "event" "ProjectCreated" >}}
+* {{< code "rejection" "TaskAlreadyExists" >}}
+```
+
+<img src="images/code-coloring.png" alt="Semantic code coloring" width="212">
