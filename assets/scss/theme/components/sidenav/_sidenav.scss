@@ -130,12 +130,14 @@ $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav
       font-weight: 600;
     }
 
-    /* Prevents the text from shifting when it becomes bold on active. */
-    &:after {
-      position: absolute;
-      content: attr(data-text);
-      font-weight: 600;
-      visibility: hidden;
+    &:not(.external-link) {
+      /* Prevents the text from shifting when it becomes bold on active. */
+      &:after {
+        position: absolute;
+        content: attr(data-text);
+        font-weight: 600;
+        visibility: hidden;
+      }
     }
 
     code {

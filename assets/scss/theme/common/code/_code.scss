@@ -81,6 +81,7 @@ code {
   background-color: var(--code-background);
   padding: var(--code-padding);
   border-radius: $code-border-radius;
+  width: min-content;
   margin: 0;
 }
 
