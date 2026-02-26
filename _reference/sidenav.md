@@ -48,4 +48,6 @@ Notes:
 * A section opens automatically when its `key` matches the current docs section.
 * A category opens automatically when its `key` matches the current page parent directory.
 
+How it looks:
+
 <img src="images/sidenav.png" alt="Sidenav" width="180">
