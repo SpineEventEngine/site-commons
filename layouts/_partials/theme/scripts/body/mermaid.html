@@ -24,26 +24,17 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $environment := hugo.Environment }}
+<!--
+  Renders Mermaid diagrams when a Markdown code block is marked
+  with the `mermaid` language.
 
-{{ $params := (dict
-    "environment" $environment
-)}}
+  The `hasMermaid` flag is controlled in the
+  `layouts/_markup/render-codeblock-mermaid.html` file.
+-->
 
-{{ partial "theme/scripts/body/baseurl.html" . }}
-{{ partial "theme/scripts/body/libs.html" . }}
-{{ partial "theme/scripts/body/mermaid.html" . }}
-
-{{ $jsBootstrap := resources.Get "js/bootstrap.js" }}
-{{ $jsThemeMain := resources.Get "js/theme-main.js" }}
-{{ $js := (slice
-    $jsBootstrap $jsThemeMain
-) }}
-
-{{ $js = $js | resources.Concat "js/main.js" | js.Build (dict "params" $params) }}
-{{ partial "theme/scripts/script.html" (dict "js" $js) }}
-
-{{ partial "theme/scripts/page-custom-js.html" (dict
-    "context" .
-    "params" $params
-) }}
+{{ if .Store.Get "hasMermaid" }}
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+{{ end }}

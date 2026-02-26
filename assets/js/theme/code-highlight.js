@@ -50,7 +50,7 @@
  * This script ensures both cases use the same layout and styling.
  */
 $(function () {
-    const $codeBlock = $('pre');
+    const $codeBlock = $('.markdown pre').not('.mermaid');
     const highlightClass = 'highlight';
 
     $codeBlock.each(function () {
