@@ -2,8 +2,6 @@
 
 Renders the styled blockquote element.
 
-A simple quote with different variations of the author's name placement:
-
 ```markdown
 > This is a blockquote.
 > It can be used to display quotes from a person, company, or external source.
