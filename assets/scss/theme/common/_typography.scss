@@ -113,12 +113,3 @@ a {
     text-underline-offset: 2px;
   }
 }
-
-table {
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid lighten($text-color, 20%);
-  padding: 6px
-}
