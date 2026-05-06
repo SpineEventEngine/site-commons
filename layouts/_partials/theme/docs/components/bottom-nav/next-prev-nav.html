@@ -42,7 +42,7 @@
             <div class="item previous">
                 <a class="arrow-link prev"
                    href="{{ $prev.url | relURL }}">
-                    <span>{{ $prev.title }}</span>
+                    <span>{{ $prev.title | markdownify }}</span>
                 </a>
             </div>
         {{ end }}
@@ -51,7 +51,7 @@
             <div class="item next">
                 <a class="arrow-link next"
                    href="{{ $next.url | relURL }}">
-                    <span>{{ $next.title }}</span>
+                    <span>{{ $next.title | markdownify }}</span>
                 </a>
             </div>
         {{ end }}
