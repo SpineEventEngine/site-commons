@@ -67,9 +67,9 @@ Notes:
 * A section opens automatically when its `key` matches the current docs section.
 * A category opens automatically when its `key` matches the current page parent directory.
 * The separator can be added as a `space` or `line`.
-* `section: <label>` renders a standalone section title. 
-  Add `file_path` to make the title link to a Hugo page if needed.
-  The section automatically adds top spacing.
+* `section: <label>` renders a standalone section title.
+  When `file_path` is provided, the title is rendered as a link to a page.
+  The section automatically includes top spacing.
 
 How it looks:
 

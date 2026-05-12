@@ -92,8 +92,7 @@ $sidenav-item-line-height: 1.6;
     cursor: pointer;
 
     @include breakpoint(mobile-sidenav) {
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding-block: 12px;
     }
 
     // Tree title with chevron.
@@ -209,6 +208,10 @@ $sidenav-item-line-height: 1.6;
 
     &:not(.sidenav-link) {
       cursor: default;
+    }
+
+    @include breakpoint(mobile-sidenav) {
+      padding-block: 12px;
     }
   }
 
