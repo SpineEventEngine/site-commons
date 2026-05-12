@@ -134,6 +134,7 @@ $sidenav-item-line-height: 1.6;
     }
 
     &.active {
+      background-color: var(--sidenav-link-hover-bg-color);
       color: var(--sidenav-link-active-color);
       font-weight: 600;
     }
@@ -199,11 +200,10 @@ $sidenav-item-line-height: 1.6;
   }
 
   .sidenav-section-title {
-    font-size: 12px;
-    line-height: calc(var(--sidenav-level-1-link-font-size) * #{$sidenav-item-line-height});
-    font-weight: 600;
-    letter-spacing: .4px;
-    color: rgba(0, 0, 0, .54);
+    font-size: var(--sidenav-level-1-link-font-size);
+    line-height: $sidenav-item-line-height;
+    font-weight: 500;
+    color: var(--text-color);
     padding: 8px 16px 8px var(--sidenav-level-1-item-left-padding);
     margin: 0;
 
