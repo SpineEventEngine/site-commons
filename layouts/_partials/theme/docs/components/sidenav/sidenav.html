@@ -32,7 +32,10 @@
     <ul class="doc-sidenav set-max-height">
         {{ range $sidenavData }}
             {{ if .section }}
-                {{ partial "theme/docs/components/sidenav/section-title.html" . }}
+                {{ partial "theme/docs/components/sidenav/section-title.html" (dict
+                    "page_context" $page
+                    "item_context" .
+                ) }}
             {{ else if .separator }}
                 {{ partial "theme/docs/components/sidenav/separator.html" . }}
             {{ else if .children }}

@@ -28,7 +28,10 @@
   Renders the side navigation section title.
 -->
 
-{{ $item := . }}
+{{ $page := .page_context }}
+{{ $item := .item_context }}
+
+{{ $currentURL := $page.RelPermalink }}
 {{ $section := $item.section }}
 
 <li>
@@ -36,9 +39,9 @@
         {{ $filePath := $item.file_path }}
         {{ with site.GetPage $filePath }}
             {{ $pageURL := .RelPermalink }}
-            <h3 class="sidenav-section-title">
-                <a href="{{ $pageURL }}">{{ $section | markdownify }}</a>
-            </h3>
+            {{ $isActive := eq $currentURL $pageURL }}
+            <a class="sidenav-link sidenav-section-title {{ if $isActive }}active{{ end }}"
+               href="{{ $pageURL }}">{{ $section | markdownify }}</a>
         {{ end }}
     {{ else }}
         <h3 class="sidenav-section-title">{{ $section | markdownify }}</h3>

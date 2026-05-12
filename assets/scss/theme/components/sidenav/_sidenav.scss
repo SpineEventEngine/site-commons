@@ -206,7 +206,10 @@ $sidenav-item-line-height: 1.6;
     color: rgba(0, 0, 0, .54);
     padding: 8px 16px 8px var(--sidenav-level-1-item-left-padding);
     margin: 0;
-    cursor: default;
+
+    &:not(.sidenav-link) {
+      cursor: default;
+    }
   }
 
   li + li .sidenav-section-title {
