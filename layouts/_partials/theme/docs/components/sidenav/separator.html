@@ -24,28 +24,31 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := . }}
-{{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
+<!--
+  Renders a visual separator in the side navigation.
 
-{{ if $sidenavData }}
-    {{ partial "theme/docs/components/sidenav/mobile-header.html" . }}
-    <ul class="doc-sidenav set-max-height">
-        {{ range $sidenavData }}
-            {{ if .section }}
-                {{ partial "theme/docs/components/sidenav/section-title.html" . }}
-            {{ else if .separator }}
-                {{ partial "theme/docs/components/sidenav/separator.html" . }}
-            {{ else if .children }}
-                {{ partial "theme/docs/components/sidenav/section.html" (dict
-                    "page_context" $page
-                    "item_context" .
-                ) }}
-            {{ else }}
-                {{ partial "theme/docs/components/sidenav/page.html" (dict
-                    "page_context" $page
-                    "item_context" .
-                ) }}
-            {{ end }}
-        {{ end }}
-    </ul>
+  The separator can be displayed as a divider line or spacing,
+  depending on the specified type.
+
+  Usage:
+  ```yml
+  - separator: space
+  ```
+-->
+
+{{ $separator := .separator }}
+
+{{ $allowed := slice
+    "line"
+    "space"
+}}
+
+{{ if not (in $allowed $separator) }}
+    {{ errorf "Invalid sidenav separator type %q. Must be one of: %s." $separator (delimit $allowed ", ") }}
+{{ end }}
+
+{{ if eq $separator "line" }}
+    <hr class="sidenav-separator line"/>
+{{ else if eq $separator "space" }}
+    <div class="sidenav-separator space"></div>
 {{ end }}

@@ -24,28 +24,23 @@
   ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   -->
 
-{{ $page := . }}
-{{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
+<!--
+  Renders the side navigation section title.
+-->
 
-{{ if $sidenavData }}
-    {{ partial "theme/docs/components/sidenav/mobile-header.html" . }}
-    <ul class="doc-sidenav set-max-height">
-        {{ range $sidenavData }}
-            {{ if .section }}
-                {{ partial "theme/docs/components/sidenav/section-title.html" . }}
-            {{ else if .separator }}
-                {{ partial "theme/docs/components/sidenav/separator.html" . }}
-            {{ else if .children }}
-                {{ partial "theme/docs/components/sidenav/section.html" (dict
-                    "page_context" $page
-                    "item_context" .
-                ) }}
-            {{ else }}
-                {{ partial "theme/docs/components/sidenav/page.html" (dict
-                    "page_context" $page
-                    "item_context" .
-                ) }}
-            {{ end }}
+{{ $item := . }}
+{{ $section := $item.section }}
+
+<li>
+    {{ if or $item.file_path (eq $item.file_path "") }}
+        {{ $filePath := $item.file_path }}
+        {{ with site.GetPage $filePath }}
+            {{ $pageURL := .RelPermalink }}
+            <h3 class="sidenav-section-title">
+                <a href="{{ $pageURL }}">{{ $section | markdownify }}</a>
+            </h3>
         {{ end }}
-    </ul>
-{{ end }}
+    {{ else }}
+        <h3 class="sidenav-section-title">{{ $section | markdownify }}</h3>
+    {{ end }}
+</li>
