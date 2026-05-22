@@ -30,7 +30,7 @@ and should not receive the `rel="nofollow"` property.
 -->
 
 {{ $url := . }}
-{{ $whitelist := site.Data.whitelist.domains }}
+{{ $whitelist := hugo.Data.whitelist.domains }}
 {{ $skipNofollow := false }}
 {{ if and $url (hasPrefix $url "http") }}
     {{ range $whitelist }}

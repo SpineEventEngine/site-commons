@@ -5,7 +5,7 @@
 {{- $displayParam := .Get "display" | default (.Get 0) -}}
 {{- $displaytext := "" -}}
 {{- if $displayVariable -}}
-{{- $displaytext = index site.Data (split $displayVariable ".") -}}
+{{- $displaytext = index hugo.Data (split $displayVariable ".") -}}
 {{- else -}}
 {{- $displaytext = $displayParam -}}
 {{- end -}}
@@ -15,7 +15,7 @@
 {{- $addressParam := .Get "address" | default (.Get 0) -}}
 {{- $address := "" -}}
 {{- if $addressVariable -}}
-{{- $address = index site.Data (split $addressVariable ".") -}}
+{{- $address = index hugo.Data (split $addressVariable ".") -}}
 {{- else -}}
 {{- $address = $addressParam -}}
 {{- end -}}

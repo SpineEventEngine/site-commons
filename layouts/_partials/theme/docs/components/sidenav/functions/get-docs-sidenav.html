@@ -33,7 +33,7 @@
 -->
 
 {{ $page := . }}
-{{ $docsData := site.Data.docs }}
+{{ $docsData := hugo.Data.docs }}
 {{ $sidenavData := slice }}
 
 {{ $docsVersion := partial "theme/functions/get-doc-module-version.html" (dict

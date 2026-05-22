@@ -45,7 +45,7 @@
 {{ $section := "" }}
 {{ $bestMatchLen := 0 }}
 
-{{ range $moduleName, $versions := site.Data.versions }}
+{{ range $moduleName, $versions := hugo.Data.versions }}
     {{ range $versions }}
         {{ $prefix := print .content_path "/" }}
         {{ if strings.HasPrefix $filePath $prefix }}
