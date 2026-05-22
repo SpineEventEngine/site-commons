@@ -44,7 +44,7 @@
 {{ end }}
 
 {{ $version := "" }}
-{{ $versions := index site.Data.versions $module | default (slice) }}
+{{ $versions := index hugo.Data.versions $module | default (slice) }}
 {{ $mainVersion := index (where $versions "is_main" true) 0 }}
 
 {{ range $versions }}

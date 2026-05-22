@@ -8,7 +8,7 @@ from the `data/emails.yml` file.
 
 {{- $dataPath := .Get 0 -}}
 {{- with split $dataPath "." -}}
-    {{- $data := site.Data -}}
+    {{- $data := hugo.Data -}}
     {{- range . -}}
         {{- $data = index $data . -}}
     {{- end -}}
