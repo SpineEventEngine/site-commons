@@ -35,7 +35,7 @@
 -->
 
 {{ $page := . }}
-{{ $docsData := site.Data.docs }}
+{{ $docsData := hugo.Data.docs }}
 {{ $sidenavData := slice }}
 {{ $orderedModules := partial "theme/docs/components/sidenav/functions/get-ordered-modules.html" $docsData }}
 

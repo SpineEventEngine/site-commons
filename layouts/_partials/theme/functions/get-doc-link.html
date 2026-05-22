@@ -54,7 +54,7 @@
 {{ $pageContext := .page }}
 
 {{ $modules := slice }}
-{{ $versions := site.Data.versions | default (slice) }}
+{{ $versions := hugo.Data.versions | default (slice) }}
 {{ range $module, $items := $versions }}
     {{ $modules = $modules | append $module }}
 {{ end }}
