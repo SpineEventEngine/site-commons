@@ -11,7 +11,7 @@ It provides:
 ## Prerequisites
 
 1. [Go][go] `1.12` or newer.
-2. [Hugo Extended][hugo-quick-start] in version `v0.150.0` or higher.
+2. [Hugo Extended][hugo-quick-start] in version `v0.161.1` or higher.
 
 ## Installation
 
