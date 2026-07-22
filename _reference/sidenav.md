@@ -39,6 +39,25 @@ Example:
           file_path: guides/related-guides
         - page: Protocol Buffers
           url: https://developers.google.com/protocol-buffers/docs/overview
+
+- separator: space
+- page: Framework user guide
+  key: framework
+  children:
+    - page: Overview
+      file_path: framework
+
+- section: Validation Library
+- page: User guide
+  key: user
+  children:
+    - page: Overview
+      file_path: user/00-intro
+- page: Developer guide
+  key: developer
+  children:
+    - page: Overview and audience
+      file_path: developer/overview-and-audience
 ```
 
 Notes:
@@ -47,7 +66,11 @@ Notes:
 * Nested items with `children` are rendered as categories.
 * A section opens automatically when its `key` matches the current docs section.
 * A category opens automatically when its `key` matches the current page parent directory.
+* The separator can be added as a `space` or `line`.
+* `section: <label>` renders a standalone section title.
+  When `file_path` is provided, the title is rendered as a link to a page.
+  The section automatically includes top spacing.
 
 How it looks:
 
-<img src="images/sidenav.png" alt="Sidenav" width="180">
+<img src="images/sidenav.png" alt="Sidenav" width="228">

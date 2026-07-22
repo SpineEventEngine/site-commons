@@ -48,6 +48,12 @@
 
   --sidenav-level-2-indent: 12px;
   --sidenav-level-3-indent: 24px;
+
+  --sidenav-separator-space-height: 16px;
+  --sidenav-separator-line-height: 1px;
+  --sidenav-separator-line-color: rgba(0, 0, 0, .3);
+  --sidenav-separator-line-vertical-margin: 12px;
+  --sidenav-mobile-separator-space-height: 0;
 }
 
 $sidenav-top-offset: 24px;
@@ -55,6 +61,8 @@ $sidenav-chevron-border-size: 1px;
 $sidenav-chevron-size: 6px;
 $sidenav-chevron-border: $sidenav-chevron-border-size solid var(--sidenav-chevron-color);
 $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav-chevron-active-color);
+
+$sidenav-item-line-height: 1.6;
 
 .doc-sidenav {
   list-style: none;
@@ -69,7 +77,7 @@ $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav
 
   li {
     list-style: none;
-    line-height: 1.6;
+    line-height: $sidenav-item-line-height;
   }
 
   .sidenav-link {
@@ -84,8 +92,7 @@ $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav
     cursor: pointer;
 
     @include breakpoint(mobile-sidenav) {
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding-block: 12px;
     }
 
     // Tree title with chevron.
@@ -126,6 +133,7 @@ $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav
     }
 
     &.active {
+      background-color: var(--sidenav-link-hover-bg-color);
       color: var(--sidenav-link-active-color);
       font-weight: 600;
     }
@@ -186,6 +194,45 @@ $sidenav-chevron-active-border: $sidenav-chevron-border-size solid var(--sidenav
             left: 0;
           }
         }
+      }
+    }
+  }
+
+  .sidenav-section-title {
+    font-size: var(--sidenav-level-1-link-font-size);
+    line-height: $sidenav-item-line-height;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 8px 16px 8px var(--sidenav-level-1-item-left-padding);
+    margin: 0;
+
+    &:not(.sidenav-link) {
+      cursor: default;
+    }
+
+    @include breakpoint(mobile-sidenav) {
+      padding-block: 12px;
+    }
+  }
+
+  li + li .sidenav-section-title {
+    margin-top: 16px;
+  }
+
+  .sidenav-separator {
+    &.line {
+      box-sizing: border-box;
+      margin-top: var(--sidenav-separator-line-vertical-margin);
+      margin-bottom: var(--sidenav-separator-line-vertical-margin);
+      height: var(--sidenav-separator-line-height);
+      border-color: var(--sidenav-separator-line-color);
+    }
+
+    &.space {
+      height: var(--sidenav-separator-space-height);
+
+      @include breakpoint(mobile-sidenav) {
+        height: var(--sidenav-mobile-separator-space-height);
       }
     }
   }
