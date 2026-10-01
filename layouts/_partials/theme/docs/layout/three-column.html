@@ -12,6 +12,8 @@
   ~ and limitations under the License.
   -->
 
+{{ $hasNumberedHeadings := .Params.has_numbered_headings }}
+
 <div class="page-content">
     <div class="content-holder">
         <div class="content-columns three-column">
@@ -20,7 +22,8 @@
                 {{ partial "theme/docs/components/sidenav/sidenav.html" . }}
             </div>
             <div class="content-col markdown">
-                <div class="article-container article-text">
+                <div class="article-container article-text
+                            {{ if $hasNumberedHeadings }}numbered-headings{{ end }}">
                     {{ .Content }}
                     {{ partial "theme/docs/components/bottom-nav/next-prev-nav.html" . }}
                 </div>
