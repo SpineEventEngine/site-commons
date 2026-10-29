@@ -47,18 +47,13 @@ The version fields are:
 
 Notes:
 
-* A page belongs to the last version whose `content_path` is a part of the page file path.
-  List the versions from the least to the most specific path:
-  `docs` before `docs/2`.
+* A page belongs to the version with the longest `content_path` that its file path starts with.
+  For example, `docs/2/guides/gradle.md` belongs to `docs/2`, not to `docs`,
+  and `docs/validation/user/00-intro/_index.md` belongs to `validation`, not to `docs`.
+  The order of versions and modules in the file doesn't matter.
 * In the `docs` module, use digits only for `version_id`, such as `"1"` or `"2"`.
   Its version folders are next to the module folders in `data/docs/`,
   and the theme tells them apart by that.
   Other modules can use any value, such as `"2-0-x"`.
-
-Known limitations:
-
-* When a page matches the versions of several modules, the module that comes later
-  in the alphabetical order wins. A module whose name comes before `docs`,
-  such as `compiler`, is therefore detected as `docs` on its own pages.
-* The `route_url` rewriting replaces every occurrence of the module path in a link.
-  On a page of version `2`, `docs/guides/docs-test/` becomes `docs/2/guides/docs/2-test/`.
+* Only the leading module path of a link is rewritten to `route_url`.
+  On a page of version `2`, `docs/guides/docs-test/` becomes `docs/2/guides/docs-test/`.

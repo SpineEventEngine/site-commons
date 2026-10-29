@@ -67,7 +67,7 @@
 {{ end }}
 
 {{ if and $isModule (not $isVersioned) (not $isOtherModule) }}
-  {{ $link = replaceRE $moduleBase $currentVersion.route_url $link }}
+  {{ $link = replaceRE (printf `^(/?)%s/` $moduleBase) (printf `${1}%s/` $currentVersion.route_url) $link }}
 {{ end }}
 
 {{ $link = $link | relURL }}
