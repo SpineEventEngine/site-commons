@@ -30,11 +30,11 @@
         {{ range $jsCustom }}
             {{ $path := strings.TrimPrefix "/" . }}
             {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
-            {{ partial "theme/scripts/script.html" (dict "js" $js) }}
+            {{ partial "./script.html" (dict "js" $js) }}
         {{ end }}
     {{ else }}
         {{ $path := strings.TrimPrefix "/" $jsCustom }}
         {{ $js := resources.Get $path | js.Build (dict "params" $params) }}
-        {{ partial "theme/scripts/script.html" (dict "js" $js) }}
+        {{ partial "./script.html" (dict "js" $js) }}
     {{ end }}
 {{ end }}

@@ -17,24 +17,24 @@ Returns the body class based on the page kind
 or on the `body_class` parameter in the front matter of the page.
 -->
 
+{{ $kindClass := "" }}
 {{ if eq .Kind "home" }}
-    {{ .Scratch.Set "bodyClass" "home" }}
+    {{ $kindClass = "home" }}
 {{ else if eq .Kind "404" }}
-    {{ .Scratch.Set "bodyClass" "error-pages" }}
+    {{ $kindClass = "error-pages" }}
 {{ else if eq .Kind "page" }}
     {{ if in .Type "/" }}
         {{ $type := replace .Type "/" " " }}
-        {{ .Scratch.Set "bodyClass" (print " " $type) }}
+        {{ $kindClass = print " " $type }}
     {{ else }}
-        {{ .Scratch.Set "bodyClass" (print " " .Type) }}
+        {{ $kindClass = print " " .Type }}
     {{ end }}
 {{ else }}
-    {{ $type := replace .Type "/" " " }}
-    {{ .Scratch.Set "bodyClass" $type }}
+    {{ $kindClass = replace .Type "/" " " }}
 {{ end }}
 
 {{ $bodyClass := slice }}
-{{ with .Scratch.Get "bodyClass" }}
+{{ with $kindClass }}
     {{ $bodyClass = split . " " }}
 {{ end }}
 {{ with .Params.body_class }}

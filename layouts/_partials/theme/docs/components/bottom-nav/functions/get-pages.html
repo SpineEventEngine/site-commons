@@ -14,43 +14,28 @@
 
 <!--
 Returns the array of the sidenav pages and the index of the current page.
+
+{Array} `pages` – the sidenav pages as `{url, title}` items.
+{Number} `index` – the index of the current page, or `-1` if it is not in the sidenav.
 -->
 
 {{ $root := .context }}
 {{ $sidenav := .sidenav }}
 {{ $currentURL := .current_url }}
 
-{{ $root.Scratch.Set "bottomNavPages" (slice) }}
-{{ $root.Scratch.Set "bottomNavCurrentIndex" -1 }}
+{{ $pages := partial "./collect-pages.html" (dict
+    "context" $root
+    "items" $sidenav
+) }}
 
-{{ range $sidenav }}
-    {{ template "get-bottom-nav-pages" (dict "root" $root "node" .) }}
-{{ end }}
-
-{{ define "get-bottom-nav-pages" }}
-    {{ $root := .root }}
-    {{ $node := .node }}
-    {{ with $node.children }}
-        {{ range . }}
-            {{ template "get-bottom-nav-pages" (dict "root" $root "node" .) }}
-        {{ end }}
-    {{ else }}
-        {{ if and (isset $node "page") (or $node.file_path (eq $node.file_path "")) }}
-            {{ $page := partial "theme/docs/components/bottom-nav/functions/get-page.html" (dict
-                "page_context" $root
-                "item_context" $node
-            ) }}
-            {{ if $page.url }}
-                {{ $root.Scratch.Add "bottomNavPages" (slice $page) }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
-{{ end }}
-
-{{ $pages := $root.Scratch.Get "bottomNavPages" }}
-
+{{/* The last match wins: the current URL also contains the URLs of its parent pages, which come earlier. */}}
+{{ $index := -1 }}
 {{ range $i, $page := $pages }}
     {{ if in $currentURL $page.url }}
-        {{ $root.Scratch.Set "bottomNavCurrentIndex" $i }}
+        {{ $index = $i }}
     {{ end }}
 {{ end }}
+
+{{ $result := dict "pages" $pages "index" $index }}
+
+{{ return $result }}

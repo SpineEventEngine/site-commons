@@ -18,9 +18,9 @@
     "environment" $environment
 )}}
 
-{{ partial "theme/scripts/body/baseurl.html" . }}
-{{ partial "theme/scripts/body/libs.html" . }}
-{{ partial "theme/scripts/body/mermaid.html" . }}
+{{ partial "./body/baseurl.html" . }}
+{{ partial "./body/libs.html" . }}
+{{ partial "./body/mermaid.html" . }}
 
 {{ $jsBootstrap := resources.Get "js/bootstrap.js" }}
 {{ $jsThemeMain := resources.Get "js/theme-main.js" }}
@@ -29,9 +29,9 @@
 ) }}
 
 {{ $js = $js | resources.Concat "js/main.js" | js.Build (dict "params" $params) }}
-{{ partial "theme/scripts/script.html" (dict "js" $js) }}
+{{ partial "./script.html" (dict "js" $js) }}
 
-{{ partial "theme/scripts/page-custom-js.html" (dict
+{{ partial "./page-custom-js.html" (dict
     "context" .
     "params" $params
 ) }}

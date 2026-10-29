@@ -47,7 +47,7 @@
     {{ $modules = $modules | append $module }}
 {{ end }}
 
-{{ $currentVersionData := partial "theme/functions/get-doc-version-data.html" $pageContext }}
+{{ $currentVersionData := partial "./get-doc-version-data.html" $pageContext }}
 {{ $currentVersion := $currentVersionData.version }}
 {{ $currentModule := $currentVersionData.module }}
 

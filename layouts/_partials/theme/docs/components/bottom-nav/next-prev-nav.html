@@ -17,13 +17,13 @@
 {{ $sidenavData := partial "theme/docs/components/sidenav/functions/get-sidenav-data.html" $page }}
 
 {{ if $sidenavData }}
-    {{ partial "theme/docs/components/bottom-nav/functions/get-pages.html" (dict
+    {{ $bottomNav := partial "./functions/get-pages.html" (dict
         "context" .
         "sidenav" $sidenavData
         "current_url" $currentURL
     ) }}
-    {{ $pages := .Scratch.Get "bottomNavPages" }}
-    {{ $index := .Scratch.Get "bottomNavCurrentIndex" }}
+    {{ $pages := $bottomNav.pages }}
+    {{ $index := $bottomNav.index }}
     <nav class="next-prev-nav" aria-label="Bottom navigation">
         {{ if ge $index 1 }}
             {{ $prev := index $pages (sub $index 1) }}
@@ -45,5 +45,3 @@
         {{ end }}
     </nav>
 {{ end }}
-{{ .Scratch.Delete "bottomNavPages" }}
-{{ .Scratch.Delete "bottomNavCurrentIndex" }}
