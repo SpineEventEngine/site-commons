@@ -2,6 +2,8 @@
 
 Returns the current documentation version label or the label of the provided version.
 
+The version is looked up by its `version_id`, see [Versions](versions.md).
+
 ```markdown
 {{< version >}} -> 1.9.0
 {{< version "2" >}} -> 2.0.0
