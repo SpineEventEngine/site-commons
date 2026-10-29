@@ -10,7 +10,7 @@ It provides:
 
 ## Prerequisites
 
-1. [Go][go] `1.22` or newer.
+1. [Go][go] `1.27.3` or newer.
 2. [Hugo Extended][hugo-quick-start] in version `v0.169.0` or higher.
 
 ## Installation
