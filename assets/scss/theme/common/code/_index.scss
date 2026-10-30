@@ -12,6 +12,11 @@
  * and limitations under the License.
  */
 
+// The Chroma themes go first, so that the code styles below take precedence over them.
+@import "code-theme";
+@import "code-theme-light";
+@import "code-theme-dark";
+
 @import "code";
 @import "semantic-code";
 @import "code-block";

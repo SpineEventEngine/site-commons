@@ -15,7 +15,6 @@
 'use strict';
 
 const $html = $('html');
-const $themeCSS = $('#code-theme-css');
 
 const THEME_ATTR = 'data-theme';
 const COOKIE_ATTR = 'themeColor';
@@ -24,28 +23,15 @@ const THEMES = ['light', 'dark'];
 /**
  * Inits the website dark/light theme.
  *
- * <p>Adds the appropriate value to the `<html data-theme="">` attribute.
+ * <p>The theme is applied to the `<html data-theme="">` attribute before the first paint
+ * by `layouts/_partials/theme/scripts/head/theme-preload.html`. Make sure the page includes
+ * it via `layouts/_partials/theme/head/code-theme.html`.
  *
- * <p>Gets the default theme from the user system preferences.
- *
- * <p>The selected theme will be saved in cookies and the user will be able
+ * <p>The applied theme will be saved in cookies and the user will be able
  * to navigate between pages without selecting the theme again.
- *
- * <p>Imports different code CSS styles depending on the theme.
- * See the `layouts/_partials/theme/head/code-theme.html`.
  */
-export function initTheme(useSystemPreference = true, defaultTheme = 'dark') {
-    const systemTheme = useSystemPreference &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : defaultTheme;
-
-    const savedTheme = Cookies.get(COOKIE_ATTR);
-    const theme = THEMES.includes(savedTheme)
-        ? savedTheme
-        : systemTheme;
-
-    setTheme(theme);
+export function initTheme() {
+    setTheme($html.attr(THEME_ATTR));
 }
 
 /**
@@ -59,16 +45,16 @@ export function toggleTheme() {
 }
 
 /**
- * Sets the provided theme as the HTML data attribute,
- * changes the CSS `href` of the code highlight theme,
+ * Sets the provided theme as the HTML data attribute
  * and saves the theme to cookies.
+ *
+ * <p>The colors of each theme are defined in `assets/scss/theme/common/code/`.
  *
  * @param {string} theme the code theme to be set
  */
 function setTheme(theme) {
     if (!THEMES.includes(theme)) return;
 
-    $themeCSS.attr('href', $themeCSS.data(theme));
     $html.attr(THEME_ATTR, theme);
     Cookies.set(COOKIE_ATTR, theme);
 }

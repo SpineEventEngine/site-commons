@@ -26,7 +26,9 @@
   --code-tab-font-size: 15px;
 }
 
-html[data-theme="dark"] {
+// As the default theme, dark also applies when `data-theme` is not set,
+// e.g., when JavaScript is disabled.
+html:not([data-theme="light"]) {
   --code-block-background: #1f1f22;
   --code-block-text-color: #bcbec4;
   --code-block-box-shadow: unset;

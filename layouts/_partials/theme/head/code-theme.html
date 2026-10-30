@@ -13,21 +13,14 @@
   -->
 
 <!--
-  Imports the dark/light theme styles for the code highlighting.
+  Applies the dark/light theme of the code highlighting.
 
-  The corresponding CSS and JS can be found in:
-  - `static/code-theme/light.css.
-  - `static/code-theme/dark.css.
-  - `assets/js/components/theme-toggle.js`.
+  Include it in the `<head>`, so that the theme is applied before the first paint.
+
+  The corresponding SCSS and JS can be found in:
+  - `assets/scss/theme/common/code/_code-theme-light.scss`;
+  - `assets/scss/theme/common/code/_code-theme-dark.scss`;
+  - `assets/js/theme/theme-toggle.js`.
  -->
 
 {{ partial "theme/scripts/head/theme-preload.html" . }}
-
-{{ $lightTheme := "code-theme/light.css" }}
-{{ $darkTheme := "code-theme/dark.css" }}
-{{ $defaultCodeTheme := $darkTheme }}
-<link id="code-theme-css"
-      rel="stylesheet"
-      href="{{ $defaultCodeTheme | relURL }}"
-      data-light="{{ $lightTheme | relURL }}"
-      data-dark="{{ $darkTheme | relURL }}">

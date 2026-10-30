@@ -88,6 +88,24 @@ highlighting the entire line with a background.
 
 <img src="images/code-block-highlight.png" alt="Code block with text highlighting" width="662">
 
+## Light and dark themes
+
+Code blocks come in light and dark themes. The icon above each code block toggles
+the theme, and the choice is saved in the `themeColor` cookie.
+
+To enable the themes, include the `theme/head/code-theme.html` partial in the page `<head>`
+and enable the highlighting classes in the site config:
+
+```toml
+[markup.highlight]
+  noClasses = false
+```
+
+The partial sets the `data-theme` attribute of the `<html>` element before the first paint.
+Without JavaScript, code blocks use the dark theme.
+The colors of the themes are defined in `assets/scss/theme/common/code/_code-theme-light.scss`
+and `_code-theme-dark.scss`.
+
 ## Mermaid diagrams
 
 Use a fenced code block with the specified `mermaid` language.
