@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../fonts" as *;
+
 $diagram-content-text-size: 15px;
 
 .diagram-box {

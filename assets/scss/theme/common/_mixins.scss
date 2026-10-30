@@ -13,8 +13,8 @@
  */
 
 @use "sass:map";
-
-/* The $breakpoints are in the `common/_breakpoints.scss`. */
+@use "breakpoints" as *;
+@use "colors" as *;
 
 /* Usage: @include breakpoint(desktop) {} */
 @mixin breakpoint($deviceWidth) {

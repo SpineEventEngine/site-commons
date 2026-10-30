@@ -12,10 +12,10 @@
  * and limitations under the License.
  */
 
-@import "roboto";
-@import "roboto-mono";
-@import "pt-serif";
-@import "fontawesome";
+@forward "roboto";
+@forward "roboto-mono";
+@forward "pt-serif";
+@forward "fontawesome";
 
 $main-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $main-mono-font: 'Roboto Mono', monospace;

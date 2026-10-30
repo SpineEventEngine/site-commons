@@ -12,6 +12,8 @@
  * and limitations under the License.
  */
 
+@use "../common/mixins" as *;
+
 .page-content {
   display: flex;
   justify-content: center;

@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../../common/config" as *;
+@use "../../common/mixins" as *;
+
 :root {
   --sidenav-link-color: rgba(0, 0, 0, .54);
   --sidenav-link-active-color: var(--text-color);

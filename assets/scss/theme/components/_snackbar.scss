@@ -13,6 +13,7 @@
  */
 
 @use "sass:map";
+@use "../common/config" as *;
 
 :root {
   /* The position is managed by JS. */

@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+@use "../fonts" as *;
+@use "colors" as *;
+@use "mixins" as *;
+
 // Global typography styles.
 // If a change is only for documentation, release notes, or blog posts,
 // update it in `assets/scss/theme/components/_article-text.scss`.

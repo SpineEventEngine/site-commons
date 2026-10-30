@@ -13,6 +13,8 @@
  */
 
 @use "sass:math";
+@use "../common/colors" as *;
+@use "../fonts" as *;
 
 .next-prev-nav {
   $space-between: 16px;

@@ -12,35 +12,41 @@
  * and limitations under the License.
  */
 
-@import "bootstrap/bootstrap";
+// The modules are forwarded rather than used, so that a site's styles see their
+// variables and mixins, as they did with `@import`. A site can `@use "theme-main" as *;`
+// or, until it moves to modules, `@import "theme-main";`.
+//
+// The theme defines its own values for the hidden Bootstrap variables.
+@forward "bootstrap/bootstrap" hide $black, $border-radius, $gray-100, $gray-200, $gray-300,
+  $gray-500, $gray-600, $gray-700, $input-border-radius, $link-color, $link-hover-color, $white;
 
-@import "theme/fonts";
-@import "theme/common/reset";
-@import "theme/common/colors";
-@import "theme/common/breakpoints";
-@import "theme/common/config";
-@import "theme/common/mixins";
-@import "theme/common/layout";
-@import "theme/common/typography";
-@import "theme/common/code";
+@forward "theme/fonts";
+@forward "theme/common/reset";
+@forward "theme/common/colors";
+@forward "theme/common/breakpoints";
+@forward "theme/common/config";
+@forward "theme/common/mixins";
+@forward "theme/common/layout";
+@forward "theme/common/typography";
+@forward "theme/common/code";
 
-@import "theme/components/external-link";
-@import "theme/components/anchor-icon";
-@import "theme/components/snackbar";
-@import "theme/components/tooltip";
-@import "theme/components/close-icon-button";
-@import "theme/components/article-container";
-@import "theme/components/article-text";
-@import "theme/components/numbered-headings";
-@import "theme/components/blockquote";
-@import "theme/components/sidenav";
-@import "theme/components/next-prev-nav";
-@import "theme/components/interactive-toc";
-@import "theme/components/note-block";
-@import "theme/components/docs-category-card";
-@import "theme/components/person-card";
-@import "theme/components/book-card";
-@import "theme/components/diagram";
+@forward "theme/components/external-link";
+@forward "theme/components/anchor-icon";
+@forward "theme/components/snackbar";
+@forward "theme/components/tooltip";
+@forward "theme/components/close-icon-button";
+@forward "theme/components/article-container";
+@forward "theme/components/article-text";
+@forward "theme/components/numbered-headings";
+@forward "theme/components/blockquote";
+@forward "theme/components/sidenav";
+@forward "theme/components/next-prev-nav";
+@forward "theme/components/interactive-toc";
+@forward "theme/components/note-block";
+@forward "theme/components/docs-category-card";
+@forward "theme/components/person-card";
+@forward "theme/components/book-card";
+@forward "theme/components/diagram";
 
-@import "theme/pages/common";
-@import "theme/pages/docs/resources";
+@forward "theme/pages/common";
+@forward "theme/pages/docs/resources";

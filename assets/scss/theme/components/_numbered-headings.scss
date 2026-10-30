@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../common/mixins" as *;
+
 /*
   Automatically generates numbered headings and numbered Table of Contents.
 

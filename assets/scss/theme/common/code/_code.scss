@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../../fonts" as *;
+@use "../colors" as *;
+
 :root {
   --code-background: #f4f4f4;
   --code-text-color: inherit;

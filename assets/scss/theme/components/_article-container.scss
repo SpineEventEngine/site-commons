@@ -12,7 +12,10 @@
  * and limitations under the License.
  */
 
-$article-border-color: #e6ecf1;
+@use "../common/code/code" as *;
+@use "../common/colors" as *;
+@use "../common/mixins" as *;
+
 $article-container-border: 1px solid $article-border-color;
 $article-side-padding: 56px;
 $article-container-padding: 32px $article-side-padding 40px;

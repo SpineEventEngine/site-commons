@@ -44,7 +44,7 @@ $roboto-mono-font-path: "fonts/robotomono/" !default;
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 500;
-  src: url('#{$roboto-font-path}roboto-mono-v5-latin-500.eot'); /* IE9 Compat Modes */
+  src: url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.eot'); /* IE9 Compat Modes */
   src: local('Roboto Mono Medium'), local('RobotoMono-Medium'),
   url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
   url('#{$roboto-mono-font-path}roboto-mono-v5-latin-500.woff2') format('woff2'), /* Super Modern Browsers */

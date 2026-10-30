@@ -12,6 +12,8 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+
 /*
   The TOC can be with the left indicator line or without it.
   Manages by adding the corresponding class.
