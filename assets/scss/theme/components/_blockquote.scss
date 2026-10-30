@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../fonts" as *;
+
 :root {
   --blockquote-bg-color: transparent;
   --blockquote-border-color: #eeeeee;

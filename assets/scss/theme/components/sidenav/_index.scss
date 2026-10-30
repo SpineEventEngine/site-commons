@@ -12,5 +12,5 @@
  * and limitations under the License.
  */
 
-@import "sidenav";
-@import "mobile-sidenav";
+@forward "sidenav";
+@forward "mobile-sidenav";

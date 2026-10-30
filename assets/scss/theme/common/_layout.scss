@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+@use "../fonts" as *;
+@use "config" as *;
+@use "mixins" as *;
+
 html {
   scroll-padding-top: $header-height;
 }

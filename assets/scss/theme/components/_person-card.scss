@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../common/mixins" as *;
+
 .person-card {
   $avatar-size: 100px;
   $avatar-size-mobile: 60px;

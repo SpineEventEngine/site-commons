@@ -12,6 +12,8 @@
  * and limitations under the License.
  */
 
+@use "code" as *;
+
 .code-with-label {
   .highlight {
     margin-bottom: 0 !important;

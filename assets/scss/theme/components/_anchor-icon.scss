@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../common/mixins" as *;
+@use "../fonts" as *;
+
 /* Prevents the anchor icon from wrapping after the text. */
 .nowrap-icon {
   position: absolute; // Avoids offsetting a title that is centered.

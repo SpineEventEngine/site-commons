@@ -12,6 +12,9 @@
  * and limitations under the License.
  */
 
+@use "../common/config" as *;
+@use "../fonts" as *;
+
 .close-icon-button {
   display: flex;
   align-items: center;

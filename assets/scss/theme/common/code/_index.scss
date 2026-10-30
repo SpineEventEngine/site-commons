@@ -13,13 +13,13 @@
  */
 
 // The Chroma themes go first, so that the code styles below take precedence over them.
-@import "code-theme";
-@import "code-theme-light";
-@import "code-theme-dark";
+@forward "code-theme";
+@forward "code-theme-light";
+@forward "code-theme-dark";
 
-@import "code";
-@import "semantic-code";
-@import "code-block";
-@import "code-tabs";
-@import "code-theme-toggle";
-@import "code-with-label";
+@forward "code";
+@forward "semantic-code";
+@forward "code-block";
+@forward "code-tabs";
+@forward "code-theme-toggle";
+@forward "code-with-label";

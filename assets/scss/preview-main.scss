@@ -16,6 +16,6 @@
   These styles are intended only for the documentation preview.
  */
 
-@import "theme-main";
-@import "preview/home";
-@import "preview/layout";
+@use "theme-main";
+@use "preview/home";
+@use "preview/layout";

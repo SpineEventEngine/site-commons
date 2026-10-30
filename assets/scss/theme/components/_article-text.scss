@@ -12,6 +12,11 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../common/config" as *;
+@use "../common/mixins" as *;
+@use "../fonts" as *;
+
 // These styles extend `theme/common/_typography.scss` for the article text.
 
 // Please be careful when renaming this class.

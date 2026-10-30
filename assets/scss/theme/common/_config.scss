@@ -22,7 +22,7 @@ $header-height: 68px;
 $article-line-height: 1.74;
 
 // Z-index
-// Usage: z-index: map_get($z-index, 'color-selector');
+// Usage: z-index: map.get($z-index, 'color-selector');
 $z-index: (
         'go-top-button'     : 999,
         'color-selector'    : 999,

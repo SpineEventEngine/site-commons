@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../common/config" as *;
+@use "../fonts" as *;
+
 .note-block {
   padding: 12px 24px 13px;
   color: $black;

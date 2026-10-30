@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+@use "../common/colors" as *;
+@use "../common/mixins" as *;
+@use "../fonts" as *;
+
 .book-card {
   $book-mobile-breakpoint: xmd-phone;
 

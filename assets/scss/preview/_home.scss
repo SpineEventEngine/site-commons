@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+@use "../theme/common/colors" as *;
+@use "../theme/common/mixins" as *;
+@use "../theme/fonts" as *;
+
 .home {
   background-color: $body-light-gray-color;
   font-family: $main-font;
