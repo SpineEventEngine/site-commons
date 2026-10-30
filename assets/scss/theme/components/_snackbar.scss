@@ -12,6 +12,8 @@
  * and limitations under the License.
  */
 
+@use "sass:map";
+
 :root {
   /* The position is managed by JS. */
   --snackbar-bottom-position: 20px;
@@ -24,7 +26,7 @@ $snackbar-text-color: white;
 $snackbar-border-radius: 3px;
 $snackbar-padding: 12px 24px;
 $snackbar-left-position: 50%;
-$snackbar-z-index: map-get($z-index, 'snackbar');
+$snackbar-z-index: map.get($z-index, 'snackbar');
 $snackbar-animation: snackbarFadeIn .5s, snackbarFadeOut .5s 2.5s;
 $snackbar-transform: translateX(-50%);
 

@@ -12,6 +12,8 @@
  * and limitations under the License.
  */
 
+@use "sass:math";
+
 .next-prev-nav {
   $space-between: 16px;
   $label-offset: 24px;
@@ -30,11 +32,11 @@
   }
 
   .previous {
-    padding-right: $space-between/2;
+    padding-right: math.div($space-between, 2);
   }
 
   .next {
-    padding-left: $space-between/2;
+    padding-left: math.div($space-between, 2);
     text-align: right;
   }
 

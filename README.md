@@ -12,6 +12,9 @@ It provides:
 
 1. [Go][go] `1.27.3` or newer.
 2. [Hugo Extended][hugo-quick-start] in version `v0.169.0` or higher.
+3. [Dart Sass][dart-sass], which Hugo uses to compile the theme styles.
+   On macOS, install it with `brew install sass/sass/sass`.
+   When Hugo finds it, `hugo env` lists `github.com/sass/dart-sass/...` versions.
 
 ## Installation
 
@@ -49,7 +52,10 @@ See the [guide](_reference/index.md) for all theme components and examples.
 
 When editing this theme:
 - keep components and shortcodes reusable;
+- keep the styles free of Dart Sass deprecations; the build hides those in SCSS partials,
+  see [`stylesheet.html`](layouts/_partials/theme/head/stylesheet.html) for how to show them;
 - update the [guide](_reference/index.md) when adding or changing components.
 
 [go]: https://go.dev/doc/install
+[dart-sass]: https://gohugo.io/functions/css/sass/#dart-sass
 [hugo-quick-start]: https://gohugo.io/getting-started/quick-start/#step-1-install-hugo

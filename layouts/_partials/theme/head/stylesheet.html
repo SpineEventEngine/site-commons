@@ -14,7 +14,17 @@
 
 {{ $scssPath := .scss_path | default "scss/main.scss" }}
 
+{{/*
+Dart Sass needs the `sass` executable on `PATH`. `hugo env` lists it when Hugo finds it.
+
+Bootstrap 5 uses Sass features that Dart Sass deprecates, which floods every build with
+warnings we cannot fix. `silenceDependencyDeprecations` hides deprecations in every file
+except the entry one. That includes the partials of this theme and of the site, so remove
+the option temporarily to check them.
+*/}}
 {{ $options := (dict
+    "transpiler" "dartsass"
+    "silenceDependencyDeprecations" true
     "targetPath" "main.css"
     "outputStyle" "compressed"
     "includePaths" (slice "node_modules")
