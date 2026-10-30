@@ -12,6 +12,8 @@
  * and limitations under the License.
  */
 
+@use "sass:color";
+
 // Brand Colors
 $main-brand-color: #1a96de;
 $second-brand-color: #116db4;
@@ -33,7 +35,7 @@ $gray-700: rgba(black, .7);
 
 // Links
 $link-color: $main-brand-color;
-$link-hover-color: darken($link-color, 10%);
+$link-hover-color: color.adjust($link-color, $lightness: -10%);
 $link-blue-color: #5dc4ff;
 
 // Dividers
