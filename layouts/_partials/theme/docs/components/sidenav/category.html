@@ -31,7 +31,7 @@
     </span>
     <ul id="{{ $id }}" class="subnav collapse {{ if $isActive }}show{{ end }}">
         {{ range $item.children }}
-            {{ partial "theme/docs/components/sidenav/page.html" (dict
+            {{ partial "./page.html" (dict
                 "page_context" $page
                 "item_context" .
             ) }}

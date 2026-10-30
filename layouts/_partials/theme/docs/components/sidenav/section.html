@@ -31,12 +31,12 @@
     <ul id="{{ $id }}" class="subnav collapse {{ if $isActive }}show{{ end }}">
         {{ range $item.children }}
             {{ if .children }}
-                {{ partial "theme/docs/components/sidenav/category.html" (dict
+                {{ partial "./category.html" (dict
                     "page_context" $page
                     "item_context" .
                 ) }}
             {{ else }}
-                {{ partial "theme/docs/components/sidenav/page.html" (dict
+                {{ partial "./page.html" (dict
                     "page_context" $page
                     "item_context" .
                 ) }}

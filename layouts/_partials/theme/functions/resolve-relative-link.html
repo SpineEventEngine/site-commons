@@ -29,7 +29,6 @@
 {{ $page := .page }}
 
 {{ $fragment := "" }}
-{{ $resolved := $link }}
 
 {{ $currentPageDir := $page.File.Dir }}
 {{ $parsedLink := urls.Parse $link }}
@@ -42,7 +41,7 @@
 {{ $destinationPath = path.Clean (path.Join $currentPageDir $destinationPath) }}
 
 {{ with site.GetPage $destinationPath }}
-    {{ $resolved = printf "%s%s" .RelPermalink $fragment }}
+    {{ return (printf "%s%s" .RelPermalink $fragment) }}
 {{ end }}
 
-{{ return $resolved }}
+{{ return $link }}

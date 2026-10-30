@@ -16,7 +16,7 @@
   Returns the version of the current page that is corresponding
   to the provided module.
 
-  For available item fields see `data/versions.yml`.
+  For available item fields see `_reference/versions.md`.
 
   If the version is undefined, returns the main version.
   This is useful for displaying the latest documentation navigation
@@ -32,12 +32,18 @@
 {{ end }}
 
 {{ $version := "" }}
+{{ $bestMatchLen := 0 }}
 {{ $versions := index hugo.Data.versions $module | default (slice) }}
 {{ $mainVersion := index (where $versions "is_main" true) 0 }}
 
+{{/* The longest matching `content_path` wins, so `docs/2` beats `docs`. */}}
 {{ range $versions }}
-    {{ if strings.Contains $currentPath .content_path }}
-        {{ $version = . }}
+    {{ if strings.HasPrefix $currentPath (print .content_path "/") }}
+        {{ $matchLen := len .content_path }}
+        {{ if gt $matchLen $bestMatchLen }}
+            {{ $bestMatchLen = $matchLen }}
+            {{ $version = . }}
+        {{ end }}
     {{ end }}
 {{ end }}
 

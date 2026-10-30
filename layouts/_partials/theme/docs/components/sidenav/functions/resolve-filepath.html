@@ -38,7 +38,7 @@
         {{ $item = merge $item (dict "file_path" $itemFilePath) }}
     {{ end }}
     {{ if $item.children }}
-        {{ $children := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+        {{ $children := partial "./resolve-filepath.html" (dict
             "items" $item.children
             "path" $path
         ) }}

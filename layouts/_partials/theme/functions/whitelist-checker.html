@@ -19,12 +19,11 @@ and should not receive the `rel="nofollow"` property.
 
 {{ $url := . }}
 {{ $whitelist := hugo.Data.whitelist.domains }}
-{{ $skipNofollow := false }}
 {{ if and $url (hasPrefix $url "http") }}
     {{ range $whitelist }}
         {{ if strings.Contains $url . }}
-            {{ $skipNofollow = true }}
+            {{ return true }}
         {{ end }}
     {{ end }}
 {{ end }}
-{{ return $skipNofollow }}
+{{ return false }}

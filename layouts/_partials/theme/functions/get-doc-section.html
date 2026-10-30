@@ -47,14 +47,13 @@
     {{ end }}
 {{ end }}
 
-{{/* Fallback: original logic for pages outside any versioned content path. */}}
-{{ if not $section }}
-    {{ $segments := split $filePath "/" }}
-    {{ if and (ge (len $segments) 3) (findRE `^\d+$` (index $segments 1)) }}
-        {{ $section = index $segments 2 }}
-    {{ else }}
-        {{ $section = index $segments 1 }}
-    {{ end }}
+{{ with $section }}
+    {{ return . }}
 {{ end }}
 
-{{ return $section }}
+{{/* Fallback: original logic for pages outside any versioned content path. */}}
+{{ $segments := split $filePath "/" }}
+{{ if and (ge (len $segments) 3) (findRE `^\d+$` (index $segments 1)) }}
+    {{ return (index $segments 2) }}
+{{ end }}
+{{ return (index $segments 1) }}

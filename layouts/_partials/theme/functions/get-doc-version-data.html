@@ -25,15 +25,21 @@
 {{ end }}
 
 {{ $result := dict "version" dict "module" "" }}
+{{ $bestMatchLen := 0 }}
 
+{{/* The longest matching `content_path` wins, so `docs/validation` beats `docs`. */}}
 {{ $versions := hugo.Data.versions | default (slice) }}
 {{ range $module, $items := $versions }}
     {{ range $items }}
-        {{ if strings.Contains $currentPath .content_path }}
-            {{ $result = dict
-                "version" .
-                "module" $module
-            }}
+        {{ if strings.HasPrefix $currentPath (print .content_path "/") }}
+            {{ $matchLen := len .content_path }}
+            {{ if gt $matchLen $bestMatchLen }}
+                {{ $bestMatchLen = $matchLen }}
+                {{ $result = dict
+                    "version" .
+                    "module" $module
+                }}
+            {{ end }}
         {{ end }}
     {{ end }}
 {{ end }}

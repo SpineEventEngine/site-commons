@@ -6,9 +6,11 @@ nested sections, categories, page links, and external links.
 Sidenav data files can be defined in these locations:
 
 - `data/docs/sidenav.yml` for unversioned root docs.
-- `data/docs/<version>/sidenav.yml` for versioned root docs.
+- `data/docs/<version_id>/sidenav.yml` for versioned root docs.
 - `data/docs/<module>/sidenav.yml` for unversioned module docs.
-- `data/docs/<module>/<version>/sidenav.yml` for versioned module docs.
+- `data/docs/<module>/<version_id>/sidenav.yml` for versioned module docs.
+
+The `version_id` values come from `data/versions.yml`, see [Versions](versions.md).
 
 The item fields are:
 

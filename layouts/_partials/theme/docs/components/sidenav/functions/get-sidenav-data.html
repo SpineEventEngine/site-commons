@@ -27,8 +27,8 @@
 
 {{ $page := . }}
 
-{{ $docs := partial "theme/docs/components/sidenav/functions/get-docs-sidenav.html" $page }}
-{{ $modules := partial "theme/docs/components/sidenav/functions/get-module-sidenav.html" $page }}
+{{ $docs := partial "./get-docs-sidenav.html" $page }}
+{{ $modules := partial "./get-module-sidenav.html" $page }}
 
 {{ $sidenavData := $docs | append $modules }}
 

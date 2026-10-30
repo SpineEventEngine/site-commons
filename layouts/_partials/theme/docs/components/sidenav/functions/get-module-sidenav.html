@@ -25,7 +25,7 @@
 {{ $page := . }}
 {{ $docsData := hugo.Data.docs }}
 {{ $sidenavData := slice }}
-{{ $orderedModules := partial "theme/docs/components/sidenav/functions/get-ordered-modules.html" $docsData }}
+{{ $orderedModules := partial "./get-ordered-modules.html" $docsData }}
 
 {{ range $module := $orderedModules }}
     {{ $data := index $docsData $module }}
@@ -34,7 +34,7 @@
         "module" $module
     ) }}
     {{ with index $data "sidenav" }}
-        {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+        {{ $items := partial "./resolve-filepath.html" (dict
             "items" .
             "path" (print "docs/" $module)
         ) }}
@@ -42,7 +42,7 @@
     {{ end }}
     {{ if $moduleVersion }}
         {{ with index $data $moduleVersion.version_id "sidenav" }}
-            {{ $items := partial "theme/docs/components/sidenav/functions/resolve-filepath.html" (dict
+            {{ $items := partial "./resolve-filepath.html" (dict
                 "items" .
                 "version" $moduleVersion
             ) }}
