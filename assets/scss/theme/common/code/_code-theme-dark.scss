@@ -19,9 +19,12 @@
   Run `hugo gen chromastyles --style=github-dark` to see which token each class stands for.
 
   The code block background and text colors are defined in `_code.scss`.
+
+  As the default theme, it also applies when `data-theme` is not set,
+  e.g., when JavaScript is disabled.
 */
 
-html[data-theme="dark"] {
+html:not([data-theme="light"]) {
   .hl-text-only .chroma .hl {
     color: #cf8e6d;
     font-weight: bold;

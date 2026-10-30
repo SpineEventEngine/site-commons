@@ -102,6 +102,7 @@ and enable the highlighting classes in the site config:
 ```
 
 The partial sets the `data-theme` attribute of the `<html>` element before the first paint.
+Without JavaScript, code blocks use the dark theme.
 The colors of the themes are defined in `assets/scss/theme/common/code/_code-theme-light.scss`
 and `_code-theme-dark.scss`.
 
