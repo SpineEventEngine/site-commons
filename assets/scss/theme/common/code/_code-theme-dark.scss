@@ -1,0 +1,161 @@
+/*!
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+/*
+  The colors of the dark code theme.
+
+  Derived from the `github-dark` Chroma style, most of the colors are customized.
+  Run `hugo gen chromastyles --style=github-dark` to see which token each class stands for.
+
+  The code block background and text colors are defined in `_code.scss`.
+*/
+
+html[data-theme="dark"] {
+  .hl-text-only .chroma .hl {
+    color: #cf8e6d;
+    font-weight: bold;
+  }
+
+  .chroma {
+    // Error.
+    .err {
+      color: #f85149;
+    }
+
+    // Line numbers.
+    .lnt {
+      color: #737679;
+    }
+
+    .ln {
+      color: #6e7681;
+    }
+
+    // Keywords.
+    .k, .kc, .kd, .kn, .kr, .kt {
+      color: #cf8e6d;
+    }
+
+    .kp {
+      color: #29a8b4;
+    }
+
+    // Names.
+    .na, .nf {
+      color: #56a8f5;
+    }
+
+    .nd, .ne, .ni {
+      color: #cf8e6d;
+    }
+
+    .nl, .no, .py,
+    .nv, .vc, .vg, .vi, .vm {
+      color: #29a8b4;
+    }
+
+    .nn {
+      color: #a9b7c6;
+    }
+
+    .nt {
+      color: #7ee787;
+    }
+
+    .fm {
+      color: #d2a8ff;
+    }
+
+    // Literals.
+    .l, .ld {
+      color: #29a8b4;
+    }
+
+    // Strings.
+    .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss {
+      color: #6aab73;
+    }
+
+    // Numbers.
+    .m, .mb, .mf, .mh, .mi, .il, .mo {
+      color: #29a8b4;
+    }
+
+    // Operators.
+    .o {
+      font-weight: bold;
+    }
+
+    .ow {
+      color: #ff7b72;
+    }
+
+    // Comments.
+    .c, .ch, .cm, .c1 {
+      color: #7a7e85;
+      font-style: italic;
+    }
+
+    .cs, .cp, .cpf {
+      color: #7a7e85;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    // Generic tokens.
+    .gd {
+      color: #ffa198;
+      background-color: #490202;
+    }
+
+    .ge {
+      font-style: italic;
+    }
+
+    .gr {
+      color: #ffa198;
+    }
+
+    .gh {
+      color: #29a8b4;
+      font-weight: bold;
+    }
+
+    .gi {
+      color: #56d364;
+      background-color: #0f5323;
+    }
+
+    .gs {
+      font-weight: bold;
+    }
+
+    .gu {
+      color: #29a8b4;
+    }
+
+    .gt {
+      color: #ff7b72;
+    }
+
+    .gl {
+      text-decoration: underline;
+    }
+
+    // Whitespace.
+    .w {
+      color: #6e7681;
+    }
+  }
+}

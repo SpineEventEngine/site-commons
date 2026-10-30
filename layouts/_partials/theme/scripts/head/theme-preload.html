@@ -13,15 +13,26 @@
   -->
 
 <!--
-Applies the saved theme to the document before first paint.
-Needed to prevent a flash of the default theme during page load or navigation.
+Applies the theme to the document before first paint.
+Needed to prevent a flash of the wrong theme during page load or navigation.
+
+The theme is resolved in the following order:
+1. The theme saved in the `themeColor` cookie.
+2. The `dark` theme if the user's system prefers a dark color scheme.
+3. The `defaultTheme`.
+
+While `defaultTheme` is `dark`, the system preference does not change the result.
+Set it to `light` to follow the system color scheme.
+
+The theme is saved and toggled by `assets/js/theme/theme-toggle.js`.
 -->
 <script>
     (function () {
+        var defaultTheme = 'dark';
         var themeCookieMatch = document.cookie.match(/(?:^|;\s*)themeColor=(light|dark)(?:;|$)/);
-        var theme = themeCookieMatch ? themeCookieMatch[1] : null;
-        if (theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var systemTheme = prefersDark ? 'dark' : defaultTheme;
+        var theme = themeCookieMatch ? themeCookieMatch[1] : systemTheme;
+        document.documentElement.setAttribute('data-theme', theme);
     })();
 </script>

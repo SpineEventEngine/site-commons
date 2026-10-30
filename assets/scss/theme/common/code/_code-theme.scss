@@ -1,0 +1,69 @@
+/*!
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+/*
+  The layout of the Chroma highlighting shared by the light and dark code themes.
+
+  The colors of the themes are in `_code-theme-light.scss` and `_code-theme-dark.scss`.
+  The theme is selected by the `data-theme` attribute of the `<html>` element.
+  See `layouts/_partials/theme/head/code-theme.html`.
+*/
+
+.chroma {
+  // Line links.
+  .lnlinks {
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  // Line table cells.
+  .lntd {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  // Line table.
+  .lntable {
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  // Highlighted line.
+  .hl {
+    background-color: var(--code-block-highlighted-line-bg);
+  }
+
+  // Line numbers in the table and inline views.
+  .lnt,
+  .ln {
+    white-space: pre;
+    user-select: none;
+    margin-right: .4em;
+    padding: 0 .4em;
+  }
+
+  .line {
+    display: flex;
+  }
+}
+
+// Highlights only the text of the highlighted line, without the background.
+.hl-text-only .chroma .hl {
+  background-color: transparent;
+}
