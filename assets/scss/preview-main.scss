@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026 CodeMatters, Lda.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
@@ -15,6 +15,8 @@
 /*
   These styles are intended only for the documentation preview.
  */
+
+// The header is a plain `/*` comment for the reason given in `theme-main.scss`.
 
 @use "theme-main";
 @use "preview/home";

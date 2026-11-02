@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright 2026 CodeMatters, Lda.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
@@ -12,6 +12,10 @@
  * and limitations under the License.
  */
 
+// The header above is a plain `/*` comment, which the compressed output drops.
+// A `/*!` one would come first in a site's CSS, ahead of Bootstrap's banner,
+// and `postcss.config.js` keeps only the first comment.
+//
 // The modules are forwarded rather than used, so that a site's styles see their
 // variables and mixins, as they did with `@import`. A site can `@use "theme-main" as *;`
 // or, until it moves to modules, `@import "theme-main";`.
